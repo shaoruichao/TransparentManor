@@ -17,7 +17,7 @@ import com.fat.bigfarm.ui.HomeActivity;
 
 import java.util.ArrayList;
 
-/**导航页*/
+/**引导页*/
 public class Navigation extends BaseActivity {
 
 	/**Viewpager对象*/
