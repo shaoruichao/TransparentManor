@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:xtao="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    tools:context="com.fat.bigfarm.ui.fragment.MyEarningsFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xtao:direction="both">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_myraise"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:childIndicator="@null"
+            android:groupIndicator="@null" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

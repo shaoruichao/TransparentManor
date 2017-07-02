@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--放5个-->
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_Cloudfarm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_Cloudfarm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv1"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"/>
+
+
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_grassfarm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_grassfarm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv2"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"/>
+
+
+            <ImageView
+                android:id="@+id/iv2"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_machineryfarm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_machineryfarm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv3"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"/>
+
+
+            <ImageView
+                android:id="@+id/iv3"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_Generated"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_Generated_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/iv4"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"/>
+
+
+            <ImageView
+                android:id="@+id/iv4"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="#dadada" />-->
+
+
+
+</LinearLayout>

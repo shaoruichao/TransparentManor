@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fat.bigfarm.ui.activity.SellActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_login"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:background="#F3D05A">
+
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#00000000"/>
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="9dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/return_black"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="收益出售"
+            android:textSize="15sp"
+            android:textColor="#181818"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_shopname"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        android:textColor="#2A2A2A"
+        android:textStyle="bold"
+        android:text="农场"
+        android:layout_below="@+id/rl_login"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_shopname">
+
+
+        <ImageView
+            android:id="@+id/iv_thumb"
+            android:layout_below="@+id/tv_tab_title"
+            android:layout_marginTop="5dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/tv_earningstitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="#222222"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:layout_below="@+id/tv_earningstitle"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="#A0A0A0"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:layout_alignBottom="@+id/iv_thumb"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="#181818"
+            android:textSize="13sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_operation"
+        android:layout_below="@+id/rl"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+
+        <EditText
+            android:id="@+id/bt_sell"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/bt_retention"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bt_cancleorder"
+            android:numeric="integer"
+            android:gravity="center"
+            android:textCursorDrawable="@null"
+            android:hint="出售价格"
+            android:textColorHint="#737373"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="#737373"/>
+
+        <EditText
+            android:id="@+id/bt_retention"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bt_cancleorder"
+            android:numeric="integer"
+            android:gravity="center"
+            android:textCursorDrawable="@null"
+            android:hint="数量"
+            android:textColorHint="#737373"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="#737373"
+            android:layout_marginRight="20dp"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bt_sure"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_alignParentBottom="true"
+        android:background="#F3D05A"
+        android:text="确认出售"/>
+
+</RelativeLayout>

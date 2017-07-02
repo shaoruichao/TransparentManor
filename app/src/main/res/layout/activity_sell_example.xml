@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fat.bigfarm.ui.activity.SellExampleActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="47dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_head"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#F3D05A"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:id="@+id/rl_login"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_alignParentTop="true"
+                android:background="#F3D05A">
+
+                <Button
+                    android:id="@+id/bt_back"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"/>
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="9dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/return_black"/>
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="收益转赠"
+                    android:textSize="15sp"
+                    android:textColor="#181818"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/rl_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rl1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/ll1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_count1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:text="15"/>
+                        <TextView
+                            android:id="@+id/tv_unit1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
+                        android:textSize="14sp"
+                        android:text="鸡蛋"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/ll2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_count2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:text="15"/>
+                        <TextView
+                            android:id="@+id/tv_unit2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
+                        android:textSize="14sp"
+                        android:text="鸡蛋"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl3"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/ll3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_count3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:text="15"/>
+                        <TextView
+                            android:id="@+id/tv_unit3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_name3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
+                        android:textSize="14sp"
+                        android:text="鸡蛋"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="#2A2A2A"
+            android:text="领取收益"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:textColor="#2A2A2A"
+            android:text="@string/sell_example"/>
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="领取收益二维码"
+                android:textColor="#2A2A2A"
+                android:textSize="12sp"/>
+            
+            <ImageView
+                android:id="@+id/iv_code"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:layout_width="133dp"
+                android:layout_height="133dp"
+                android:scaleType="fitXY"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_shopname"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="#2A2A2A"
+            android:text="农场"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            >
+
+
+            <ImageView
+                android:id="@+id/iv_thumb"
+                android:layout_below="@+id/tv_tab_title"
+                android:layout_marginTop="5dp"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/tv_earningstitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_thumb"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#222222"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_thumb"
+                android:layout_below="@+id/tv_earningstitle"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#A0A0A0"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_thumb"
+                android:layout_alignBottom="@+id/iv_thumb"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#181818"
+                android:textSize="13sp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

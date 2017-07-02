@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp">
+
+
+        <ImageView
+            android:id="@+id/iv_thumb"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_below="@+id/tv_tab_title"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:text=""
+            android:textColor="#222222"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_raisetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:text=""
+            android:textColor="#A0A0A0"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_raisecycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/tv_raisetime"
+            android:text=""
+            android:textColor="#A0A0A0"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_thumb"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:text=""
+            android:textColor="#DE413D"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="#333333"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_operation"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+        <Button
+            android:id="@+id/bt_example"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/bt_sell"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bt_cancleorder"
+            android:text="收益转赠"
+            android:textSize="14sp"
+            android:textColor="#434343"/>
+
+        <Button
+            android:id="@+id/bt_sell"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/bt_retention"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bt_cancleorder"
+            android:text="收益出售"
+            android:textSize="14sp"
+            android:textColor="#434343"/>
+
+        <Button
+            android:id="@+id/bt_retention"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bt_pay"
+            android:text="收益自留"
+            android:textSize="14sp"
+            android:textColor="#434343"
+            android:layout_marginRight="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_operation2"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+
+        <Button
+            android:id="@+id/bt_cancle_right"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bt_cancleorder"
+            android:text="取消转赠"
+            android:textSize="14sp"
+            android:textColor="#434343"
+            android:layout_marginRight="20dp"/>
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

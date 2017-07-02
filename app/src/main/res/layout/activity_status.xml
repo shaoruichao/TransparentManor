@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3D05A"
+    tools:context="com.fat.bigfarm.ui.activity.StatusActivity">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/login_logo"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_below="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:text="欢迎来到透明农庄"/>
+    
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_status"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#FFAC00"
+        android:text="登录"/>
+
+    <Button
+        android:id="@+id/bt_register"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/bt_login"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_nostatus"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#ffffff"
+        android:text="注册"/>
+
+
+    <TextView
+        android:layout_below="@+id/bt_register"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:text="@string/status"/>
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/close"/>
+</RelativeLayout>

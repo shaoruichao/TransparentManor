@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">透明农庄</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="status">注册账号即代表我同意透明农庄的服务条款、支付服务条款、隐私政策。我的信息将按照中国的
+    相关法律法规存储和处理，包括隐私及信息披露条款</string>
+
+    <string name="sell_example">将二维码转发给你要赠送的人，你的朋友即可凭借二维码
+    领取你此次的收益</string>
+
+    <string name="paysuccess">我们将尽快安排发货，请买家保持手机通讯录畅通，以便快递小哥哥能第一时间联系到你</string>
+
+
+    <!-- WXPayEntryActivity -->
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+</resources>

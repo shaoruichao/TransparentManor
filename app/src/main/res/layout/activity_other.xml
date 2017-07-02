@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3D05A"
+    tools:context="com.fat.bigfarm.ui.activity.OtherActivity">
+
+    <Button
+        android:id="@+id/bt_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#00000000"/>
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="9dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/common_icon_return_white"/>
+
+    <Button
+        android:id="@+id/bt_wx"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_status"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#FFAC00"
+        android:text="微信登录"/>
+
+    <Button
+        android:id="@+id/bt_wb"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/bt_wx"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_status"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#FFAC00"
+        android:text="微博登录"/>
+
+    <Button
+        android:id="@+id/bt_qq"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/bt_wb"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_status"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#FFAC00"
+        android:text="QQ登录"/>
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/bt_qq"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_nostatus"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#ffffff"
+        android:text="登录"/>
+
+    <Button
+        android:id="@+id/bt_register"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/bt_login"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bt_shape_nostatus"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#ffffff"
+        android:text="注册"/>
+
+
+
+</RelativeLayout>
