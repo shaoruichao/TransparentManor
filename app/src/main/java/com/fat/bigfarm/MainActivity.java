@@ -10,6 +10,9 @@ import com.fat.bigfarm.base.BaseActivity;
 import com.fat.bigfarm.ui.HomeActivity;
 import com.fat.bigfarm.ui.activity.Navigation;
 
+/**
+ * 启动页
+ */
 public class MainActivity extends BaseActivity {
 
     private Boolean user_first;
