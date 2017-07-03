@@ -51,7 +51,8 @@
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxEms="12"
+                android:singleLine="true"
                 android:text="第八号当铺美女一枚"
                 android:textColor="#222222"
                 android:textSize="@dimen/txt_14" />
