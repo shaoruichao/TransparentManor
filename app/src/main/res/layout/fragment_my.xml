@@ -92,6 +92,7 @@
                 android:layout_height="27dp"
                 android:layout_marginTop="12dp"
                 android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
                 android:src="@mipmap/obligtion"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -115,6 +116,7 @@
                 android:layout_height="27dp"
                 android:layout_marginTop="12dp"
                 android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
                 android:src="@mipmap/sendgoods"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -138,6 +140,7 @@
                 android:layout_height="27dp"
                 android:layout_marginTop="12dp"
                 android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
                 android:src="@mipmap/beenshipped"/>
             <TextView
                 android:layout_width="wrap_content"
