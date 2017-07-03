@@ -449,7 +449,7 @@
             android:layout_alignBottom="@+id/iv_thumb"
             android:layout_marginLeft="10dp"
             android:text=""
-            android:textColor="#181818"
+            android:textColor="#DE413D"
             android:textSize="13sp" />
 
 

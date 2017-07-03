@@ -184,6 +184,8 @@ public class RetentionActivity extends BaseActivity {
     private HttpListener<JSONObject> earningsDetailsListener = new HttpListener<JSONObject>() {
 
 
+        private String unit;
+        private String price;
         private String content;
         private String thumb;
         private String name;
@@ -246,7 +248,11 @@ public class RetentionActivity extends BaseActivity {
                         thumb = foster.getThumb();
                         Glide.with(getBaseContext()).load(thumb).crossFade().into(ivThumb);
                         content = foster.getContent();
-                        tvContent.setText("收益：" + content);
+                        price = foster.getPrice();
+                        unit = foster.getUnit();
+                        //保留两位小数点
+                        String price_point = String .format("%.2f",Double.valueOf(price));
+                        tvContent.setText("¥"+price_point+"元/"+unit);
 
                     }
                 }

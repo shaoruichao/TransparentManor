@@ -42,12 +42,11 @@
     <TextView
         android:id="@+id/tv_shopname"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="20dp"
         android:textSize="18sp"
         android:textColor="#2A2A2A"
-        android:textStyle="bold"
         android:text="农场"
         android:layout_below="@+id/rl_login"
         android:layout_alignParentEnd="true" />
@@ -115,16 +114,20 @@
         android:layout_width="match_parent"
         android:layout_height="30dp">
 
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_cancleorder"
+            android:layout_toLeftOf="@+id/rl_retention"
+            android:layout_marginRight="10dp">
 
         <EditText
             android:id="@+id/bt_sell"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/bt_retention"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/bt_cancleorder"
+            android:background="@null"
             android:numeric="integer"
-            android:gravity="center"
+            android:layout_centerInParent="true"
             android:textCursorDrawable="@null"
             android:hint="出售价格"
             android:textColorHint="#737373"
@@ -132,21 +135,31 @@
             android:textSize="14sp"
             android:textColor="#737373"/>
 
-        <EditText
-            android:id="@+id/bt_retention"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_retention"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:background="@drawable/bt_cancleorder"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bt_cancleorder">
+        <EditText
+            android:id="@+id/bt_retention"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
             android:numeric="integer"
-            android:gravity="center"
+            android:layout_centerInParent="true"
             android:textCursorDrawable="@null"
             android:hint="数量"
             android:textColorHint="#737373"
             android:text=""
             android:textSize="14sp"
             android:textColor="#737373"
-            android:layout_marginRight="20dp"/>
+            />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
