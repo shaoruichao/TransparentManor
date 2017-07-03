@@ -302,7 +302,7 @@ public class HomeFragment extends BaseFragment {
                         rvAdapter.setmOnItemClickLitener(new RvAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View v, int postion) {
-                                ToastUtil.showToast(getActivity(),"item click postion "+postion);
+//                                ToastUtil.showToast(getActivity(),"item click postion "+postion);
                                 HomeList.DataBean dataBean = homeListData.get(postion-2);
                                 String typename = dataBean.getTypename();
                                 Log.e(TAG, "onItemClick: "+typename );

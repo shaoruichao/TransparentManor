@@ -183,16 +183,6 @@ public class WarehouseEarningsitemAdapter extends BaseQuickAdapter<Earnings.Data
             }
         });
         //取消转赠
-//        if (mOnItemClickLitener != null){
-//            bt_cancle_right.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mOnItemClickLitener.onItemClick(bt_cancle_right,earningsPosition,adapterPosition);
-//
-//                }
-//            });
-//
-//        }
         bt_cancle_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,17 +243,5 @@ public class WarehouseEarningsitemAdapter extends BaseQuickAdapter<Earnings.Data
         });
     }
 
-
-//    public interface OnItemsClickListener{
-//        void onItemClick(Button bt_cancle_right,int earningsPos,int postion);
-//
-//    }
-//
-//    /**自定义条目点击监听*/
-//    private OnItemsClickListener mOnItemClickLitener = null;
-//
-//    public void setmOnItemClickLitener(OnItemsClickListener mOnItemClickLitener) {
-//        this.mOnItemClickLitener = mOnItemClickLitener;
-//    }
 
 }

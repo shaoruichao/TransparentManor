@@ -28,8 +28,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**Rv适配器，包含多个头布局
- * Created by yusheng on 2016/11/28.
+/**
+ * 首页adapter
  */
 public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
     private static final String TAG = "RvAdapter";
