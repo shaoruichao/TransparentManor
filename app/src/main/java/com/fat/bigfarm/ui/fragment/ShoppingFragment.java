@@ -185,7 +185,8 @@ public class ShoppingFragment extends BaseFragment implements ShopcartExpandable
                                         goodsinfo.get(j).getThumb(), goodsinfo.get(j).getName(),goodsinfo.get(j).getAid()
                                         ,goodsinfo.get(j).getAction_price(),goodsinfo.get(j).getPrice()
                                         ,Integer.parseInt(goodsinfo.get(j).getCount()),goodsinfo.get(j).getCartid()
-                                        ,allInfo.getData().get(i).getShopid(),allInfo.getData().get(i).getShopname(),goodsinfo.get(j).getUnit()));
+                                        ,allInfo.getData().get(i).getShopid(),allInfo.getData().get(i).getShopname()
+                                        ,goodsinfo.get(j).getUnit(),allInfo.getData().get(i).getFreight()));
                             }
                             children.put(groups.get(i).getId(), products);// 将组元素的一个唯一值，这里取Id，作为子元素List的Key
                         }

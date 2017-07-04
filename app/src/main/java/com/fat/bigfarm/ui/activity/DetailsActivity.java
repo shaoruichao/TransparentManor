@@ -462,7 +462,7 @@ public class DetailsActivity extends BaseActivity {
 //                    String price = data.getPrice();
                     products.add(new ProductInfo(data.getId(), data.getName(),
                             data.getThumb().get(0), data.getName(), data.getAid(),data.getAction_price(),data.getPrice()
-                            , 1, "", data.getSid(),data.getShopname(),data.getUnit()));
+                            , 1, "", data.getSid(),data.getShopname(),data.getUnit(),data.getFreight()));
 
 
                     Intent intent1 = new Intent();

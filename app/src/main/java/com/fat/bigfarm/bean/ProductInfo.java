@@ -20,6 +20,8 @@ public class ProductInfo extends BaseInfo implements Serializable
 	private String aid;//活动id  不为0用活动价，为0还用price
 	private String action_price;
 
+	private String freight;//运费
+
 
 	private boolean isTop;
 
@@ -52,7 +54,8 @@ public class ProductInfo extends BaseInfo implements Serializable
 	public ProductInfo(String id, String name, String imageUrl
 			, String desc, String aid,String action_price
 			, String price, int count,String cartid
-			,String sid,String shopname,String unit)
+			,String sid,String shopname,String unit
+			,String freight)
 	{
 
 		this.id = id;
@@ -67,7 +70,16 @@ public class ProductInfo extends BaseInfo implements Serializable
 		this.unit = unit;
 		this.aid = aid;
 		this.action_price = action_price;
+		this.freight = freight;
 
+	}
+
+	public String getFreight() {
+		return freight;
+	}
+
+	public void setFreight(String freight) {
+		this.freight = freight;
 	}
 
 	public String getAid() {

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.bumptech.glide.util.LogTime;
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.adapter.SureOrderAdapter;
 import com.fat.bigfarm.app.AllUrl;
@@ -167,6 +168,8 @@ public class SuerOrderActivity extends BaseActivity {
     private ArrayList<String> listcartid;
 
     private static final int SDK_PAY_FLAG = 1;
+    //运费
+    private int pastage_price;
 
 
     @SuppressLint("HandlerLeak")
@@ -254,6 +257,7 @@ public class SuerOrderActivity extends BaseActivity {
         Log.e(TAG, "productLists: "+productLists );
         for (int y=0 ; y< productLists.size();y++){
             String sid = productLists.get(y).getSid();
+            String freight = productLists.get(y).getFreight();
             //删除id
             String cartid = productLists.get(y).getCartid();
             listcartid.add(cartid);
@@ -285,7 +289,7 @@ public class SuerOrderActivity extends BaseActivity {
             s = s.substring(0, s.length()-1);
             s +="]";
 
-            ss+="{\"goodsinfo\":"+s+",\"sid\":"+sid+",\"freight\":" + 10 + "},";
+            ss+="{\"goodsinfo\":"+s+",\"sid\":"+sid+",\"freight\":" + freight + "},";
 
         }
 
@@ -309,8 +313,6 @@ public class SuerOrderActivity extends BaseActivity {
 
         try {
             myJsonArray = new JSONArray(ss);
-            Log.e(TAG, "onCreatemyJsonArray "+myJsonArray.length() );
-
 
             for(int i=0 ; i < myJsonArray.length() ;i++)
             {
@@ -326,17 +328,17 @@ public class SuerOrderActivity extends BaseActivity {
                     if (goodsinfo.length() != 1){
                         myJsonArray.remove(i);
                     }
-
                 }
-
-
+                //运费
+                pastage_price = pastage_price + Integer.parseInt(myjObject.getString("freight"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Log.e(TAG, "onCreate: "+myJsonArray );
 
+        Log.e(TAG, "onCreatefreight: "+pastage_price);
+        Log.e(TAG, "onCreatemyJsonArray: "+myJsonArray );
         Log.e(TAG, "onCreate: "+listforAdapter );
 
         sureOrderAdapter = new SureOrderAdapter(listforAdapter);
@@ -348,9 +350,11 @@ public class SuerOrderActivity extends BaseActivity {
         rv_homemore.setHasFixedSize(true);
         rv_homemore.setLayoutManager(new LinearLayoutManager(this));
 
-        result = getIntent().getStringExtra("result");
+        tvPastagePrice.setText("¥" +pastage_price+"");
+
+        result = getIntent().getStringExtra("result");//价格
         double v = Double.parseDouble(result);
-        String totalPrice = String.format("%.2f", v);
+        String totalPrice = String.format("%.2f", v+pastage_price);//价格+运费
         tvTotalPrice.setText("¥" + totalPrice);
 
         userid = TMApplication.instance.sp.getString("userid", "");
@@ -621,36 +625,6 @@ public class SuerOrderActivity extends BaseActivity {
                     payThread.start();
 
                 }
-//                PushOrder pushOrder = JsonUtil.parseJsonToBean(s.toString(), PushOrder.class);
-//                code = pushOrder.getCode();
-//
-//                if (code == 200){
-//                    order = pushOrder.getOrder();
-//
-//                    api = WXAPIFactory.createWXAPI(getBaseContext(), order.getAppid());
-//                    api.registerApp(order.getAppid());
-//                    PayReq req = new PayReq();
-//                    //应用ID
-//                    req.appId			= order.getAppid();
-//                    //商户号
-//                    req.partnerId		= order.getMch_id();
-//                    //预支付交易会话ID
-//                    req.prepayId		= order.getPrepay_id();
-//                    //随机字符串
-//                    req.nonceStr		= order.getNonce_str();
-//                    //时间戳
-//                    req.timeStamp		= String.valueOf(order.getTimestamp());
-//                    //扩展字段
-//                    req.packageValue	= "Sign=WXPay";
-//                    //签名
-//                    req.sign			= order.getSign();
-////                    Toast.makeText(SuerOrderActivity.this, "正常调起支付", Toast.LENGTH_SHORT).show();
-//                    // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
-//                    api.sendReq(req);
-//
-//                    PostShoppingcartEdit();
-//
-//                }
 
             }
 
