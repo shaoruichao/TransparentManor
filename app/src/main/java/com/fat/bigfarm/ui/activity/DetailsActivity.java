@@ -268,7 +268,7 @@ public class DetailsActivity extends BaseActivity {
                     thumb = data.getThumb();
                     typeid = data.getTypeid();
                     if (typeid.equals("1")){
-                        tv_pay.setText("立即代养");
+                        tv_pay.setText("预约");
                     }else {
                         tv_pay.setText("立即购买");
                     }
