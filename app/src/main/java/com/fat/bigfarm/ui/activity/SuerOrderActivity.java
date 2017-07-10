@@ -189,7 +189,11 @@ public class SuerOrderActivity extends BaseActivity {
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Toast.makeText(SuerOrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                        PostShoppingcartEdit();
+                        for (int x=0 ; x< listcartid.size();x++){
+                            if (!listcartid.get(x).equals("")){
+                                PostShoppingcartEdit();
+                            }
+                        }
                         Intent intent = new Intent();
                         intent.putExtra("way",way);
                         intent.putExtra("result",result);
@@ -260,6 +264,7 @@ public class SuerOrderActivity extends BaseActivity {
             String freight = productLists.get(y).getFreight();
             //删除id
             String cartid = productLists.get(y).getCartid();
+            Log.e(TAG, "onCreatecartid: "+cartid );
             listcartid.add(cartid);
 
 
@@ -539,7 +544,15 @@ public class SuerOrderActivity extends BaseActivity {
                     // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
                     api.sendReq(req);
 
-                    PostShoppingcartEdit();
+                    for (int x=0 ; x< listcartid.size();x++){
+
+                        Log.e(TAG, "onActivityResult2222222: "+listcartid.get(x) );
+                        if (!listcartid.get(x).equals("")){
+                            PostShoppingcartEdit();
+                        }
+                    }
+
+
 
                 }
 
