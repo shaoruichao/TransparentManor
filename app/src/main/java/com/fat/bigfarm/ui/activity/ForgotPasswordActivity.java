@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.app.AllUrl;
+import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.utils.ToastUtil;
 import com.fat.bigfarm.base.BaseActivity;
 import com.fat.bigfarm.entry.SendPhone;
@@ -58,6 +59,9 @@ public class ForgotPasswordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         ButterKnife.bind(this);
+
+        // 添加到Activity集合
+        TMApplication.instance.addActivity(this);
 
         tvTitle.setText("请输入您的手机号码以查找您的账号");
 

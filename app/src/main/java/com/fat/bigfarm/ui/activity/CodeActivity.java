@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fat.bigfarm.R;
+import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseActivity;
 import com.fat.bigfarm.utils.ToastUtil;
 
@@ -45,6 +46,9 @@ public class CodeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code);
         ButterKnife.bind(this);
+
+        // 添加到Activity集合
+        TMApplication.instance.addActivity(this);
 
         Intent intent = getIntent();
         return_id = intent.getStringExtra("return_id");

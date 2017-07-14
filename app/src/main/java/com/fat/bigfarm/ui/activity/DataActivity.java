@@ -164,7 +164,13 @@ public class DataActivity extends BaseActivity {
         setContentView(R.layout.activity_data);
         ButterKnife.bind(this);
 
+        // 添加到Activity集合
+        TMApplication.instance.addActivity(this);
 
+        avatar = TMApplication.instance.sp.getString("avatar", "");
+        if (avatar != null && !avatar.equals("")){
+            Picasso.with(this).load(avatar).into(ivHead);
+        }
 
     }
 
@@ -228,7 +234,7 @@ public class DataActivity extends BaseActivity {
         super.onResume();
 
         nickname = TMApplication.instance.sp.getString("nickname", "");
-        avatar = TMApplication.instance.sp.getString("avatar", "");
+
         userid = TMApplication.instance.sp.getString("userid", "");
         sp_sex = TMApplication.instance.sp.getString("sex", "");
         birthday = TMApplication.instance.sp.getString("birthday", "");
@@ -236,9 +242,7 @@ public class DataActivity extends BaseActivity {
         if (nickname != null && !nickname.equals("")){
             tvName.setText(nickname);
         }
-        if (avatar != null && !avatar.equals("")){
-            Picasso.with(this).load(avatar).into(ivHead);
-        }
+
         if (sp_sex != null && !sp_sex.equals("")){
             if (sp_sex.equals("男")){
                 ivNan.setImageResource(R.drawable.dot_check);
@@ -289,6 +293,7 @@ public class DataActivity extends BaseActivity {
             case R.id.rl_phone:
                 break;
             case R.id.rl_password:
+                startActivity(new Intent(this,ForgotPasswordActivity.class));
                 break;
             case R.id.rl_wx:
                 break;
@@ -393,12 +398,12 @@ public class DataActivity extends BaseActivity {
 //                    head = getBitmapFromBigImagByUri(outPutUri);//这个方法也是可行，应该是只是尺寸压缩，没有压缩质量，故调用了之前写的ImageUtil（不这么写的话，在裁剪那里的时候返回就甭了）
                     try {
 
-                        head = ImageUtil.getBitmapFormUri(this,outPutUri);
+                        head = ImageUtil.getBitmapFormUri(DataActivity.this,outPutUri);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     if (head != null) {
-                        Log.e(TAG, "onActivityResult: " + head);
+                        Log.e(TAG, "onActivityResult11111: " + head);
                         /*** 上传服务器代码*/
                         //Base64的编码
                         String imgCode = ImageUtil.getBitmapStrBase64(head);

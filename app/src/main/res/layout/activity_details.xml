@@ -205,7 +205,7 @@
             android:layout_height="35dp"
             android:padding="6dp"
             android:layout_centerInParent="true"
-            android:src="@mipmap/comui_tab_home"/>
+            android:src="@mipmap/comui_tab_shopping"/>
 
         <View
             android:layout_width="1dp"

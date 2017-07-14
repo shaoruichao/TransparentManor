@@ -70,6 +70,9 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        // 添加到Activity集合
+        TMApplication.instance.addActivity(this);
+
 //        dataSave = new ListDataSave(mContext, "list");
 
     }

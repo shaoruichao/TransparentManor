@@ -44,32 +44,59 @@
         <activity
             android:name=".ui.activity.Navigation"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.HomeActivity" />
-        <activity android:name=".ui.activity.HomeMoreActivity" />
-        <activity android:name=".ui.activity.HomeSmallMoreActivity" />
-        <activity android:name=".ui.activity.DetailsActivity" />
-        <activity android:name=".ui.activity.ShoppingDetailsActivity" />
-        <activity android:name=".ui.activity.ShoppingActivity" />
         <activity
+            android:name=".ui.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.HomeMoreActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.HomeSmallMoreActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.DetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.ShoppingDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.ShoppingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/Login_TextInput" />
-        <activity android:name=".ui.activity.StatusActivity" />
         <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.StatusActivity" />
+        <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.RegisterActivity"
             android:theme="@style/Login_TextInput" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.CodeActivity"
             android:theme="@style/Login_TextInput" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.PassWordActivity"
             android:theme="@style/Login_TextInput" />
-        <activity android:name=".ui.activity.OtherActivity" />
         <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.OtherActivity" />
+        <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.ForgotPasswordActivity"
             android:theme="@style/Login_TextInput"/>
-        <activity android:name=".ui.activity.DataActivity" />
-        <activity android:name=".ui.activity.AddressActivity" />
-        <activity android:name=".ui.activity.AddressManageActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.DataActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.AddressActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.AddressManageActivity" />
         <!-- 我的订单 -->
         <activity
             android:name=".ui.activity.MyOrderActivity"
@@ -83,12 +110,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/StyledIndicators" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.AlterNameActivity"
             android:theme="@style/Alter_TextInput" />
-        <activity android:name=".ui.activity.ActivitiesDetailActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.ActivitiesDetailActivity" />
 
         <!-- 微信支付 -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
@@ -96,6 +127,7 @@
 
         <!-- 确认订单 -->
         <activity
+            android:screenOrientation="portrait"
             android:name=".ui.activity.SuerOrderActivity"
             android:exported="true"
             android:launchMode="singleTop">
@@ -114,11 +146,21 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ui.activity.SetActivity" />
-        <activity android:name=".ui.activity.OrderDetailActivity" />
-        <activity android:name=".ui.activity.RetentionActivity" />
-        <activity android:name=".ui.activity.SellActivity" />
-        <activity android:name=".ui.activity.SellExampleActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.SetActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.OrderDetailActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.RetentionActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.SellActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.SellExampleActivity" />
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -129,9 +171,15 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind" />
-        <activity android:name=".ui.activity.PaySuccessfulActivity" />
-        <activity android:name=".ui.activity.AboutActivity" />
-        <activity android:name=".ui.activity.AgreementActivity"></activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.PaySuccessfulActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.AboutActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.activity.AgreementActivity"></activity>
     </application>
 
 </manifest>

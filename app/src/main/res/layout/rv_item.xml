@@ -405,7 +405,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:maxEms="9"
+                    android:maxEms="10"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text=""
@@ -418,7 +418,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=""
                     android:textColor="#737373"
                     android:textSize="13sp" />
@@ -456,7 +458,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:maxEms="9"
+                    android:maxEms="10"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text=""
@@ -469,7 +471,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=""
                     android:textColor="#737373"
                     android:textSize="13sp" />
@@ -506,7 +510,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:maxEms="9"
+                    android:maxEms="10"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text=""
@@ -519,7 +523,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=""
                     android:textColor="#737373"
                     android:textSize="13sp" />
@@ -556,7 +562,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:maxEms="9"
+                    android:maxEms="10"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text=""
@@ -569,7 +575,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=""
                     android:textColor="#737373"
                     android:textSize="13sp" />
@@ -606,7 +614,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:maxEms="9"
+                    android:maxEms="10"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text=""
@@ -619,7 +627,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=""
                     android:textColor="#737373"
                     android:textSize="13sp"/>
@@ -656,7 +666,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:maxEms="9"
+                    android:maxEms="10"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text=""
@@ -669,7 +679,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-
+                    android:maxEms="10"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:text=""
                     android:textColor="#737373"
                     android:textSize="13sp" />

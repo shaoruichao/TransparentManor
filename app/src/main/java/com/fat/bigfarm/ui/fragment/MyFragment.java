@@ -143,7 +143,6 @@ public class MyFragment extends BaseFragment {
             //待付款
             case R.id.rl_obligation:
                 if (status.equals("1")){
-                    // 登录成功跳转到我的京东首页
                     Intent intent = new Intent(getActivity(),MyOrderActivity.class);
                     intent.putExtra("userloginflag", 1);
                     startActivity(intent);
