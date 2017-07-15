@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,15 +18,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.fat.bigfarm.R;
+import com.fat.bigfarm.adapter.ViewPageAdapter;
 import com.fat.bigfarm.entry.Classify;
 import com.fat.bigfarm.ui.activity.DetailsActivity;
 import com.fat.bigfarm.ui.activity.ShoppingDetailsActivity;
 import com.fat.bigfarm.utils.ToastUtil;
+import com.fat.bigfarm.view.AutoPlayViewPager;
 import com.fat.bigfarm.view.FlyBanner;
 import com.fat.bigfarm.adapter.RvAdapter;
 import com.fat.bigfarm.app.AllUrl;
@@ -34,6 +38,8 @@ import com.fat.bigfarm.entry.Banner;
 import com.fat.bigfarm.entry.HomeList;
 import com.fat.bigfarm.nohttp.HttpListener;
 import com.fat.bigfarm.utils.JsonUtil;
+import com.fat.bigfarm.view.banner.NonPageTransformer;
+import com.fat.bigfarm.view.indicator.TabPageIndicator;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.rest.Request;
@@ -66,6 +72,7 @@ public class HomeFragment extends BaseFragment {
 
     //banner图片集合
     private List<String> bigPics;
+    private List<String> bigPicsid;
 
     private RvAdapter rvAdapter;
     private KProgressHUD hud;
@@ -74,6 +81,12 @@ public class HomeFragment extends BaseFragment {
     private List<Classify.DataBean> classifyData;
 
     private int mDistanceY;
+    private ViewPageAdapter mAdapter;
+
+    private  AutoPlayViewPager pager;
+    LinearLayout mLayout;
+
+    private ArrayList<View> mList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -84,7 +97,6 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         tv_search.setInputType(InputType.TYPE_NULL);
-
 
         setinit();
 
@@ -138,8 +150,6 @@ public class HomeFragment extends BaseFragment {
         return i;
     }
 
-
-
     /*设置刷新的效果*/
 
     private void setinit() {
@@ -152,6 +162,8 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 //刷新的时候
+                mList.clear();
+                pager.stop();
 
                 hud = KProgressHUD.create(getActivity())
                         .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
@@ -163,7 +175,6 @@ public class HomeFragment extends BaseFragment {
                 swLayout.setRefreshing(false);
             }
         });
-
 
     }
 
@@ -205,7 +216,6 @@ public class HomeFragment extends BaseFragment {
                         getBanner();
 
                     }
-
                 }
 
             } catch (Exception e) {
@@ -245,11 +255,14 @@ public class HomeFragment extends BaseFragment {
                         final List<Banner.DataBean> data = banner.getData();
                         if (data.size()!=0){
                             bigPics = new ArrayList<>();
+                            bigPicsid = new ArrayList<>();
                             for (int i = 0; i < data.size(); i++) {
                                 String thumb = data.get(i).getAddress();
+                                String id = data.get(i).getId();
                                 Log.e(TAG, "onSucceed: " + thumb);
 
                                 bigPics.add(thumb);
+                                bigPicsid.add(id);
 
                             }
 
@@ -334,17 +347,66 @@ public class HomeFragment extends BaseFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initBannerTop(RvAdapter rvAdapter) {
-        View bannerBigView = LayoutInflater.from(getActivity()).inflate(R.layout.banner_top, rv, false);
-        FlyBanner bannerTop = (FlyBanner) bannerBigView.findViewById(R.id.bannerTop);
+//        View bannerBigView = LayoutInflater.from(getActivity()).inflate(R.layout.banner_top, rv, false);
+//        FlyBanner bannerTop = (FlyBanner) bannerBigView.findViewById(R.id.bannerTop);
+//        rvAdapter.addHeadView0(bannerBigView);
+//        bannerTop.setImagesUrl(bigPics);
+//        bannerTop.setOnItemClickListener(new FlyBanner.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                ToastUtil.showToast(getActivity(),"position--->"+bigPics.get(position).toString());
+//            }
+//        });
+        View bannerBigView = LayoutInflater.from(getActivity()).inflate(R.layout.banner, rv, false);
+        pager = (AutoPlayViewPager) bannerBigView.findViewById(R.id.pager);
+        mLayout= (LinearLayout) bannerBigView.findViewById(R.id.ll_hottest_indicator);
         rvAdapter.addHeadView0(bannerBigView);
-        bannerTop.setImagesUrl(bigPics);
-        bannerTop.setOnItemClickListener(new FlyBanner.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-//                ToastUtil.showToast(getActivity(),"position--->"+position);
+        //设置页与页之间的间距
+//        pager.setPageMargin(40);
+        //设置item的缓存数目
+//        pager.setOffscreenPageLimit(4);
+
+        mAdapter = new ViewPageAdapter(getActivity(),bigPics,bigPicsid);
+        pager.setAdapter(mAdapter);
+        pager.setCurrentItem(1000*bigPics.size());
+        pager.setPageTransformer(true, NonPageTransformer.INSTANCE);
+
+        mList.clear();
+        for (int i = 0; i < bigPics.size(); i++) {
+            View view=new View(getActivity());
+            LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1.0f);
+            view.setLayoutParams(layoutParams);
+            if(i==0){
+                view.setBackgroundColor(Color.parseColor("#F3D05A"));
             }
+
+            mList.add(view);
+            mLayout.addView(view);
+        }
+
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < mList.size(); i++) {
+                    if (i == position% mList.size()) {
+                        mList.get(i).setBackgroundColor(Color.parseColor("#F3D05A"));
+                        Log.e(TAG, "onPageSelected: "+222 );
+                    } else {
+                        mList.get(i).setBackgroundColor(Color.parseColor("#ffffff"));
+                        Log.e(TAG, "onPageSelected: "+1111 );
+                    }
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {}
         });
+        //自动轮播
+        pager.start();
+
     }
+
 
     /**
      * 初始化4个子菜单
