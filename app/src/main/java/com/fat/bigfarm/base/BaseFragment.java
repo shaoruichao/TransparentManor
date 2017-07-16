@@ -1,7 +1,7 @@
 package com.fat.bigfarm.base;
 
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import com.fat.bigfarm.nohttp.CallServer;
 import com.fat.bigfarm.nohttp.HttpListener;
