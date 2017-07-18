@@ -48,57 +48,57 @@
             android:name=".ui.HomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/StyledIndicators"/>
+            android:theme="@style/StyledIndicators" />
         <activity
             android:name=".ui.activity.HomeMoreActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.HomeSmallMoreActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.DetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ShoppingDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ShoppingActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Login_TextInput" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.StatusActivity" />
+            android:name=".ui.activity.StatusActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.RegisterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Login_TextInput" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.CodeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Login_TextInput" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.PassWordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Login_TextInput" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.OtherActivity" />
+            android:name=".ui.activity.OtherActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.ForgotPasswordActivity"
-            android:theme="@style/Login_TextInput"/>
-        <activity
             android:screenOrientation="portrait"
-            android:name=".ui.activity.DataActivity" />
+            android:theme="@style/Login_TextInput" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.AddressActivity" />
+            android:name=".ui.activity.DataActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.AddressManageActivity" />
+            android:name=".ui.activity.AddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AddressManageActivity"
+            android:screenOrientation="portrait" />
         <!-- 我的订单 -->
         <activity
             android:name=".ui.activity.MyOrderActivity"
@@ -112,27 +112,27 @@
             android:screenOrientation="portrait"
             android:theme="@style/StyledIndicators" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.AlterNameActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Alter_TextInput" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.ActivitiesDetailActivity" />
+            android:name=".ui.activity.ActivitiesDetailActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 微信支付 -->
         <activity
-            android:screenOrientation="portrait"
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Mike" />
 
         <!-- 确认订单 -->
         <activity
-            android:screenOrientation="portrait"
             android:name=".ui.activity.SuerOrderActivity"
             android:exported="true"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -149,20 +149,20 @@
         </receiver>
 
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.SetActivity" />
+            android:name=".ui.activity.SetActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.OrderDetailActivity" />
+            android:name=".ui.activity.OrderDetailActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.RetentionActivity" />
+            android:name=".ui.activity.RetentionActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.SellActivity" />
+            android:name=".ui.activity.SellActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.SellExampleActivity" />
+            android:name=".ui.activity.SellExampleActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -174,14 +174,15 @@
             android:exported="false"
             android:screenOrientation="behind" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.PaySuccessfulActivity" />
+            android:name=".ui.activity.PaySuccessfulActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.AboutActivity" />
+            android:name=".ui.activity.AboutActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.activity.AgreementActivity"></activity>
+            android:name=".ui.activity.AgreementActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.EarningsDetailActivity"></activity>
     </application>
 
 </manifest>

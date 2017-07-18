@@ -93,8 +93,8 @@ public class WarehouseEarningsitemAdapter extends BaseQuickAdapter<Earnings.Data
         final String id = dataBean.getIncome().getId();
         if (status.equals("1")){
             tv_status.setText("收益转赠中");
-            rl_operation.setVisibility(View.GONE);
-            rl_operation2.setVisibility(View.VISIBLE);
+//            rl_operation.setVisibility(View.GONE);
+//            rl_operation2.setVisibility(View.VISIBLE);
         }else if (status.equals("2")){
             tv_status.setText("收益已转赠");
             tv_status.setTextColor(Color.parseColor("#DE413D"));
@@ -106,90 +106,90 @@ public class WarehouseEarningsitemAdapter extends BaseQuickAdapter<Earnings.Data
             tv_status.setTextColor(Color.parseColor("#FFAC00"));
         }else if (status.equals("5")){
             tv_status.setText("待处理");
-            rl_operation.setVisibility(View.VISIBLE);
+//            rl_operation.setVisibility(View.VISIBLE);
             tv_status.setTextColor(Color.parseColor("#FFAC00"));
         }else if (status.equals("7")){
             tv_status.setText("收益自留");
             tv_status.setTextColor(Color.parseColor("#FFAC00"));
         }
 
-        baseViewHolder.setText(R.id.tv_raisetime,"代养时长："+dataBean.getFostertime());
-        baseViewHolder.setText(R.id.tv_raisecycle,"收益周期："+dataBean.getIncome().getCycle());
+//        baseViewHolder.setText(R.id.tv_raisetime,"代养时长："+dataBean.getFostertime());
+//        baseViewHolder.setText(R.id.tv_raisecycle,"收益周期："+dataBean.getIncome().getCycle());
         baseViewHolder.setText(R.id.tv_content,"收益："+dataBean.getIncome().getContent());
-        //收益自留
-        bt_retention.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("id", id);
-                intent.setClass(mContext, RetentionActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
-
-
-        income = dataBean.getIncome();
-        count = income.getCount();
-        content = income.getContent();
-        name = dataBean.getName();
-        thumb = dataBean.getThumb();
-        //收益出售
-        bt_sell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog dlg =
-                        new AlertDialog.Builder(mContext, R.style.MyDialogStyle).create();
-                dlg.setCanceledOnTouchOutside(true);
-                dlg.show();
-                Window window = dlg.getWindow();
-                //设置窗口的内容页面
-                window.setContentView(R.layout.earnings_sell_dialog);
-                //取消
-                Button bt_cancel = (Button) window.findViewById(R.id.bt_cancel);
-                bt_cancel.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        dlg.cancel();
-                    }
-                });
-                //确定
-                Button bt_ok = (Button) window.findViewById(R.id.bt_ok);
-                bt_ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dlg.cancel();
-//                        PostIncomeEdit(id);
-                        Intent intent1 = new Intent();
-                        intent1.putExtra("id",id);
-                        intent1.putExtra("shopname",shopname);
-                        intent1.putExtra("count", count);
-                        intent1.putExtra("thumb", thumb);
-                        intent1.putExtra("name", name);
-                        intent1.putExtra("content", content);
-                        intent1.setClass(mContext, SellActivity.class);
-                        mContext.startActivity(intent1);
-
-                    }
-                });
-            }
-        });
-        //收益转赠
-        bt_example.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PostIncomeEdit(id);
-
-            }
-        });
-        //取消转赠
-        bt_cancle_right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                PostIncomeEditCancle(id);
-            }
-        });
+//        //收益自留
+//        bt_retention.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.putExtra("id", id);
+//                intent.setClass(mContext, RetentionActivity.class);
+//                mContext.startActivity(intent);
+//            }
+//        });
+//
+//
+//        income = dataBean.getIncome();
+//        count = income.getCount();
+//        content = income.getContent();
+//        name = dataBean.getName();
+//        thumb = dataBean.getThumb();
+//        //收益出售
+//        bt_sell.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final AlertDialog dlg =
+//                        new AlertDialog.Builder(mContext, R.style.MyDialogStyle).create();
+//                dlg.setCanceledOnTouchOutside(true);
+//                dlg.show();
+//                Window window = dlg.getWindow();
+//                //设置窗口的内容页面
+//                window.setContentView(R.layout.earnings_sell_dialog);
+//                //取消
+//                Button bt_cancel = (Button) window.findViewById(R.id.bt_cancel);
+//                bt_cancel.setOnClickListener(new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        dlg.cancel();
+//                    }
+//                });
+//                //确定
+//                Button bt_ok = (Button) window.findViewById(R.id.bt_ok);
+//                bt_ok.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dlg.cancel();
+////                        PostIncomeEdit(id);
+//                        Intent intent1 = new Intent();
+//                        intent1.putExtra("id",id);
+//                        intent1.putExtra("shopname",shopname);
+//                        intent1.putExtra("count", count);
+//                        intent1.putExtra("thumb", thumb);
+//                        intent1.putExtra("name", name);
+//                        intent1.putExtra("content", content);
+//                        intent1.setClass(mContext, SellActivity.class);
+//                        mContext.startActivity(intent1);
+//
+//                    }
+//                });
+//            }
+//        });
+//        //收益转赠
+//        bt_example.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                PostIncomeEdit(id);
+//
+//            }
+//        });
+//        //取消转赠
+//        bt_cancle_right.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                PostIncomeEditCancle(id);
+//            }
+//        });
 
     }
 

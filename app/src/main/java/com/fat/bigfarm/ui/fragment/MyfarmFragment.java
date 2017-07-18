@@ -37,7 +37,8 @@ public class MyfarmFragment extends BaseFragment {
 
     private MyPagerAdapter mAdapter;
     private ArrayList<Fragment> pagerItemList = new ArrayList<Fragment>();
-    public static String[] names = {"我的代养", "我的收益"};
+    public static String[] names = {"我的代种","我的代养", "我的收益"};
+    private MyDaizhongFragment myDaizhongFragment;
     private MyRaiseFragment myRaiseFragment;
     private MyEarningsFragment myEarningsFragment;
 
@@ -48,9 +49,11 @@ public class MyfarmFragment extends BaseFragment {
 
         ButterKnife.bind(this, view);
 
+        myDaizhongFragment = new MyDaizhongFragment();
         myRaiseFragment = new MyRaiseFragment();
         myEarningsFragment = new MyEarningsFragment();
 
+        pagerItemList.add(myDaizhongFragment);
         pagerItemList.add(myRaiseFragment);
         pagerItemList.add(myEarningsFragment);
 

@@ -9,11 +9,10 @@ import java.util.List;
 
 public class Earnings implements Serializable {
 
-
     /**
      * code : 200
+     * data : [{"foster":[{"income":{"content":"","creattime":"1500204500","fid":"3","id":"3","status":"5"},"name":"纯草农庄 无激素贵妃鸡","thumb":"http://jushizhibo.com/uploadfile/2017/0612/20170612042244425.jpg"}],"shopid":"2","shopname":"纯草农庄"},{"foster":[{"income":{"content":"","creattime":"1500204500","fid":"2","id":"4","status":"5"},"name":"香味果园 正玫瑰葡萄","thumb":"http://www.9fat.com/tmnzimage/gypt1.jpg"}],"shopid":"3","shopname":"香味果园"}]
      * msg : success
-     * data : [{"shopid":"1","shopname":"云农场","foster":[{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498552651","income":{"id":"2","creattime":"1498552651","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}},{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498552756","income":{"id":"3","creattime":"1498552756","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}},{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498554778","income":{"id":"5","creattime":"1498554778","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}}]},{"shopid":"3","shopname":"农机农场","foster":[{"name":"测试123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"180天","creattime":"1498552921","income":{"id":"4","creattime":"1498552921","cycle":"7","content":"贵妃鸡*1只,鸡蛋*10枚","count":"1","status":"5"}}]}]
      */
 
     private int code;
@@ -44,11 +43,11 @@ public class Earnings implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable{
+    public static class DataBean {
         /**
-         * shopid : 1
-         * shopname : 云农场
-         * foster : [{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498552651","income":{"id":"2","creattime":"1498552651","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}},{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498552756","income":{"id":"3","creattime":"1498552756","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}},{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498554778","income":{"id":"5","creattime":"1498554778","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}}]
+         * foster : [{"income":{"content":"","creattime":"1500204500","fid":"3","id":"3","status":"5"},"name":"纯草农庄 无激素贵妃鸡","thumb":"http://jushizhibo.com/uploadfile/2017/0612/20170612042244425.jpg"}]
+         * shopid : 2
+         * shopname : 纯草农庄
          */
 
         private String shopid;
@@ -81,18 +80,22 @@ public class Earnings implements Serializable {
 
         public static class FosterBean {
             /**
-             * name : 测试1123123
-             * thumb : http://www.kpano.com/kpano/images/jy1.jpg
-             * fostertime : 1年
-             * creattime : 1498552651
-             * income : {"id":"2","creattime":"1498552651","cycle":"15","content":"鹿茸*5盒","count":"1","status":"5"}
+             * income : {"content":"","creattime":"1500204500","fid":"3","id":"3","status":"5"}
+             * name : 纯草农庄 无激素贵妃鸡
+             * thumb : http://jushizhibo.com/uploadfile/2017/0612/20170612042244425.jpg
              */
 
+            private IncomeBean income;
             private String name;
             private String thumb;
-            private String fostertime;
-            private String creattime;
-            private IncomeBean income;
+
+            public IncomeBean getIncome() {
+                return income;
+            }
+
+            public void setIncome(IncomeBean income) {
+                this.income = income;
+            }
 
             public String getName() {
                 return name;
@@ -110,53 +113,27 @@ public class Earnings implements Serializable {
                 this.thumb = thumb;
             }
 
-            public String getFostertime() {
-                return fostertime;
-            }
-
-            public void setFostertime(String fostertime) {
-                this.fostertime = fostertime;
-            }
-
-            public String getCreattime() {
-                return creattime;
-            }
-
-            public void setCreattime(String creattime) {
-                this.creattime = creattime;
-            }
-
-            public IncomeBean getIncome() {
-                return income;
-            }
-
-            public void setIncome(IncomeBean income) {
-                this.income = income;
-            }
-
             public static class IncomeBean {
                 /**
-                 * id : 2
-                 * creattime : 1498552651
-                 * cycle : 15
-                 * content : 鹿茸*5盒
-                 * count : 1
+                 * content :
+                 * creattime : 1500204500
+                 * fid : 3
+                 * id : 3
                  * status : 5
                  */
 
-                private String id;
-                private String creattime;
-                private String cycle;
                 private String content;
-                private String count;
+                private String creattime;
+                private String fid;
+                private String id;
                 private String status;
 
-                public String getId() {
-                    return id;
+                public String getContent() {
+                    return content;
                 }
 
-                public void setId(String id) {
-                    this.id = id;
+                public void setContent(String content) {
+                    this.content = content;
                 }
 
                 public String getCreattime() {
@@ -167,28 +144,20 @@ public class Earnings implements Serializable {
                     this.creattime = creattime;
                 }
 
-                public String getCycle() {
-                    return cycle;
+                public String getFid() {
+                    return fid;
                 }
 
-                public void setCycle(String cycle) {
-                    this.cycle = cycle;
+                public void setFid(String fid) {
+                    this.fid = fid;
                 }
 
-                public String getContent() {
-                    return content;
+                public String getId() {
+                    return id;
                 }
 
-                public void setContent(String content) {
-                    this.content = content;
-                }
-
-                public String getCount() {
-                    return count;
-                }
-
-                public void setCount(String count) {
-                    this.count = count;
+                public void setId(String id) {
+                    this.id = id;
                 }
 
                 public String getStatus() {

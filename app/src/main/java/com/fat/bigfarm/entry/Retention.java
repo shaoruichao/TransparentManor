@@ -1,7 +1,6 @@
 package com.fat.bigfarm.entry;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 收益自留
@@ -14,7 +13,7 @@ public class Retention implements Serializable {
     /**
      * code : 200
      * msg : success
-     * data : {"shopid":"1","shopname":"云农场","foster":{"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498552651","cycle":"15","content":"鹿茸*5盒","count":"1","status":"1","price":"2","unit":"个","income":[{"name":"鹿茸","count":"5","unit":"盒"}]}}
+     * data : {"shopid":"2","shopname":"纯草农庄","foster":{"name":"纯草农庄 北京鸭代养","thumb":"http://www.9fat.com/tmnzimage/bjy1.jpg","fostertime":"450天","creattime":"1499936144","content":"北京鸭蛋","price":"100.00","unit":"只","income":{"name":"贵妃鸡蛋","count":"10","unit":"枚"}}}
      */
 
     private int code;
@@ -47,9 +46,9 @@ public class Retention implements Serializable {
 
     public static class DataBean {
         /**
-         * shopid : 1
-         * shopname : 云农场
-         * foster : {"name":"测试1123123","thumb":"http://www.kpano.com/kpano/images/jy1.jpg","fostertime":"1年","creattime":"1498552651","cycle":"15","content":"鹿茸*5盒","count":"1","status":"1","price":"2","unit":"个","income":[{"name":"鹿茸","count":"5","unit":"盒"}]}
+         * shopid : 2
+         * shopname : 纯草农庄
+         * foster : {"name":"纯草农庄 北京鸭代养","thumb":"http://www.9fat.com/tmnzimage/bjy1.jpg","fostertime":"450天","creattime":"1499936144","content":"北京鸭蛋","price":"100.00","unit":"只","income":{"name":"贵妃鸡蛋","count":"10","unit":"枚"}}
          */
 
         private String shopid;
@@ -82,30 +81,24 @@ public class Retention implements Serializable {
 
         public static class FosterBean {
             /**
-             * name : 测试1123123
-             * thumb : http://www.kpano.com/kpano/images/jy1.jpg
-             * fostertime : 1年
-             * creattime : 1498552651
-             * cycle : 15
-             * content : 鹿茸*5盒
-             * count : 1
-             * status : 1
-             * price : 2
-             * unit : 个
-             * income : [{"name":"鹿茸","count":"5","unit":"盒"}]
+             * name : 纯草农庄 北京鸭代养
+             * thumb : http://www.9fat.com/tmnzimage/bjy1.jpg
+             * fostertime : 450天
+             * creattime : 1499936144
+             * content : 北京鸭蛋
+             * price : 100.00
+             * unit : 只
+             * income : {"name":"贵妃鸡蛋","count":"10","unit":"枚"}
              */
 
             private String name;
             private String thumb;
             private String fostertime;
             private String creattime;
-            private String cycle;
             private String content;
-            private String count;
-            private String status;
             private String price;
             private String unit;
-            private List<IncomeBean> income;
+            private IncomeBean income;
 
             public String getName() {
                 return name;
@@ -139,36 +132,12 @@ public class Retention implements Serializable {
                 this.creattime = creattime;
             }
 
-            public String getCycle() {
-                return cycle;
-            }
-
-            public void setCycle(String cycle) {
-                this.cycle = cycle;
-            }
-
             public String getContent() {
                 return content;
             }
 
             public void setContent(String content) {
                 this.content = content;
-            }
-
-            public String getCount() {
-                return count;
-            }
-
-            public void setCount(String count) {
-                this.count = count;
-            }
-
-            public String getStatus() {
-                return status;
-            }
-
-            public void setStatus(String status) {
-                this.status = status;
             }
 
             public String getPrice() {
@@ -187,19 +156,19 @@ public class Retention implements Serializable {
                 this.unit = unit;
             }
 
-            public List<IncomeBean> getIncome() {
+            public IncomeBean getIncome() {
                 return income;
             }
 
-            public void setIncome(List<IncomeBean> income) {
+            public void setIncome(IncomeBean income) {
                 this.income = income;
             }
 
             public static class IncomeBean {
                 /**
-                 * name : 鹿茸
-                 * count : 5
-                 * unit : 盒
+                 * name : 贵妃鸡蛋
+                 * count : 10
+                 * unit : 枚
                  */
 
                 private String name;

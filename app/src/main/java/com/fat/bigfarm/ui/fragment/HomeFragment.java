@@ -392,10 +392,8 @@ public class HomeFragment extends BaseFragment {
                 for (int i = 0; i < mList.size(); i++) {
                     if (i == position% mList.size()) {
                         mList.get(i).setBackgroundColor(Color.parseColor("#F3D05A"));
-                        Log.e(TAG, "onPageSelected: "+222 );
                     } else {
                         mList.get(i).setBackgroundColor(Color.parseColor("#ffffff"));
-                        Log.e(TAG, "onPageSelected: "+1111 );
                     }
                 }
             }
@@ -479,26 +477,26 @@ public class HomeFragment extends BaseFragment {
             }
         });
         //农家乐
-        TextView tv_Generated_title = (TextView) gridMenu.findViewById(R.id.tv_Generated_title);
-        tv_Generated_title.setText(classifyData.get(3).getName());
-        ImageView iv4 = (ImageView) gridMenu.findViewById(R.id.iv4);
-        Glide.with(getActivity())
-                .load(classifyData.get(3).getLogo())
-                .into(iv4);
-        RelativeLayout rl_Generated = (RelativeLayout) gridMenu.findViewById(R.id.rl_Generated);
-        rl_Generated.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                ToastUtil.showToast(getActivity(),"农家乐");
-
-                Intent intent = new Intent();
-                intent.putExtra("id",classifyData.get(3).getId());
-                intent.putExtra("typename",classifyData.get(3).getName());
-                intent.setClass(getActivity(), ShoppingDetailsActivity.class);
-                startActivity(intent);
-
-            }
-        });
+//        TextView tv_Generated_title = (TextView) gridMenu.findViewById(R.id.tv_Generated_title);
+//        tv_Generated_title.setText(classifyData.get(3).getName());
+//        ImageView iv4 = (ImageView) gridMenu.findViewById(R.id.iv4);
+//        Glide.with(getActivity())
+//                .load(classifyData.get(3).getLogo())
+//                .into(iv4);
+//        RelativeLayout rl_Generated = (RelativeLayout) gridMenu.findViewById(R.id.rl_Generated);
+//        rl_Generated.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                ToastUtil.showToast(getActivity(),"农家乐");
+//
+//                Intent intent = new Intent();
+//                intent.putExtra("id",classifyData.get(3).getId());
+//                intent.putExtra("typename",classifyData.get(3).getName());
+//                intent.setClass(getActivity(), ShoppingDetailsActivity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
         rvAdapter.addHeaderView1(gridMenu);
 

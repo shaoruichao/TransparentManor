@@ -28,6 +28,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/iv_thumb"
+            android:maxEms="12"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text=""
             android:textColor="#222222"
             android:textSize="14sp" />
@@ -64,7 +67,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_thumb"
             android:text=""
-            android:textColor="#DE413D"
+            android:textColor="#222222"
             android:textSize="13sp" />
 
         <TextView

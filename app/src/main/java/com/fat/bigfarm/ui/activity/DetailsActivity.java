@@ -20,7 +20,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,6 +106,12 @@ public class DetailsActivity extends BaseActivity {
     WebView webView;
     @BindView(R.id.tv_pay)
     TextView tv_pay;
+    @BindView(R.id.fl_nomessage)
+    FrameLayout fl_nomessage;
+    @BindView(R.id.ll_shoppingcat)
+    LinearLayout ll_shoppingcat;
+    @BindView(R.id.view)
+    View view;
 
     private String id;
     private String typename;
@@ -340,6 +348,12 @@ public class DetailsActivity extends BaseActivity {
 ////                    };
 ////                    rv.setLayoutManager(mgr);
 
+                }else {
+                    fl_nomessage.setVisibility(View.VISIBLE);
+                    webView.setVisibility(View.GONE);
+                    view.setVisibility(View.GONE);
+                    rlShoppingcat.setVisibility(View.GONE);
+                    ll_shoppingcat.setVisibility(View.GONE);
                 }
 
             } catch (Exception e) {

@@ -20,7 +20,8 @@ public class DataUtils {
     /* 时间戳转换成字符窜 */
     public static String getDateToString(long time) {
         Date d = new Date(time);
-        sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sf = new SimpleDateFormat("yyyy-MM-dd");
         return sf.format(d);
     }
 

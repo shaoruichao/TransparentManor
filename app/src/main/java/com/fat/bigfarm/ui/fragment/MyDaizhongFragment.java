@@ -1,11 +1,7 @@
 package com.fat.bigfarm.ui.fragment;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,22 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.fat.bigfarm.R;
-import com.fat.bigfarm.adapter.OrderObligationAdapter;
-import com.fat.bigfarm.adapter.OrderObligationItemAdapter;
+import com.fat.bigfarm.adapter.DaizhongAdapter;
 import com.fat.bigfarm.adapter.WarehouseRaiseAdapter;
 import com.fat.bigfarm.app.AllUrl;
 import com.fat.bigfarm.app.TMApplication;
-import com.fat.bigfarm.base.BaseOrderFragment;
-import com.fat.bigfarm.entry.MyOrderAll;
+import com.fat.bigfarm.base.BaseFragment;
+import com.fat.bigfarm.entry.Daizhong;
 import com.fat.bigfarm.entry.Raise;
-import com.fat.bigfarm.entry.UserMessage;
 import com.fat.bigfarm.nohttp.HttpListener;
-import com.fat.bigfarm.ui.activity.OrderDetailActivity;
 import com.fat.bigfarm.utils.JsonUtil;
-import com.fat.bigfarm.utils.SharePreferencesUtils;
 import com.fat.bigfarm.utils.ToastUtil;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.yolanda.nohttp.NoHttp;
@@ -41,43 +32,36 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
- * 我的仓库-代养
+ * 我的农庄 - 代种
  */
-public class MyRaiseFragment extends BaseOrderFragment {
+public class MyDaizhongFragment extends BaseFragment {
 
-    private static final String TAG = "MyRaiseFragment";
-
-    @BindView(R.id.rv_myraise)
-    RecyclerView rvMyraise;
+    private static final String TAG = "MyDaizhongFragment";
+    @BindView(R.id.rv_mydaizhong)
+    RecyclerView rvMydaizhong;
     @BindView(R.id.sw)
     SwipeRefreshLayout sw;
-//    Unbinder unbinder;
     private View view;
 
-
-    private String userid;
-
-    private WarehouseRaiseAdapter warehouseRaiseAdapter;
-    private List<Raise.DataBean> data;
-    private Raise raise;
     private KProgressHUD hud;
+    private String userid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_my_raise, container, false);
+        view = inflater.inflate(R.layout.fragment_my_daizhong, container, false);
         ButterKnife.bind(this, view);
 
         hud = KProgressHUD.create(getActivity())
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
-
         userid = TMApplication.instance.sp.getString("userid", "");
         GetData();
-
         initView();
+
         return view;
     }
 
@@ -102,32 +86,35 @@ public class MyRaiseFragment extends BaseOrderFragment {
 
 
     private void GetData(){
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER+userid+"&type="+1);
-        Log.e(TAG, "GetData: "+AllUrl.FOSTER+userid+"&type="+1 );
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER+userid+"&type="+2);
         request(0, request, fosterListener, true, true);
     }
 
     private HttpListener<JSONObject> fosterListener = new HttpListener<JSONObject>() {
+
+        private DaizhongAdapter daizhongAdapter;
+        private List<Daizhong.DataBean> data;
+        private Daizhong daizhong;
 
         @Override
         public void onSucceed(int what, Response<JSONObject> response) {
             scheduleDismiss();
             try {
                 JSONObject js = response.get();
-                Log.e(TAG, "usermessage: "+js );
+                Log.e(TAG, "fosterListener: "+js );
                 int code = js.getInt("code");
                 if (code == 200){
-                    raise = JsonUtil.parseJsonToBean(js.toString(), Raise.class);
-                    if (raise != null){
+                    daizhong = JsonUtil.parseJsonToBean(js.toString(), Daizhong.class);
+                    if (daizhong != null){
 
-                        data = raise.getData();
-                        rvMyraise.setHasFixedSize(true);
-                        rvMyraise.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        data = daizhong.getData();
+                        rvMydaizhong.setHasFixedSize(true);
+                        rvMydaizhong.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                        warehouseRaiseAdapter = new WarehouseRaiseAdapter(data);
+                        daizhongAdapter = new DaizhongAdapter(data);
 
-                        warehouseRaiseAdapter.openLoadAnimation();
-                        rvMyraise.setAdapter(warehouseRaiseAdapter);
+                        daizhongAdapter.openLoadAnimation();
+                        rvMydaizhong.setAdapter(daizhongAdapter);
 
 
                     }
@@ -155,9 +142,6 @@ public class MyRaiseFragment extends BaseOrderFragment {
         }, 2000);
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        unbinder.unbind();
-//    }
+
+
 }

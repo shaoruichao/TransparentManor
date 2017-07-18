@@ -34,6 +34,7 @@ import com.fat.bigfarm.bean.ProductInfo;
 import com.fat.bigfarm.entry.Addcart;
 import com.fat.bigfarm.entry.Details;
 import com.fat.bigfarm.entry.ShoppingDetails;
+import com.fat.bigfarm.entry.ShoppingDetailsnew;
 import com.fat.bigfarm.nohttp.HttpListener;
 import com.fat.bigfarm.utils.JsonUtil;
 import com.fat.bigfarm.utils.ToastUtil;
@@ -128,62 +129,7 @@ public class ShoppingDetailsActivity extends BaseActivity {
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
-
-        webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/index-subpageapp.html?shopid="+id);
-        Log.e(TAG, "onCreate: "+ "http://www.9fat.com/H5test/farmapp0608/htmls/index-subpageapp.html?shopid="+id);
-        //启用支持javascript
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        // webView数据缓存分为两种：AppCache和DOM Storage（Web Storage）。
-//        settings.setDomStorageEnabled(true);// 开启 DOM storage API 功能
-        settings.setAppCacheEnabled(true);// 开启H5(APPCache)缓存功能
-//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setDefaultTextEncodingName("utf-8");
-
-        //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
-        webView.setWebViewClient(new WebViewClient() {
-
-            private String weburl;
-            private String type;
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-                scheduleDismiss();
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // TODO Auto-generated method stub
-                //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
-
-                Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
-                type = url.substring(0, url.indexOf(":"));
-                Log.e(TAG, "shouldOverrideUrlLoadingtype: "+type );
-                weburl = url.substring(url.indexOf(":") + 1);
-
-                if (type.equals("pictureurl")){
-                    ToastUtil.showToast(getBaseContext(),weburl);
-                    return true;
-                }
-
-                if (type.equals("goodsid")){
-
-                    Intent intent = new Intent();
-                    intent.putExtra("id", weburl);
-                    intent.putExtra("typename",typename);
-                    intent.setClass(getBaseContext(),DetailsActivity.class);
-                    startActivity(intent);
-
-                    return true;
-                }
-
-                return false;
-
-            }
-
-        });
+        getDetails(id);
 
 
 //        badgeView = new BadgeView(this);
@@ -218,6 +164,10 @@ public class ShoppingDetailsActivity extends BaseActivity {
     private HttpListener<JSONObject> detailsListener = new HttpListener<JSONObject>() {
 
 
+        private String des_url;
+        private ShoppingDetailsnew.DataBean data;
+        private ShoppingDetailsnew shoppingDetailsnew;
+
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onSucceed(int what, Response<JSONObject> response) {
@@ -227,66 +177,130 @@ public class ShoppingDetailsActivity extends BaseActivity {
                 Log.e(TAG, "detailsListener: " + js);
                 int code = js.getInt("code");
                 if (code == 200){
-                    ShoppingDetails shoppingDetails = JsonUtil.parseJsonToBean(js.toString(), ShoppingDetails.class);
+                    shoppingDetailsnew = JsonUtil.parseJsonToBean(js.toString(), ShoppingDetailsnew.class);
+                    data = shoppingDetailsnew.getData();
+                    des_url = data.getDes_url();
 
-                    data = shoppingDetails.getData();
-                    advertising = data.getAdvertising();
-                    //轮播图
-                    id_viewpager.setPageMargin(10);//设置页与页之间的间距
-                    id_viewpager.setOffscreenPageLimit(3);//表示三个界面之间来回切换都不会重新加载
+//                    webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/index-subpageapp.html?shopid="+id);
+//                    Log.e(TAG, "onCreate: "+ "http://www.9fat.com/H5test/farmapp0608/htmls/index-subpageapp.html?shopid="+id);
+                    webView.loadUrl(des_url);
+                    //启用支持javascript
+                    WebSettings settings = webView.getSettings();
+                    settings.setJavaScriptEnabled(true);
+                    // webView数据缓存分为两种：AppCache和DOM Storage（Web Storage）。
+//        settings.setDomStorageEnabled(true);// 开启 DOM storage API 功能
+                    settings.setAppCacheEnabled(true);// 开启H5(APPCache)缓存功能
+//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+                    settings.setDefaultTextEncodingName("utf-8");
 
-                    mAdapter = new viewPageAdapter();
-                    id_viewpager.setAdapter(mAdapter);
-                    id_viewpager.setCurrentItem(1000*advertising.size());
-                    id_viewpager.setPageTransformer(true, NonPageTransformer.INSTANCE);
+                    //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
+                    webView.setWebViewClient(new WebViewClient() {
 
-                    handler = new Handler();
-                    handler.postDelayed(new TimerRunnable(),5000);
+                        private String weburl;
+                        private String type;
 
-                    des = data.getDes();
-                    if (!des.equals("")){
-                        tvDes.setText(des);
-                    }
-                    goods = data.getGoods();
-
-                    GridLayoutManager layoutManager = new GridLayoutManager(getBaseContext(), COLUMN, GridLayoutManager.VERTICAL, false);
-                    rv.setLayoutManager(layoutManager);
-                    rv.addItemDecoration(new GridSpacingItemDecoration(COLUMN, getResources().getDimensionPixelSize(R.dimen.padding_middle), true));
-                    rv.setHasFixedSize(true);
-
-
-                    detailsAdapter = new ShoppingDetailsAdapter(goods);
-
-                    detailsAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
                         @Override
-                        public void onItemClick(View view, int i) {
-                            ShoppingDetails.DataBean.GoodsBean goodsBean = goods.get(i);
-                            String id = goodsBean.getId();
-                            String name = goodsBean.getName();
-                            Intent intent = new Intent();
-                            intent.putExtra("id",id);
-                            intent.putExtra("typename",name);
-                            intent.setClass(ShoppingDetailsActivity.this, DetailsActivity.class);
-                            startActivity(intent);
+                        public void onPageFinished(WebView view, String url) {
+                            super.onPageFinished(view, url);
+
+                            scheduleDismiss();
+                        }
+
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                            // TODO Auto-generated method stub
+                            //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
+
+//                            Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
+//                            type = url.substring(0, url.indexOf(":"));
+//                            Log.e(TAG, "shouldOverrideUrlLoadingtype: "+type );
+//                            weburl = url.substring(url.indexOf(":") + 1);
+//
+//                            if (type.equals("pictureurl")){
+//                                ToastUtil.showToast(getBaseContext(),weburl);
+//                                return true;
+//                            }
+//
+//                            if (type.equals("goodsid")){
+//
+//                                Intent intent = new Intent();
+//                                intent.putExtra("id", weburl);
+//                                intent.putExtra("typename",typename);
+//                                intent.setClass(getBaseContext(),DetailsActivity.class);
+//                                startActivity(intent);
+//
+//                                return true;
+//                            }
+
+                            return false;
 
                         }
+
                     });
-
-                    detailsAdapter.openLoadAnimation();
-
-                    rv.setAdapter(detailsAdapter);
-
-//                    rv.setHasFixedSize(true);
-//                    GridLayoutManager mgr=new GridLayoutManager(getBaseContext(),2){
-//                        @Override
-//                        public boolean canScrollVertically() {
-//                            return false;
-//                        }
-//                    };
-//                    rv.setLayoutManager(mgr);
 
 
                 }
+//                if (code == 200){
+//                    ShoppingDetails shoppingDetails = JsonUtil.parseJsonToBean(js.toString(), ShoppingDetails.class);
+//
+//                    data = shoppingDetails.getData();
+//                    advertising = data.getAdvertising();
+//                    //轮播图
+//                    id_viewpager.setPageMargin(10);//设置页与页之间的间距
+//                    id_viewpager.setOffscreenPageLimit(3);//表示三个界面之间来回切换都不会重新加载
+//
+//                    mAdapter = new viewPageAdapter();
+//                    id_viewpager.setAdapter(mAdapter);
+//                    id_viewpager.setCurrentItem(1000*advertising.size());
+//                    id_viewpager.setPageTransformer(true, NonPageTransformer.INSTANCE);
+//
+//                    handler = new Handler();
+//                    handler.postDelayed(new TimerRunnable(),5000);
+//
+//                    des = data.getDes();
+//                    if (!des.equals("")){
+//                        tvDes.setText(des);
+//                    }
+//                    goods = data.getGoods();
+//
+//                    GridLayoutManager layoutManager = new GridLayoutManager(getBaseContext(), COLUMN, GridLayoutManager.VERTICAL, false);
+//                    rv.setLayoutManager(layoutManager);
+//                    rv.addItemDecoration(new GridSpacingItemDecoration(COLUMN, getResources().getDimensionPixelSize(R.dimen.padding_middle), true));
+//                    rv.setHasFixedSize(true);
+//
+//
+//                    detailsAdapter = new ShoppingDetailsAdapter(goods);
+//
+//                    detailsAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+//                        @Override
+//                        public void onItemClick(View view, int i) {
+//                            ShoppingDetails.DataBean.GoodsBean goodsBean = goods.get(i);
+//                            String id = goodsBean.getId();
+//                            String name = goodsBean.getName();
+//                            Intent intent = new Intent();
+//                            intent.putExtra("id",id);
+//                            intent.putExtra("typename",name);
+//                            intent.setClass(ShoppingDetailsActivity.this, DetailsActivity.class);
+//                            startActivity(intent);
+//
+//                        }
+//                    });
+//
+//                    detailsAdapter.openLoadAnimation();
+//
+//                    rv.setAdapter(detailsAdapter);
+//
+////                    rv.setHasFixedSize(true);
+////                    GridLayoutManager mgr=new GridLayoutManager(getBaseContext(),2){
+////                        @Override
+////                        public boolean canScrollVertically() {
+////                            return false;
+////                        }
+////                    };
+////                    rv.setLayoutManager(mgr);
+//
+//
+//                }
 
             } catch (Exception e) {
                 e.printStackTrace();

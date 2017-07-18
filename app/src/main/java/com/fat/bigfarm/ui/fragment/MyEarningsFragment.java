@@ -63,6 +63,7 @@ public class MyEarningsFragment extends BaseOrderFragment{
     private WarehouseEarningsAdapter warehouseEarningsAdapter;
     private List<Earnings.DataBean> data;
     private Earnings earnings;
+    private String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +77,7 @@ public class MyEarningsFragment extends BaseOrderFragment{
         hud.show();
 
         userid = TMApplication.instance.sp.getString("userid", "");
+        username = TMApplication.instance.sp.getString("username", "");
 
         //注册事件
         if(!EventBus.getDefault().isRegistered(this)) {
@@ -115,7 +117,7 @@ public class MyEarningsFragment extends BaseOrderFragment{
 
 
     private void GetData(){
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.INCOME+userid);
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.INCOME+userid+"&username="+username);
         request(0, request, incomeListener, true, true);
     }
 

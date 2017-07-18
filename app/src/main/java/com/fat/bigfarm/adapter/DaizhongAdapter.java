@@ -4,54 +4,56 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.entry.Daizhong;
-import com.fat.bigfarm.entry.MyOrderAll;
+import com.fat.bigfarm.entry.Earnings;
 import com.fat.bigfarm.entry.Raise;
 import com.fat.bigfarm.ui.activity.DetailsActivity;
+import com.fat.bigfarm.ui.activity.EarningsDetailActivity;
 
 import java.util.List;
 
 /**
- * 我的仓库-代养
+ * 我的仓库-代种
  * Created by yusheng on 2016/11/28.
  */
-public class WarehouseRaiseAdapter extends BaseQuickAdapter<Raise.DataBean> {
+public class DaizhongAdapter extends BaseQuickAdapter<Daizhong.DataBean> {
 
 
     private WarehouseRaiseitemAdapter warehouseRaiseitemAdapter;
+    private DaizhongitemAdapter daizhongitemAdapter;
 
-    public WarehouseRaiseAdapter(List<Raise.DataBean> data) {
+    public DaizhongAdapter(List<Daizhong.DataBean> data) {
         super(R.layout.mywarehouse_raise,data);
     }
 
+
+
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, final Raise.DataBean dataBean) {
+    protected void convert(BaseViewHolder baseViewHolder, final Daizhong.DataBean dataBean) {
 
         RecyclerView rv_myraise_item = baseViewHolder.getView(R.id.rv_myraise_item);
 
         baseViewHolder.setText(R.id.tv_name,dataBean.getShopname());
 
 
-        List<Raise.DataBean.FosterBean> foster = dataBean.getFoster();
+        List<Daizhong.DataBean.FosterBean> foster = dataBean.getFoster();
 
 
         rv_myraise_item.setHasFixedSize(true);
         rv_myraise_item.setLayoutManager(new LinearLayoutManager(mContext));
 
-        warehouseRaiseitemAdapter = new WarehouseRaiseitemAdapter(foster);
-        warehouseRaiseitemAdapter.openLoadAnimation();
-        rv_myraise_item.setAdapter(warehouseRaiseitemAdapter);
+        daizhongitemAdapter = new DaizhongitemAdapter(foster);
+        daizhongitemAdapter.openLoadAnimation();
+        rv_myraise_item.setAdapter(daizhongitemAdapter);
 
-        warehouseRaiseitemAdapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
+        daizhongitemAdapter.setOnRecyclerViewItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                Raise.DataBean.FosterBean fosterBean = dataBean.getFoster().get(i);
+                Daizhong.DataBean.FosterBean fosterBean = dataBean.getFoster().get(i);
                 String gid = fosterBean.getGid();
                 String shopid = dataBean.getShopid();
                 String shopname = dataBean.getShopname();

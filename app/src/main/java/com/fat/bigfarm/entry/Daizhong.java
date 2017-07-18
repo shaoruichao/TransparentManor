@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 我的仓库-代养
+ * 我的仓库-代种
  * Created by src on 2017/6/17.
  */
 
-public class Raise implements Serializable {
+public class Daizhong implements Serializable {
 
 
     /**
      * code : 200
      * msg : success
-     * data : [{"shopid":"2","shopname":"纯草农庄","foster":[{"name":"纯草农庄 北京鸭代养","thumb":"http://www.9fat.com/tmnzimage/bjy1.jpg","fostertime":"450天","gid":"7","creattime":"1499936144","cycle":"","content":"北京鸭蛋","count":"1","status":"1"}]}]
+     * data : [{"shopid":"3","shopname":"香味果园","foster":[{"name":"香味果园 正玫瑰葡萄代养","thumb":"http://www.9fat.com/tmnzimage/gypt1.jpg","fostertime":"100天","gid":"10","creattime":"1499936144","cycle":"7天","content":"时令耕作物","count":"1","status":"1"}]}]
      */
 
     private int code;
@@ -47,9 +47,9 @@ public class Raise implements Serializable {
 
     public static class DataBean {
         /**
-         * shopid : 2
-         * shopname : 纯草农庄
-         * foster : [{"name":"纯草农庄 北京鸭代养","thumb":"http://www.9fat.com/tmnzimage/bjy1.jpg","fostertime":"450天","gid":"7","creattime":"1499936144","cycle":"","content":"北京鸭蛋","count":"1","status":"1"}]
+         * shopid : 3
+         * shopname : 香味果园
+         * foster : [{"name":"香味果园 正玫瑰葡萄代养","thumb":"http://www.9fat.com/tmnzimage/gypt1.jpg","fostertime":"100天","gid":"10","creattime":"1499936144","cycle":"7天","content":"时令耕作物","count":"1","status":"1"}]
          */
 
         private String shopid;
@@ -82,13 +82,13 @@ public class Raise implements Serializable {
 
         public static class FosterBean {
             /**
-             * name : 纯草农庄 北京鸭代养
-             * thumb : http://www.9fat.com/tmnzimage/bjy1.jpg
-             * fostertime : 450天
-             * gid : 7
+             * name : 香味果园 正玫瑰葡萄代养
+             * thumb : http://www.9fat.com/tmnzimage/gypt1.jpg
+             * fostertime : 100天
+             * gid : 10
              * creattime : 1499936144
-             * cycle :
-             * content : 北京鸭蛋
+             * cycle : 7天
+             * content : 时令耕作物
              * count : 1
              * status : 1
              */

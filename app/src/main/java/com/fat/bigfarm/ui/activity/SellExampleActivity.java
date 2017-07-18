@@ -129,10 +129,11 @@ public class SellExampleActivity extends BaseActivity {
     private HttpListener<JSONObject> earningsDetailsListener = new HttpListener<JSONObject>() {
 
 
+        private Retention.DataBean.FosterBean.IncomeBean income;
         private String content;
         private String thumb;
         private String name;
-        private List<Retention.DataBean.FosterBean.IncomeBean> income;
+//        private List<Retention.DataBean.FosterBean.IncomeBean> income;
         private Retention.DataBean.FosterBean foster;
         private String shopname;
         private Retention.DataBean data;
@@ -157,34 +158,34 @@ public class SellExampleActivity extends BaseActivity {
 
                         foster = data.getFoster();
                         income = foster.getIncome();
-                        if (income.size() == 1) {
+//                        if (income.size() == 1) {
                             rl1.setVisibility(View.VISIBLE);
-                            tvCount1.setText(income.get(0).getCount());
-                            tvUnit1.setText(income.get(0).getUnit());
-                            tvName1.setText(income.get(0).getName());
-                        } else if (income.size() == 2) {
-                            rl1.setVisibility(View.VISIBLE);
-                            rl2.setVisibility(View.VISIBLE);
-                            tvCount1.setText(income.get(0).getCount());
-                            tvUnit1.setText(income.get(0).getUnit());
-                            tvName1.setText(income.get(0).getName());
-                            tvCount2.setText(income.get(1).getCount());
-                            tvUnit2.setText(income.get(1).getUnit());
-                            tvName2.setText(income.get(1).getName());
-                        } else {
-                            rl1.setVisibility(View.VISIBLE);
-                            rl2.setVisibility(View.VISIBLE);
-                            rl3.setVisibility(View.VISIBLE);
-                            tvCount1.setText(income.get(0).getCount());
-                            tvUnit1.setText(income.get(0).getUnit());
-                            tvName1.setText(income.get(0).getName());
-                            tvCount2.setText(income.get(1).getCount());
-                            tvUnit2.setText(income.get(1).getUnit());
-                            tvName2.setText(income.get(1).getName());
-                            tvCount3.setText(income.get(2).getCount());
-                            tvUnit3.setText(income.get(2).getUnit());
-                            tvName3.setText(income.get(2).getName());
-                        }
+                            tvCount1.setText(income.getCount());
+                            tvUnit1.setText(income.getUnit());
+                            tvName1.setText(income.getName());
+//                        } else if (income.size() == 2) {
+//                            rl1.setVisibility(View.VISIBLE);
+//                            rl2.setVisibility(View.VISIBLE);
+//                            tvCount1.setText(income.get(0).getCount());
+//                            tvUnit1.setText(income.get(0).getUnit());
+//                            tvName1.setText(income.get(0).getName());
+//                            tvCount2.setText(income.get(1).getCount());
+//                            tvUnit2.setText(income.get(1).getUnit());
+//                            tvName2.setText(income.get(1).getName());
+//                        } else {
+//                            rl1.setVisibility(View.VISIBLE);
+//                            rl2.setVisibility(View.VISIBLE);
+//                            rl3.setVisibility(View.VISIBLE);
+//                            tvCount1.setText(income.get(0).getCount());
+//                            tvUnit1.setText(income.get(0).getUnit());
+//                            tvName1.setText(income.get(0).getName());
+//                            tvCount2.setText(income.get(1).getCount());
+//                            tvUnit2.setText(income.get(1).getUnit());
+//                            tvName2.setText(income.get(1).getName());
+//                            tvCount3.setText(income.get(2).getCount());
+//                            tvUnit3.setText(income.get(2).getUnit());
+//                            tvName3.setText(income.get(2).getName());
+//                        }
 
                         name = foster.getName();
                         tvEarningstitle.setText(name);
