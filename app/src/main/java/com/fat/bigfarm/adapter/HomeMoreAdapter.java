@@ -100,7 +100,7 @@ public class HomeMoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 Log.d("alan","位置-->"+position);
                 if (position-1 == 0){
-                    normalHolder.tv_tab_title.setVisibility(View.VISIBLE);
+                    normalHolder.tv_tab_title.setVisibility(View.GONE);
                     normalHolder.tv_tab_title.setText("代养专栏");
                 }
 

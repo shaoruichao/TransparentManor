@@ -26,8 +26,7 @@
         <ImageView
             android:id="@+id/iv_thumb"
             android:layout_below="@+id/tv_tab_title"
-            android:layout_marginTop="10dp"
-
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"/>
