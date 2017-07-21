@@ -13,13 +13,13 @@ public class Details implements Serializable {
 
     /**
      * code : 200
+     * data : {"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"含糖量高、麝香味浓、着色好,深受消费者喜爱","des_url":["http://www.9fat.com/tmnzimage/gyptdes.png"],"fostertime":"100天","freight":"0","guess":[{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"色泽鲜艳晶莹剔透，味道鲜美","des_url":"http://www.9fat.com/tmnzimage/gyxzdes.png","fostertime":"365天","freight":"0","id":"14","income_count":"0","is_income":"0","label":"","name":"香味果园 水晶杏代养","name_url":"","price":"366.00","sid":"3","status":"1","thumb":"http://www.9fat.com/tmnzimage/gyxz1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""},{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"鲜红多汁，质地柔软，酸甜适中，气味芳香","des_url":"http://www.9fat.com/tmnzimage/gycmdes.png","fostertime":"45天","freight":"0","id":"12","income_count":"0","is_income":"0","label":"","name":"香味果园 草莓代养","name_url":"","price":"299.00","sid":"3","status":"1","thumb":"http://www.9fat.com/tmnzimage/gycm1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""},{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"补充番茄红素，抵抗衰老","des_url":"http://www.9fat.com/tmnzimage/wawcxhsdes.png","fostertime":"170天","freight":"0","id":"17","income_count":"0","is_income":"0","label":"","name":"我爱我菜 西红柿代养","name_url":"","price":"229.00","sid":"4","status":"1","thumb":"http://www.9fat.com/tmnzimage/wawcxhs1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""},{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"30天","des":"质地柔嫩，味道清香","des_url":"http://www.9fat.com/tmnzimage/wawcxbcdes.png","fostertime":"30天","freight":"18","id":"16","income_count":"0","is_income":"0","label":"","name":"我爱我菜 小白菜代养","name_url":"","price":"138.00","sid":"4","status":"1","thumb":"http://www.9fat.com/tmnzimage/wawcxbc1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""}],"id":"10","income_count":"0","is_income":"0","label":"","name":"香味果园 正玫瑰葡萄代养","name_url":"","price":"169.00","shopname":"香味果园","sid":"3","status":"1","thumb":["http://www.9fat.com/tmnzimage/gypt1.jpg","http://www.9fat.com/tmnzimage/gypt2.jpg","http://www.9fat.com/tmnzimage/gypt3.jpg"],"typeid":"1","uid":"0","unit":"套","username":"","videos":""}
      * msg : success
-     * data : {"id":"1","name":"纯草农庄贵妃鸡1+2套餐","thumb":["http://www.9fat.com/tmnzimage/ccnz1+2@2x.png","\nhttp://jushizhibo.com/uploadfile/2017/0331/20170331045520936.jpg","\nhttp://www.9fat.com/tmnzimage/ccnzjd@2x.png"],"videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"299.00","freight":"0","action_price":"","unit":"套","sid":"2","aid":"0","uid":"0","typeid":"1","fostertime":"1年","cycle":"7天","content":"贵妃鸡*1只,鸡蛋*10枚","is_income":"0","income_count":"0","creattime":"1496025707","status":"1","shopname":"纯草农庄","guess":[{"id":"12","name":"纯草农庄自种有机蓝莓10盆","thumb":"http://www.9fat.com/tmnzimage/yncpt@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"199.00","freight":"0","action_price":"","unit":"套","sid":"2","aid":"0","uid":"0","typeid":"1","fostertime":"90天","cycle":"7天","content":"蓝莓*5盒","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"},{"id":"13","name":"农机农场黄酸柠檬*10棵","thumb":"http://www.9fat.com/tmnzimage/yncnm@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"399.00","freight":"10","action_price":"","unit":"套","sid":"3","aid":"0","uid":"0","typeid":"1","fostertime":"3年","cycle":"7天","content":"柠檬*10盒","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"},{"id":"27","name":"农家乐梅花鹿代养套餐","thumb":"http://www.9fat.com/tmnzimage/mhl@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"399.00","freight":"0","action_price":"299.99","unit":"套","sid":"4","aid":"3","uid":"0","typeid":"1","fostertime":"2年","cycle":"30天","content":"鹿茸*5盒","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"},{"id":"10","name":"云农场奶牛代养套餐","thumb":"http://www.9fat.com/tmnzimage/yncnn@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"359.00","freight":"0","action_price":"","unit":"套","sid":"1","aid":"0","uid":"0","typeid":"1","fostertime":"180天","cycle":"1天","content":"牛奶*1瓶","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"}]}
      */
 
     private int code;
-    private String msg;
     private DataBean data;
+    private String msg;
 
     public int getCode() {
         return code;
@@ -27,14 +27,6 @@ public class Details implements Serializable {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     public DataBean getData() {
@@ -45,122 +37,70 @@ public class Details implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean {
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public static class DataBean implements Serializable{
         /**
-         * id : 1
-         * name : 纯草农庄贵妃鸡1+2套餐
-         * thumb : ["http://www.9fat.com/tmnzimage/ccnz1+2@2x.png","\nhttp://jushizhibo.com/uploadfile/2017/0331/20170331045520936.jpg","\nhttp://www.9fat.com/tmnzimage/ccnzjd@2x.png"]
-         * videos : http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4
-         * des :
-         * des_url : http://www.9fat.com/tmnzimage/20161230111346913.jpg
-         * label :
-         * price : 299.00
-         * freight : 0
          * action_price :
-         * unit : 套
-         * sid : 2
          * aid : 0
-         * uid : 0
-         * typeid : 1
-         * fostertime : 1年
-         * cycle : 7天
-         * content : 贵妃鸡*1只,鸡蛋*10枚
-         * is_income : 0
-         * income_count : 0
+         * content : 时令耕作物
          * creattime : 1496025707
+         * cycle : 7天
+         * des : 含糖量高、麝香味浓、着色好,深受消费者喜爱
+         * des_url : ["http://www.9fat.com/tmnzimage/gyptdes.png"]
+         * fostertime : 100天
+         * freight : 0
+         * guess : [{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"色泽鲜艳晶莹剔透，味道鲜美","des_url":"http://www.9fat.com/tmnzimage/gyxzdes.png","fostertime":"365天","freight":"0","id":"14","income_count":"0","is_income":"0","label":"","name":"香味果园 水晶杏代养","name_url":"","price":"366.00","sid":"3","status":"1","thumb":"http://www.9fat.com/tmnzimage/gyxz1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""},{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"鲜红多汁，质地柔软，酸甜适中，气味芳香","des_url":"http://www.9fat.com/tmnzimage/gycmdes.png","fostertime":"45天","freight":"0","id":"12","income_count":"0","is_income":"0","label":"","name":"香味果园 草莓代养","name_url":"","price":"299.00","sid":"3","status":"1","thumb":"http://www.9fat.com/tmnzimage/gycm1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""},{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"7天","des":"补充番茄红素，抵抗衰老","des_url":"http://www.9fat.com/tmnzimage/wawcxhsdes.png","fostertime":"170天","freight":"0","id":"17","income_count":"0","is_income":"0","label":"","name":"我爱我菜 西红柿代养","name_url":"","price":"229.00","sid":"4","status":"1","thumb":"http://www.9fat.com/tmnzimage/wawcxhs1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""},{"action_price":"","aid":"0","content":"时令耕作物","creattime":"1496025707","cycle":"30天","des":"质地柔嫩，味道清香","des_url":"http://www.9fat.com/tmnzimage/wawcxbcdes.png","fostertime":"30天","freight":"18","id":"16","income_count":"0","is_income":"0","label":"","name":"我爱我菜 小白菜代养","name_url":"","price":"138.00","sid":"4","status":"1","thumb":"http://www.9fat.com/tmnzimage/wawcxbc1.jpg","typeid":"1","uid":"0","unit":"套","username":"","videos":""}]
+         * id : 10
+         * income_count : 0
+         * is_income : 0
+         * label :
+         * name : 香味果园 正玫瑰葡萄代养
+         * name_url :
+         * price : 169.00
+         * shopname : 香味果园
+         * sid : 3
          * status : 1
-         * shopname : 纯草农庄
-         * guess : [{"id":"12","name":"纯草农庄自种有机蓝莓10盆","thumb":"http://www.9fat.com/tmnzimage/yncpt@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"199.00","freight":"0","action_price":"","unit":"套","sid":"2","aid":"0","uid":"0","typeid":"1","fostertime":"90天","cycle":"7天","content":"蓝莓*5盒","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"},{"id":"13","name":"农机农场黄酸柠檬*10棵","thumb":"http://www.9fat.com/tmnzimage/yncnm@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"399.00","freight":"10","action_price":"","unit":"套","sid":"3","aid":"0","uid":"0","typeid":"1","fostertime":"3年","cycle":"7天","content":"柠檬*10盒","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"},{"id":"27","name":"农家乐梅花鹿代养套餐","thumb":"http://www.9fat.com/tmnzimage/mhl@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"399.00","freight":"0","action_price":"299.99","unit":"套","sid":"4","aid":"3","uid":"0","typeid":"1","fostertime":"2年","cycle":"30天","content":"鹿茸*5盒","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"},{"id":"10","name":"云农场奶牛代养套餐","thumb":"http://www.9fat.com/tmnzimage/yncnn@2x.png","videos":"http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4","des":"","des_url":"http://www.9fat.com/tmnzimage/20161230111346913.jpg","label":"","price":"359.00","freight":"0","action_price":"","unit":"套","sid":"1","aid":"0","uid":"0","typeid":"1","fostertime":"180天","cycle":"1天","content":"牛奶*1瓶","is_income":"0","income_count":"0","creattime":"1496025707","status":"1"}]
+         * thumb : ["http://www.9fat.com/tmnzimage/gypt1.jpg","http://www.9fat.com/tmnzimage/gypt2.jpg","http://www.9fat.com/tmnzimage/gypt3.jpg"]
+         * typeid : 1
+         * uid : 0
+         * unit : 套
+         * username :
+         * videos :
          */
 
-        private String id;
-        private String name;
-        private String videos;
-        private String des;
-        private String des_url;
-        private String label;
-        private String price;
-        private String freight;
         private String action_price;
-        private String unit;
-        private String sid;
         private String aid;
-        private String uid;
-        private String typeid;
-        private String fostertime;
-        private String cycle;
         private String content;
-        private String is_income;
-        private String income_count;
         private String creattime;
-        private String status;
+        private String cycle;
+        private String des;
+        private String fostertime;
+        private String freight;
+        private String id;
+        private String income_count;
+        private String is_income;
+        private String label;
+        private String name;
+        private String name_url;
+        private String price;
         private String shopname;
-        private List<String> thumb;
+        private String sid;
+        private String status;
+        private String typeid;
+        private String uid;
+        private String unit;
+        private String username;
+        private String videos;
+        private List<String> des_url;
         private List<GuessBean> guess;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getVideos() {
-            return videos;
-        }
-
-        public void setVideos(String videos) {
-            this.videos = videos;
-        }
-
-        public String getDes() {
-            return des;
-        }
-
-        public void setDes(String des) {
-            this.des = des;
-        }
-
-        public String getDes_url() {
-            return des_url;
-        }
-
-        public void setDes_url(String des_url) {
-            this.des_url = des_url;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
-        }
-
-        public String getPrice() {
-            return price;
-        }
-
-        public void setPrice(String price) {
-            this.price = price;
-        }
-
-        public String getFreight() {
-            return freight;
-        }
-
-        public void setFreight(String freight) {
-            this.freight = freight;
-        }
+        private List<String> thumb;
 
         public String getAction_price() {
             return action_price;
@@ -168,22 +108,6 @@ public class Details implements Serializable {
 
         public void setAction_price(String action_price) {
             this.action_price = action_price;
-        }
-
-        public String getUnit() {
-            return unit;
-        }
-
-        public void setUnit(String unit) {
-            this.unit = unit;
-        }
-
-        public String getSid() {
-            return sid;
-        }
-
-        public void setSid(String sid) {
-            this.sid = sid;
         }
 
         public String getAid() {
@@ -194,60 +118,12 @@ public class Details implements Serializable {
             this.aid = aid;
         }
 
-        public String getUid() {
-            return uid;
-        }
-
-        public void setUid(String uid) {
-            this.uid = uid;
-        }
-
-        public String getTypeid() {
-            return typeid;
-        }
-
-        public void setTypeid(String typeid) {
-            this.typeid = typeid;
-        }
-
-        public String getFostertime() {
-            return fostertime;
-        }
-
-        public void setFostertime(String fostertime) {
-            this.fostertime = fostertime;
-        }
-
-        public String getCycle() {
-            return cycle;
-        }
-
-        public void setCycle(String cycle) {
-            this.cycle = cycle;
-        }
-
         public String getContent() {
             return content;
         }
 
         public void setContent(String content) {
             this.content = content;
-        }
-
-        public String getIs_income() {
-            return is_income;
-        }
-
-        public void setIs_income(String is_income) {
-            this.is_income = is_income;
-        }
-
-        public String getIncome_count() {
-            return income_count;
-        }
-
-        public void setIncome_count(String income_count) {
-            this.income_count = income_count;
         }
 
         public String getCreattime() {
@@ -258,12 +134,92 @@ public class Details implements Serializable {
             this.creattime = creattime;
         }
 
-        public String getStatus() {
-            return status;
+        public String getCycle() {
+            return cycle;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setCycle(String cycle) {
+            this.cycle = cycle;
+        }
+
+        public String getDes() {
+            return des;
+        }
+
+        public void setDes(String des) {
+            this.des = des;
+        }
+
+        public String getFostertime() {
+            return fostertime;
+        }
+
+        public void setFostertime(String fostertime) {
+            this.fostertime = fostertime;
+        }
+
+        public String getFreight() {
+            return freight;
+        }
+
+        public void setFreight(String freight) {
+            this.freight = freight;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getIncome_count() {
+            return income_count;
+        }
+
+        public void setIncome_count(String income_count) {
+            this.income_count = income_count;
+        }
+
+        public String getIs_income() {
+            return is_income;
+        }
+
+        public void setIs_income(String is_income) {
+            this.is_income = is_income;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public void setLabel(String label) {
+            this.label = label;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getName_url() {
+            return name_url;
+        }
+
+        public void setName_url(String name_url) {
+            this.name_url = name_url;
+        }
+
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
         }
 
         public String getShopname() {
@@ -274,12 +230,68 @@ public class Details implements Serializable {
             this.shopname = shopname;
         }
 
-        public List<String> getThumb() {
-            return thumb;
+        public String getSid() {
+            return sid;
         }
 
-        public void setThumb(List<String> thumb) {
-            this.thumb = thumb;
+        public void setSid(String sid) {
+            this.sid = sid;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getTypeid() {
+            return typeid;
+        }
+
+        public void setTypeid(String typeid) {
+            this.typeid = typeid;
+        }
+
+        public String getUid() {
+            return uid;
+        }
+
+        public void setUid(String uid) {
+            this.uid = uid;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public void setUnit(String unit) {
+            this.unit = unit;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getVideos() {
+            return videos;
+        }
+
+        public void setVideos(String videos) {
+            this.videos = videos;
+        }
+
+        public List<String> getDes_url() {
+            return des_url;
+        }
+
+        public void setDes_url(List<String> des_url) {
+            this.des_url = des_url;
         }
 
         public List<GuessBean> getGuess() {
@@ -290,85 +302,105 @@ public class Details implements Serializable {
             this.guess = guess;
         }
 
+        public List<String> getThumb() {
+            return thumb;
+        }
+
+        public void setThumb(List<String> thumb) {
+            this.thumb = thumb;
+        }
+
         public static class GuessBean {
             /**
-             * id : 12
-             * name : 纯草农庄自种有机蓝莓10盆
-             * thumb : http://www.9fat.com/tmnzimage/yncpt@2x.png
-             * videos : http://jushizhibo.com/uploadfile/2017/0612/20170612041940118.mp4
-             * des :
-             * des_url : http://www.9fat.com/tmnzimage/20161230111346913.jpg
-             * label :
-             * price : 199.00
-             * freight : 0
              * action_price :
-             * unit : 套
-             * sid : 2
              * aid : 0
-             * uid : 0
-             * typeid : 1
-             * fostertime : 90天
-             * cycle : 7天
-             * content : 蓝莓*5盒
-             * is_income : 0
-             * income_count : 0
+             * content : 时令耕作物
              * creattime : 1496025707
+             * cycle : 7天
+             * des : 色泽鲜艳晶莹剔透，味道鲜美
+             * des_url : http://www.9fat.com/tmnzimage/gyxzdes.png
+             * fostertime : 365天
+             * freight : 0
+             * id : 14
+             * income_count : 0
+             * is_income : 0
+             * label :
+             * name : 香味果园 水晶杏代养
+             * name_url :
+             * price : 366.00
+             * sid : 3
              * status : 1
+             * thumb : http://www.9fat.com/tmnzimage/gyxz1.jpg
+             * typeid : 1
+             * uid : 0
+             * unit : 套
+             * username :
+             * videos :
              */
 
-            private String id;
-            private String name;
-            private String thumb;
-            private String videos;
+            private String action_price;
+            private String aid;
+            private String content;
+            private String creattime;
+            private String cycle;
             private String des;
             private String des_url;
-            private String label;
-            private String price;
-            private String freight;
-            private String action_price;
-            private String unit;
-            private String sid;
-            private String aid;
-            private String uid;
-            private String typeid;
             private String fostertime;
-            private String cycle;
-            private String content;
-            private String is_income;
+            private String freight;
+            private String id;
             private String income_count;
-            private String creattime;
+            private String is_income;
+            private String label;
+            private String name;
+            private String name_url;
+            private String price;
+            private String sid;
             private String status;
+            private String thumb;
+            private String typeid;
+            private String uid;
+            private String unit;
+            private String username;
+            private String videos;
 
-            public String getId() {
-                return id;
+            public String getAction_price() {
+                return action_price;
             }
 
-            public void setId(String id) {
-                this.id = id;
+            public void setAction_price(String action_price) {
+                this.action_price = action_price;
             }
 
-            public String getName() {
-                return name;
+            public String getAid() {
+                return aid;
             }
 
-            public void setName(String name) {
-                this.name = name;
+            public void setAid(String aid) {
+                this.aid = aid;
             }
 
-            public String getThumb() {
-                return thumb;
+            public String getContent() {
+                return content;
             }
 
-            public void setThumb(String thumb) {
-                this.thumb = thumb;
+            public void setContent(String content) {
+                this.content = content;
             }
 
-            public String getVideos() {
-                return videos;
+            public String getCreattime() {
+                return creattime;
             }
 
-            public void setVideos(String videos) {
-                this.videos = videos;
+            public void setCreattime(String creattime) {
+                this.creattime = creattime;
+            }
+
+            public String getCycle() {
+                return cycle;
+            }
+
+            public void setCycle(String cycle) {
+                this.cycle = cycle;
             }
 
             public String getDes() {
@@ -387,20 +419,12 @@ public class Details implements Serializable {
                 this.des_url = des_url;
             }
 
-            public String getLabel() {
-                return label;
+            public String getFostertime() {
+                return fostertime;
             }
 
-            public void setLabel(String label) {
-                this.label = label;
-            }
-
-            public String getPrice() {
-                return price;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
+            public void setFostertime(String fostertime) {
+                this.fostertime = fostertime;
             }
 
             public String getFreight() {
@@ -411,84 +435,12 @@ public class Details implements Serializable {
                 this.freight = freight;
             }
 
-            public String getAction_price() {
-                return action_price;
+            public String getId() {
+                return id;
             }
 
-            public void setAction_price(String action_price) {
-                this.action_price = action_price;
-            }
-
-            public String getUnit() {
-                return unit;
-            }
-
-            public void setUnit(String unit) {
-                this.unit = unit;
-            }
-
-            public String getSid() {
-                return sid;
-            }
-
-            public void setSid(String sid) {
-                this.sid = sid;
-            }
-
-            public String getAid() {
-                return aid;
-            }
-
-            public void setAid(String aid) {
-                this.aid = aid;
-            }
-
-            public String getUid() {
-                return uid;
-            }
-
-            public void setUid(String uid) {
-                this.uid = uid;
-            }
-
-            public String getTypeid() {
-                return typeid;
-            }
-
-            public void setTypeid(String typeid) {
-                this.typeid = typeid;
-            }
-
-            public String getFostertime() {
-                return fostertime;
-            }
-
-            public void setFostertime(String fostertime) {
-                this.fostertime = fostertime;
-            }
-
-            public String getCycle() {
-                return cycle;
-            }
-
-            public void setCycle(String cycle) {
-                this.cycle = cycle;
-            }
-
-            public String getContent() {
-                return content;
-            }
-
-            public void setContent(String content) {
-                this.content = content;
-            }
-
-            public String getIs_income() {
-                return is_income;
-            }
-
-            public void setIs_income(String is_income) {
-                this.is_income = is_income;
+            public void setId(String id) {
+                this.id = id;
             }
 
             public String getIncome_count() {
@@ -499,12 +451,52 @@ public class Details implements Serializable {
                 this.income_count = income_count;
             }
 
-            public String getCreattime() {
-                return creattime;
+            public String getIs_income() {
+                return is_income;
             }
 
-            public void setCreattime(String creattime) {
-                this.creattime = creattime;
+            public void setIs_income(String is_income) {
+                this.is_income = is_income;
+            }
+
+            public String getLabel() {
+                return label;
+            }
+
+            public void setLabel(String label) {
+                this.label = label;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getName_url() {
+                return name_url;
+            }
+
+            public void setName_url(String name_url) {
+                this.name_url = name_url;
+            }
+
+            public String getPrice() {
+                return price;
+            }
+
+            public void setPrice(String price) {
+                this.price = price;
+            }
+
+            public String getSid() {
+                return sid;
+            }
+
+            public void setSid(String sid) {
+                this.sid = sid;
             }
 
             public String getStatus() {
@@ -513,6 +505,54 @@ public class Details implements Serializable {
 
             public void setStatus(String status) {
                 this.status = status;
+            }
+
+            public String getThumb() {
+                return thumb;
+            }
+
+            public void setThumb(String thumb) {
+                this.thumb = thumb;
+            }
+
+            public String getTypeid() {
+                return typeid;
+            }
+
+            public void setTypeid(String typeid) {
+                this.typeid = typeid;
+            }
+
+            public String getUid() {
+                return uid;
+            }
+
+            public void setUid(String uid) {
+                this.uid = uid;
+            }
+
+            public String getUnit() {
+                return unit;
+            }
+
+            public void setUnit(String unit) {
+                this.unit = unit;
+            }
+
+            public String getUsername() {
+                return username;
+            }
+
+            public void setUsername(String username) {
+                this.username = username;
+            }
+
+            public String getVideos() {
+                return videos;
+            }
+
+            public void setVideos(String videos) {
+                this.videos = videos;
             }
         }
     }

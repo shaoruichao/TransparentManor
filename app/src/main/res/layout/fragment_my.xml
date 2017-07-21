@@ -290,7 +290,6 @@
 
     <RelativeLayout
         android:id="@+id/rl_openshop"
-        android:visibility="gone"
         android:layout_below="@+id/rl_address"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -305,14 +304,14 @@
             android:layout_height="18dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/openshop"/>
+            android:src="@mipmap/pro"/>
 
         <TextView
             android:layout_toRightOf="@+id/iv4"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="我要开店"
+            android:text="常见问题"
             android:textSize="14sp"
             android:textColor="#484848"
             android:layout_centerVertical="true"/>
@@ -320,12 +319,20 @@
 
         <ImageView
             android:id="@+id/iv_goodsshelves"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="9dp"
+            android:layout_height="16dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/common_icon_enter"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
 
     </RelativeLayout>
@@ -337,7 +344,6 @@
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="8dp"
         android:background="#ffffff">
 
         <ImageView

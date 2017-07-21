@@ -7,20 +7,21 @@
     <Button
         android:id="@+id/bt"
         android:layout_width="150dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:background="#00000000"
         android:onClick="startbutton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"/>
 
-    <!--<ImageView-->
-        <!--android:id="@+id/iv_logo"-->
-        <!--android:layout_width="70dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="70dp"-->
-        <!--android:src="@drawable/login_logo_red"/>-->
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/logo_star"/>
 
 
     <!--<RelativeLayout-->

@@ -16,6 +16,7 @@ import com.fat.bigfarm.base.BaseFragment;
 import com.fat.bigfarm.ui.activity.AddressManageActivity;
 import com.fat.bigfarm.ui.activity.MyOrderActivity;
 import com.fat.bigfarm.ui.activity.MyWarehouseActivity;
+import com.fat.bigfarm.ui.activity.ProblemActivity;
 import com.fat.bigfarm.ui.activity.SetActivity;
 import com.fat.bigfarm.ui.activity.StatusActivity;
 import com.fat.bigfarm.view.CircleImageView;
@@ -194,12 +195,12 @@ public class MyFragment extends BaseFragment {
                     startActivity(new Intent(getActivity(), StatusActivity.class));
                 }
                 break;
-            //我要开店
+            //常见问题
             case R.id.rl_openshop:
                 if (status.equals("1")){
-
+                    startActivity(new Intent(getActivity(), ProblemActivity.class));
                 }else {
-//                    startActivity(new Intent(getActivity(), StatusActivity.class));
+                    startActivity(new Intent(getActivity(), StatusActivity.class));
                 }
                 break;
             //系统设置

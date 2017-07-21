@@ -64,27 +64,26 @@ public class Navigation extends BaseActivity {
 		viewPager = (ViewPager) viewPictures.findViewById(R.id.guidePagers);
 		viewPoints = (ViewGroup) viewPictures.findViewById(R.id.viewPoints);
 
-
 		
 		//添加小圆点导航的图片
-//		for (int i = 0; i < pageViews.size(); i++) {
-//			imageView = new ImageView(Navigation.this);
-//			//setLayoutParams重置控件的布局（LayoutParams重新设置坐标）
-//			imageView.setLayoutParams(new ViewGroup.LayoutParams(60, 20));
-//			//设置内边框
-//			imageView.setPadding(5, 0, 5, 0);
-//			// 把小圆点放进数组中
-//			imageViews[i] = imageView;
-//			//m默认选中的是第一张图片，此时第一张图片是选中状态
-//			if (i == 0)
-//				imageViews[i].setImageDrawable(getResources().getDrawable(
-//						R.drawable.page_indicator_focused));
-//			else
-//				imageViews[i].setImageDrawable(getResources().getDrawable(
-//						R.drawable.page_indicator_unfocused));
-//			// 将imageviews添加到小圆点视图组
-//			viewPoints.addView(imageViews[i]);
-//		}
+		for (int i = 0; i < pageViews.size(); i++) {
+			imageView = new ImageView(Navigation.this);
+			//setLayoutParams重置控件的布局（LayoutParams重新设置坐标）
+			imageView.setLayoutParams(new ViewGroup.LayoutParams(60, 20));
+			//设置内边框
+			imageView.setPadding(5, 0, 5, 0);
+			// 把小圆点放进数组中
+			imageViews[i] = imageView;
+			//m默认选中的是第一张图片，此时第一张图片是选中状态
+			if (i == 0)
+				imageViews[i].setImageDrawable(getResources().getDrawable(
+						R.drawable.page_indicator_f));
+			else
+				imageViews[i].setImageDrawable(getResources().getDrawable(
+						R.drawable.page_indicator_unf));
+			// 将imageviews添加到小圆点视图组
+			viewPoints.addView(imageViews[i]);
+		}
 		setContentView(viewPictures);
 		//设置viewPager的适配器
 		viewPager.setAdapter(new NavigationPageAdapter());
@@ -143,15 +142,15 @@ public class Navigation extends BaseActivity {
 		@Override
 		public void onPageSelected(int position) {
 			// 循环主要是控制导航中每个小圆点的状态
-//			for (int i = 0; i < imageViews.length; i++) {
-//				// 当前view下设置小圆点为选中状态
-//				imageViews[i].setImageDrawable(getResources().getDrawable(
-//						R.drawable.page_indicator_focused));
-//				// 其余设置为飞选中状态
-//				if (position != i)
-//					imageViews[i].setImageDrawable(getResources().getDrawable(
-//							R.drawable.page_indicator_unfocused));
-//			}
+			for (int i = 0; i < imageViews.length; i++) {
+				// 当前view下设置小圆点为选中状态
+				imageViews[i].setImageDrawable(getResources().getDrawable(
+						R.drawable.page_indicator_f));
+				// 其余设置为飞选中状态
+				if (position != i)
+					imageViews[i].setImageDrawable(getResources().getDrawable(
+							R.drawable.page_indicator_unf));
+			}
 
 //			AlphaAnimation alphaAnimation = new AlphaAnimation(0,1);
 //			alphaAnimation.setDuration(2000);

@@ -33,26 +33,36 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout02"
+        android:id="@+id/viewPoints"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/viewPoints"
-                android:layout_width="fill_parent"
-                android:layout_height="15dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="15dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-            </LinearLayout>
-        </RelativeLayout>
+        android:layout_height="15dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
     </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout02"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical" >-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical" >-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/viewPoints"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="15dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_marginBottom="25dp"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal" >-->
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
 
 </FrameLayout>

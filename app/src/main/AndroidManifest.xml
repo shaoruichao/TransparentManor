@@ -182,7 +182,12 @@
         <activity
             android:name=".ui.activity.AgreementActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.EarningsDetailActivity"></activity>
+        <activity
+            android:name=".ui.activity.EarningsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ProblemActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
