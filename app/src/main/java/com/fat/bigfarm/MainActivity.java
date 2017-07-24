@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -48,12 +49,15 @@ public class MainActivity extends BaseActivity {
                 .into(image);
 
         Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);   //设置透明度动画效果
-        alphaAnimation.setDuration(2000);                  //设置持续时间
+        alphaAnimation.setDuration(1000);                  //设置持续时间
+//        alphaAnimation.setStartOffset(500);
         image1.setAnimation(alphaAnimation); //设置动画
         alphaAnimation.start();
 
         Animation alphaAnimation1 = new AlphaAnimation(0.0f, 1.0f);   //设置透明度动画效果
         alphaAnimation1.setDuration(2000);                  //设置持续时间
+//        alphaAnimation1.setStartOffset(1000);               //设置启动时间
+//        tv.setVisibility(View.VISIBLE);
         tv.setAnimation(alphaAnimation1); //设置动画
         alphaAnimation1.start();
 
