@@ -9,25 +9,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.adapter.WarehouseEarningsAdapter;
-import com.fat.bigfarm.adapter.WarehouseEarningsitemAdapter;
 import com.fat.bigfarm.app.AllUrl;
 import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseOrderFragment;
 import com.fat.bigfarm.entry.Earnings;
-import com.fat.bigfarm.entry.IncomeEdit;
-import com.fat.bigfarm.entry.Raise;
 import com.fat.bigfarm.eventbus.MessageEvent;
 import com.fat.bigfarm.nohttp.HttpListener;
 import com.fat.bigfarm.utils.JsonUtil;
 import com.fat.bigfarm.utils.ToastUtil;
 import com.kaopiz.kprogresshud.KProgressHUD;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.request.PostRequest;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.rest.Request;
 import com.yolanda.nohttp.rest.Response;
@@ -41,13 +36,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import okhttp3.Call;
 
 /**
  * 我的仓库-收益
  */
-public class MyEarningsFragment extends BaseOrderFragment{
+public class MyEarningsFragment extends BaseOrderFragment {
 
     private static final String TAG = "MyEarningsFragment";
 
@@ -55,6 +48,10 @@ public class MyEarningsFragment extends BaseOrderFragment{
     RecyclerView rvMyraise;
     @BindView(R.id.sw)
     SwipeRefreshLayout sw;
+    @BindView(R.id.im_nomessgae)
+    ImageView imNomessgae;
+    @BindView(R.id.fl_nomessage)
+    FrameLayout fl_nomessage;
     private View view;
 
     private KProgressHUD hud;
@@ -80,7 +77,7 @@ public class MyEarningsFragment extends BaseOrderFragment{
         username = TMApplication.instance.sp.getString("username", "");
 
         //注册事件
-        if(!EventBus.getDefault().isRegistered(this)) {
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
 
@@ -96,7 +93,7 @@ public class MyEarningsFragment extends BaseOrderFragment{
         GetData();
     }
 
-    private void initView(){
+    private void initView() {
         //设置刷新的颜色
         sw.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -116,8 +113,8 @@ public class MyEarningsFragment extends BaseOrderFragment{
     }
 
 
-    private void GetData(){
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.INCOME+userid+"&username="+username);
+    private void GetData() {
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.INCOME + userid);
         request(0, request, incomeListener, true, true);
     }
 
@@ -129,13 +126,19 @@ public class MyEarningsFragment extends BaseOrderFragment{
             scheduleDismiss();
             try {
                 JSONObject js = response.get();
-                Log.e(TAG, "incomeListener: "+js );
+                Log.e(TAG, "incomeListener: " + js);
                 int code = js.getInt("code");
-                if (code == 200){
+                if (code == 200) {
                     earnings = JsonUtil.parseJsonToBean(js.toString(), Earnings.class);
-                    if (earnings != null){
+                    if (earnings != null) {
 
                         data = earnings.getData();
+
+                        if (data.size()==0){
+                            fl_nomessage.setVisibility(View.VISIBLE);
+                        }else {
+                            fl_nomessage.setVisibility(View.GONE);
+                        }
 
                         rvMyraise.setHasFixedSize(true);
                         rvMyraise.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -144,7 +147,6 @@ public class MyEarningsFragment extends BaseOrderFragment{
 
                         warehouseEarningsAdapter.openLoadAnimation();
                         rvMyraise.setAdapter(warehouseEarningsAdapter);
-
 
 
                     }
@@ -158,7 +160,7 @@ public class MyEarningsFragment extends BaseOrderFragment{
 
         @Override
         public void onFailed(int what, Response<JSONObject> response) {
-            ToastUtil.showToast(getActivity(),"请求网络失败，请稍后重试");
+            ToastUtil.showToast(getActivity(), "请求网络失败，请稍后重试");
         }
     };
 
@@ -180,12 +182,14 @@ public class MyEarningsFragment extends BaseOrderFragment{
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMoonEvent(MessageEvent messageEvent){
+    public void onMoonEvent(MessageEvent messageEvent) {
         hud = KProgressHUD.create(getActivity())
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
         GetData();
     }
+
+
 
     //    @Override
 //    public void onItemClick(Button bt_cancle_right, int earningsPos, int postion) {

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.adapter.DaizhongAdapter;
@@ -45,6 +47,11 @@ public class MyDaizhongFragment extends BaseFragment {
     @BindView(R.id.sw)
     SwipeRefreshLayout sw;
     private View view;
+
+    @BindView(R.id.im_nomessgae)
+    ImageView imNomessgae;
+    @BindView(R.id.fl_nomessage)
+    FrameLayout fl_nomessage;
 
     private KProgressHUD hud;
     private String userid;
@@ -108,6 +115,13 @@ public class MyDaizhongFragment extends BaseFragment {
                     if (daizhong != null){
 
                         data = daizhong.getData();
+
+                        if (data.size()==0){
+                            fl_nomessage.setVisibility(View.VISIBLE);
+                        }else {
+                            fl_nomessage.setVisibility(View.GONE);
+                        }
+
                         rvMydaizhong.setHasFixedSize(true);
                         rvMydaizhong.setLayoutManager(new LinearLayoutManager(getActivity()));
 

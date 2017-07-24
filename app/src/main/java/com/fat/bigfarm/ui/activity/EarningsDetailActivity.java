@@ -114,6 +114,7 @@ public class EarningsDetailActivity extends BaseActivity {
     private EarningsDetail.DataBean data;
     private EarningsDetail earningsDetail;
     private String thumb;
+    private String userid;
 
     private KProgressHUD hud;
 
@@ -126,6 +127,7 @@ public class EarningsDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         fid = intent.getStringExtra("fid");
         username = TMApplication.instance.sp.getString("username", "");
+        userid = TMApplication.instance.sp.getString("userid", "");
 
 
     }
@@ -144,7 +146,7 @@ public class EarningsDetailActivity extends BaseActivity {
 
     //收益详情
     private void GetEarningsDetails(String id) {
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.MYINCOME_DETAILS + id + "&username=" + username);
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.MYINCOME_DETAILS + id + "&uid=" + userid);
         request(0, request, earningsDetailsListener, true, true);
     }
 

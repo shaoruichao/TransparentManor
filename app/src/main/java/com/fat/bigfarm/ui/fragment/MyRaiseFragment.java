@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.adapter.OrderObligationAdapter;
@@ -53,7 +55,11 @@ public class MyRaiseFragment extends BaseOrderFragment {
     RecyclerView rvMyraise;
     @BindView(R.id.sw)
     SwipeRefreshLayout sw;
-//    Unbinder unbinder;
+    //    Unbinder unbinder;
+    @BindView(R.id.im_nomessgae)
+    ImageView imNomessgae;
+    @BindView(R.id.fl_nomessage)
+    FrameLayout fl_nomessage;
     private View view;
 
 
@@ -81,7 +87,7 @@ public class MyRaiseFragment extends BaseOrderFragment {
         return view;
     }
 
-    private void initView(){
+    private void initView() {
         //设置刷新的颜色
         sw.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -101,9 +107,9 @@ public class MyRaiseFragment extends BaseOrderFragment {
     }
 
 
-    private void GetData(){
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER+userid+"&type="+1);
-        Log.e(TAG, "GetData: "+AllUrl.FOSTER+userid+"&type="+1 );
+    private void GetData() {
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER + userid + "&type=" + 1);
+        Log.e(TAG, "GetData: " + AllUrl.FOSTER + userid + "&type=" + 1);
         request(0, request, fosterListener, true, true);
     }
 
@@ -114,13 +120,20 @@ public class MyRaiseFragment extends BaseOrderFragment {
             scheduleDismiss();
             try {
                 JSONObject js = response.get();
-                Log.e(TAG, "usermessage: "+js );
+                Log.e(TAG, "usermessage: " + js);
                 int code = js.getInt("code");
-                if (code == 200){
+                if (code == 200) {
                     raise = JsonUtil.parseJsonToBean(js.toString(), Raise.class);
-                    if (raise != null){
+                    if (raise != null) {
 
                         data = raise.getData();
+
+                        if (data.size()==0){
+                            fl_nomessage.setVisibility(View.VISIBLE);
+                        }else {
+                            fl_nomessage.setVisibility(View.GONE);
+                        }
+
                         rvMyraise.setHasFixedSize(true);
                         rvMyraise.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -141,7 +154,7 @@ public class MyRaiseFragment extends BaseOrderFragment {
 
         @Override
         public void onFailed(int what, Response<JSONObject> response) {
-            ToastUtil.showToast(getActivity(),"请求网络失败，请稍后重试");
+            ToastUtil.showToast(getActivity(), "请求网络失败，请稍后重试");
         }
     };
 
