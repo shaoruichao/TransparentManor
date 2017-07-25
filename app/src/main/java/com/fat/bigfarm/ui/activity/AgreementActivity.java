@@ -3,6 +3,7 @@ package com.fat.bigfarm.ui.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -30,6 +31,13 @@ public class AgreementActivity extends BaseActivity {
         webView = (WebView) findViewById(R.id.webView);
         //WebView加载web资源
         webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/useragreepage.html");
+        //启用支持javascript
+        WebSettings settings = webView.getSettings();
+        settings.setTextZoom(100);//字体强制100%
+        settings.setJavaScriptEnabled(true);
+        //不缓存
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setDefaultTextEncodingName("utf-8");
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         webView.setWebViewClient(new WebViewClient() {
             @Override

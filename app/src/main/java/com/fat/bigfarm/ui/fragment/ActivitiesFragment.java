@@ -140,6 +140,7 @@ public class ActivitiesFragment extends BaseFragment {
         webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html");
         //启用支持javascript
         WebSettings settings = webView.getSettings();
+        settings.setTextZoom(100);//字体强制100%
         settings.setJavaScriptEnabled(true);
 //        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setDefaultTextEncodingName("utf-8");

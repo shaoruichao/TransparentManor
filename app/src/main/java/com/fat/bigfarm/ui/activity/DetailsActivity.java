@@ -165,6 +165,7 @@ public class DetailsActivity extends BaseActivity {
         Log.e(TAG, "onCreate: "+ "http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id="+id);
         //启用支持javascript
         WebSettings settings = webView.getSettings();
+        settings.setTextZoom(100);//字体强制100%
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);// 开启 DOM storage API 功能
 

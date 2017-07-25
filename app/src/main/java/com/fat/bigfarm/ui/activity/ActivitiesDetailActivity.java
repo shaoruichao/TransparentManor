@@ -79,6 +79,7 @@ public class ActivitiesDetailActivity extends BaseActivity {
         webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/activityapp.html?id="+id);
         //启用支持javascript
         WebSettings settings = webView.getSettings();
+        settings.setTextZoom(100);//字体强制100%
         settings.setJavaScriptEnabled(true);
         //不缓存
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
