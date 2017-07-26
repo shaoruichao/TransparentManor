@@ -110,13 +110,13 @@ public class ForgotPasswordActivity extends BaseActivity {
                 int code = js.getInt("code");
                 String msg = js.getString("msg");
                 if (code == 200 ){
-                    sendPhone = JsonUtil.parseJsonToBean(js.toString(), SendPhone.class);
-                    return_id = sendPhone.getReturn_id();
-                    ToastUtil.showToast(getBaseContext(),String.valueOf(return_id));
-                    Log.e(TAG, "onSuccess110: "+return_id );
+//                    sendPhone = JsonUtil.parseJsonToBean(js.toString(), SendPhone.class);
+//                    return_id = sendPhone.getReturn_id();
+//                    ToastUtil.showToast(getBaseContext(),String.valueOf(return_id));
+//                    Log.e(TAG, "onSuccess110: "+return_id );
 
                     Intent intent = new Intent();
-                    intent.putExtra("return_id",String.valueOf(return_id));
+//                    intent.putExtra("return_id",String.valueOf(return_id));
                     intent.putExtra("phone",phone);
                     intent.setClass(getBaseContext(),CodeActivity.class);
                     startActivity(intent);

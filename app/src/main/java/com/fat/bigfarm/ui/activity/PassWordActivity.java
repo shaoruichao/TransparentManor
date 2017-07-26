@@ -138,6 +138,7 @@ public class PassWordActivity extends BaseActivity {
                 JSONObject js = response.get();
                 Log.e(TAG, "registerobjectListener: "+js );
                 int code = js.getInt("code");
+                String msg = js.getString("msg");
                 register = JsonUtil.parseJsonToBean(js.toString(), Register.class);
 
                 if (code == 200){
@@ -164,13 +165,15 @@ public class PassWordActivity extends BaseActivity {
 
                         PassWordActivity.this.finish();
                         TMApplication.instance.exit();
+
+                        ToastUtil.showToast(getBaseContext(),msg);
                     }
 
                 }else if (code == -1){
 //                    ToastUtil.showToast(getBaseContext(),"已经注册");
                     getFindPassword();
                 }else {
-                    ToastUtil.showToast(getBaseContext(),"注册失败");
+                    ToastUtil.showToast(getBaseContext(),msg);
                 }
 
             } catch (Exception e) {
@@ -221,6 +224,7 @@ public class PassWordActivity extends BaseActivity {
                 JSONObject js = response.get();
                 Log.e(TAG, "findpasswordobjectListener: "+js );
                 int code = js.getInt("code");
+                String msg = js.getString("msg");
                 login = JsonUtil.parseJsonToBean(js.toString(), Login.class);
                 if (code == 200){
 
@@ -251,10 +255,12 @@ public class PassWordActivity extends BaseActivity {
                         startActivity(new Intent(PassWordActivity.this, HomeActivity.class));
                         PassWordActivity.this.finish();
                         TMApplication.instance.exit();
+
+                        ToastUtil.showToast(getBaseContext(),msg);
                     }
 
                 }else {
-                    ToastUtil.showToast(getBaseContext(),"找回密码失败，请重新找回");
+                    ToastUtil.showToast(getBaseContext(),msg);
                 }
 
             } catch (Exception e) {

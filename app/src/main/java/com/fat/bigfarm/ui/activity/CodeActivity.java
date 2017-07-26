@@ -51,8 +51,8 @@ public class CodeActivity extends BaseActivity {
         TMApplication.instance.addActivity(this);
 
         Intent intent = getIntent();
-        return_id = intent.getStringExtra("return_id");
-        tvCode.setText(return_id);
+//        return_id = intent.getStringExtra("return_id");
+//        tvCode.setText(return_id);
         phone = intent.getStringExtra("phone");
         tvPhone.setText("我们向"+phone+"发送了一个验证码，请在下方输入验证码");
 

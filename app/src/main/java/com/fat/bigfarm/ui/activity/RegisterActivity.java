@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.app.AllUrl;
+import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseActivity;
 import com.fat.bigfarm.nohttp.HttpListener;
 import com.fat.bigfarm.utils.JsonUtil;
@@ -58,6 +59,7 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
+        TMApplication.instance.addActivity(this);
 
     }
 
@@ -106,13 +108,13 @@ public class RegisterActivity extends BaseActivity {
                 int code = js.getInt("code");
                 String msg = js.getString("msg");
                 if (code == 200 ){
-                    sendPhone = JsonUtil.parseJsonToBean(js.toString(), SendPhone.class);
-                    return_id = sendPhone.getReturn_id();
-                    ToastUtil.showToast(getBaseContext(),String.valueOf(return_id));
-                    Log.e(TAG, "onSuccess110: "+return_id );
+//                    sendPhone = JsonUtil.parseJsonToBean(js.toString(), SendPhone.class);
+//                    return_id = sendPhone.getReturn_id();
+//                    ToastUtil.showToast(getBaseContext(),String.valueOf(return_id));
+//                    Log.e(TAG, "onSuccess110: "+return_id );
 
                     Intent intent = new Intent();
-                    intent.putExtra("return_id",String.valueOf(return_id));
+//                    intent.putExtra("return_id",String.valueOf(return_id));
                     intent.putExtra("phone",phone);
                     intent.setClass(getBaseContext(),CodeActivity.class);
                     startActivity(intent);
