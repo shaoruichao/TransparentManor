@@ -108,7 +108,7 @@ public class MyRaiseFragment extends BaseOrderFragment {
 
 
     private void GetData() {
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER + userid + "&type=" + 1);
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER + userid + "&type=" + 2);
         Log.e(TAG, "GetData: " + AllUrl.FOSTER + userid + "&type=" + 1);
         request(0, request, fosterListener, true, true);
     }

@@ -93,7 +93,7 @@ public class MyDaizhongFragment extends BaseFragment {
 
 
     private void GetData(){
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER+userid+"&type="+2);
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(AllUrl.FOSTER+userid+"&type="+1);
         request(0, request, fosterListener, true, true);
     }
 
