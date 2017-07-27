@@ -1,11 +1,15 @@
 package com.fat.bigfarm.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -16,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fat.bigfarm.R;
+import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseActivity;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
@@ -55,6 +60,8 @@ public class ActivitiesDetailActivity extends BaseActivity {
 
     private KProgressHUD hud;
 
+    private CookieManager cookieManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +81,8 @@ public class ActivitiesDetailActivity extends BaseActivity {
 
         // 设置setWebChromeClient对象
 //        webView.setWebChromeClient(wvcc);
+
+        synCookies(getBaseContext());
 
         url = "www.9fat.com/H5test/farmapp0608/htmls/activityapp.html?id="+id;
         webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/activityapp.html?id="+id);
@@ -125,6 +134,49 @@ public class ActivitiesDetailActivity extends BaseActivity {
 
 //        getDetails(id);
 
+    }
+
+    /**
+     * 同步cookie
+     *
+     * @param context
+     * @param
+     */
+    public void synCookies(Context context) {
+
+        String cookies = TMApplication.instance.sp.getString("cookies", "");
+        Log.e(TAG, "cookie1111111111: " + cookies);
+
+
+        CookieSyncManager.createInstance(context);
+        cookieManager = CookieManager.getInstance();
+        if(Build.VERSION.SDK_INT>=21){
+            cookieManager.setAcceptThirdPartyCookies(webView, true);
+        }
+//        cookieManager.removeSessionCookie();//移除
+//        SystemClock.sleep(500);
+        cookieManager.setAcceptCookie(true);
+
+//        String[] arr = new String[] {cookies};
+//        List list = Arrays.asList(arr);
+//        for (int i = 0 ; i < list.size();i++){
+//            cookieManager.setCookie("http://www.kpano.com/", (String) list.get(i));
+//
+//        }
+
+        String[] arr;
+        arr=cookies.split(",");
+
+        for (int i = 0 ; i < arr.length;i++){
+            Log.e(TAG, "synCookies: "+arr[i] );//setCookie(String url, String value);url必须是根目录
+            cookieManager.setCookie("www.9fat.com", arr[i]+"; expires=Sat, 36000; path=/; domain=www.9fat.com");//cookies是在HttpClient中获得的cookie
+        }
+
+        if (Build.VERSION.SDK_INT < 21) {
+            CookieSyncManager.getInstance().sync();
+        } else {
+            CookieManager.getInstance().flush();
+        }
     }
 
 //    WebChromeClient wvcc = new WebChromeClient() {

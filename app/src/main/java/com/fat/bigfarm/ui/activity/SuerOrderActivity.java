@@ -553,7 +553,6 @@ public class SuerOrderActivity extends BaseActivity {
                     }
 
 
-
                 }
 
 

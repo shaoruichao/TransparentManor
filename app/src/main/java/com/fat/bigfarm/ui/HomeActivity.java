@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -26,14 +29,20 @@ import com.fat.bigfarm.base.BaseFragmentActivity;
 import com.fat.bigfarm.entry.UserMessage;
 import com.fat.bigfarm.ui.fragment.MyFragment;
 import com.fat.bigfarm.ui.fragment.ProductFragment;
+import com.yolanda.nohttp.Headers;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.rest.Request;
 import com.yolanda.nohttp.rest.Response;
 
 import org.json.JSONObject;
 
+import java.net.HttpCookie;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.yolanda.nohttp.NoHttp.getCookieManager;
 
 public class HomeActivity extends BaseFragmentActivity {
 
@@ -52,6 +61,8 @@ public class HomeActivity extends BaseFragmentActivity {
     FrameLayout mainContainer;
     @BindView(R.id.mainTabBar)
     MainNavigateTabBar mainTabBar;
+    @BindView(R.id.webView)
+    WebView webView;
 
     private UserMessage.DataBean data;
     private String avatar;
@@ -63,6 +74,8 @@ public class HomeActivity extends BaseFragmentActivity {
     private String birthday;
 
     ListDataSave dataSave;
+
+    private String cookies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +116,26 @@ public class HomeActivity extends BaseFragmentActivity {
         super.onResume();
         getUserMessage();
 
+//        //从webview中获取cookies
+//        webView.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//
+//                CookieManager cookieManager = CookieManager.getInstance();
+//                cookies = cookieManager.getCookie(url);
+//                Log.e(TAG, "cookieonPageFinished: " + cookies);
+//                if (cookies != "" || cookies != null) {
+//                    SharedPreferences.Editor edit = TMApplication.instance.sp.edit();
+//                    edit.putString("cookies", cookies);
+//                    edit.commit();
+//                }
+//
+//                getUserMessage();
+//
+//                super.onPageFinished(view, url);
+//            }
+//        });
+//        webView.loadUrl(AllUrl.USERMESSAGE);
 
     }
 
@@ -121,9 +154,22 @@ public class HomeActivity extends BaseFragmentActivity {
         public void onSucceed(int what, Response<JSONObject> response) {
 
             try {
+                //获取cookies
+                Headers headers = response.getHeaders();
+//                String cookies_login = String.valueOf(headers.getCookies());
+//                Log.e(TAG, "cookies_loginonSucceed: "+cookies_login );
+
+                java.net.CookieManager cookieManager = NoHttp.getCookieManager();
+                List<HttpCookie> cookies1 = cookieManager.getCookieStore().getCookies();
+                String cookies_login = String.valueOf(cookies1);
+                Log.e(TAG, "cookies_loginonSucceed: "+cookies_login );
+                String cookies = cookies_login.substring(1,cookies_login.indexOf("]"));
+                Log.e(TAG, "cookies_loginon: "+cookies );
+
 
                 JSONObject js = response.get();
                 Log.e(TAG, "usermessage: "+js );
+
                 status = String.valueOf(js.getInt("status"));
                 UserMessage userMessage = JsonUtil.parseJsonToBean(js.toString(), UserMessage.class);
 
@@ -139,6 +185,7 @@ public class HomeActivity extends BaseFragmentActivity {
                         sex = data.getSex();
 
                         SharedPreferences.Editor edit = TMApplication.instance.sp.edit();
+                        edit.putString("cookies", cookies);
                         edit.putString("status", status);
                         edit.putString("userid", uid);
                         edit.putString("avatar", avatar);

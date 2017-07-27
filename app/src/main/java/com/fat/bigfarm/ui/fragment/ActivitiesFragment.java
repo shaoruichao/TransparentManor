@@ -1,6 +1,8 @@
 package com.fat.bigfarm.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.fat.bigfarm.R;
+import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseFragment;
 import com.fat.bigfarm.ui.activity.ActivitiesDetailActivity;
 import com.fat.bigfarm.utils.DensityUtils;
@@ -122,6 +127,7 @@ public class ActivitiesFragment extends BaseFragment {
 
     private KProgressHUD hud;
 
+    private CookieManager cookieManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,6 +143,7 @@ public class ActivitiesFragment extends BaseFragment {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
 
+        synCookies(getActivity());
         webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html");
         //启用支持javascript
         WebSettings settings = webView.getSettings();
@@ -156,6 +163,15 @@ public class ActivitiesFragment extends BaseFragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+
+//                CookieManager cookieManager = CookieManager.getInstance();
+//                String cookies = cookieManager.getCookie(url);
+//                Log.e(TAG, "cookie: " + cookies);
+//                if (cookies != "" || cookies != null) {
+//                    SharedPreferences.Editor edit = TMApplication.instance.sp.edit();
+//                    edit.putString("cookies", cookies);
+//                    edit.commit();
+//                }
 
                 scheduleDismiss();
             }
@@ -199,6 +215,50 @@ public class ActivitiesFragment extends BaseFragment {
 
 //        getActivities();
         return view;
+    }
+
+
+    /**
+     * 同步cookie
+     *
+     * @param context
+     * @param
+     */
+    public void synCookies(Context context) {
+
+        String cookies = TMApplication.instance.sp.getString("cookies", "");
+        Log.e(TAG, "cookie1111111111: " + cookies);
+
+
+        CookieSyncManager.createInstance(context);
+        cookieManager = CookieManager.getInstance();
+        if(Build.VERSION.SDK_INT>=21){
+            cookieManager.setAcceptThirdPartyCookies(webView, true);
+        }
+//        cookieManager.removeSessionCookie();//移除
+//        SystemClock.sleep(500);
+        cookieManager.setAcceptCookie(true);
+
+//        String[] arr = new String[] {cookies};
+//        List list = Arrays.asList(arr);
+//        for (int i = 0 ; i < list.size();i++){
+//            cookieManager.setCookie("http://www.kpano.com/", (String) list.get(i));
+//
+//        }
+
+        String[] arr;
+        arr=cookies.split(",");
+
+        for (int i = 0 ; i < arr.length;i++){
+            Log.e(TAG, "synCookies: "+arr[i] );
+            cookieManager.setCookie("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html/", arr[i]+"; expires=Sat, 36000; path=/; domain=www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html");//cookies是在HttpClient中获得的cookie
+        }
+
+        if (Build.VERSION.SDK_INT < 21) {
+            CookieSyncManager.getInstance().sync();
+        } else {
+            CookieManager.getInstance().flush();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -187,8 +187,15 @@ public class MyOrderAllFragment extends BaseOrderFragment {
                             //付款
                             @Override
                             public void payonItemClick(Button bt_pay, int postion) {
+//                                String orderid = data.get(postion).getOrderid();
+//                                PostSuerOrder(orderid);
                                 String orderid = data.get(postion).getOrderid();
-                                PostSuerOrder(orderid);
+                                String orderstatus = data.get(postion).getOrderstatus();
+                                Intent intent = new Intent();
+                                intent.putExtra("orderid",orderid);
+                                intent.putExtra("orderstatus",orderstatus);
+                                intent.setClass(getActivity(), OrderDetailActivity.class);
+                                startActivity(intent);
                             }
                             //item点击
                             @Override

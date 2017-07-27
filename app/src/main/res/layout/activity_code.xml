@@ -66,11 +66,12 @@
             android:layout_height="match_parent"
             android:hint="验证码"
             android:textSize="20sp"
+            android:numeric="integer"
             android:textColor="#ffffff"
             android:background="@null"
             android:textCursorDrawable="@null"
             android:layout_marginRight="15dp"
-            android:maxLength="11"/>
+            android:maxLength="6"/>
 
     </android.support.design.widget.TextInputLayout>
 

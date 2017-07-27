@@ -1,5 +1,6 @@
 package com.fat.bigfarm.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,15 +9,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.adapter.OrderObligationAdapter;
+import com.fat.bigfarm.adapter.OrderObligationItemAdapter;
 import com.fat.bigfarm.app.AllUrl;
 import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseOrderFragment;
 import com.fat.bigfarm.entry.MyOrderAll;
 import com.fat.bigfarm.nohttp.HttpListener;
+import com.fat.bigfarm.ui.activity.OrderDetailActivity;
 import com.fat.bigfarm.utils.JsonUtil;
 import com.fat.bigfarm.utils.ToastUtil;
 import com.yolanda.nohttp.NoHttp;
@@ -134,6 +138,47 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
 
                         rvOrderAll.setHasFixedSize(true);
                         rvOrderAll.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+                        orderAllAdapter.setmOnItemClickLitener(new OrderObligationAdapter.OnItemClickListener() {
+                            //取消订单
+                            @Override
+                            public void onItemClick(Button bt_cancelorder, int postion) {
+                                String orderid = data.get(postion).getOrderid();
+//                                OrderEdit(orderid);
+                            }
+
+                            //付款
+                            @Override
+                            public void payonItemClick(Button bt_pay, int postion) {
+//                                String orderid = data.get(postion).getOrderid();
+//                                PostSuerOrder(orderid);
+                                String orderid = data.get(postion).getOrderid();
+                                Log.e(TAG, "rvonItemClick: "+orderid );
+                                String orderstatus = data.get(postion).getOrderstatus();
+                                Intent intent = new Intent();
+                                intent.putExtra("orderid",orderid);
+                                intent.putExtra("orderstatus",orderstatus);
+                                intent.setClass(getActivity(), OrderDetailActivity.class);
+                                startActivity(intent);
+                            }
+
+                            //item点击
+                            @Override
+                            public void rvonItemClick(OrderObligationItemAdapter orderObligationItemAdapter, int postion) {
+                                String orderid = data.get(postion).getOrderid();
+                                Log.e(TAG, "rvonItemClick: "+orderid );
+                                String orderstatus = data.get(postion).getOrderstatus();
+                                Intent intent = new Intent();
+                                intent.putExtra("orderid",orderid);
+                                intent.putExtra("orderstatus",orderstatus);
+                                intent.setClass(getActivity(), OrderDetailActivity.class);
+                                startActivity(intent);
+                            }
+
+                        });
+
+                        orderAllAdapter.notifyDataSetChanged();
+
 
                     }
                 }

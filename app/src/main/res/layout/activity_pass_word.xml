@@ -68,6 +68,7 @@
             android:textSize="20sp"
             android:textColor="#ffffff"
             android:background="@null"
+            android:inputType="textPassword"
             android:textCursorDrawable="@null"
             android:layout_marginRight="15dp"
             android:maxLength="11"/>
