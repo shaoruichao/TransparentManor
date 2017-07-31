@@ -112,7 +112,7 @@ public class ActivitiesDetailActivity extends BaseActivity {
                 // TODO Auto-generated method stub
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
 
-                Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
+                Log.e(TAG, "shouldOverrideUrlLoading: "+url);
                 substring = url.substring(0, 7);
                 goodsid = url.substring(8);
                 if (substring.equals("goodsid")){

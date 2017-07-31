@@ -449,7 +449,8 @@ public class DetailsActivity extends BaseActivity {
                     startActivity(intent);
 
                 } else {
-                    ToastUtil.showToast(getBaseContext(), "请先登录");
+//                    ToastUtil.showToast(getBaseContext(), "请先登录");
+                    startActivity(new Intent(getBaseContext(), StatusActivity.class));
                 }
 
                 break;
@@ -459,7 +460,8 @@ public class DetailsActivity extends BaseActivity {
                     PostShoppingCart();
 
                 } else {
-                    ToastUtil.showToast(getBaseContext(), "请先登录");
+//                    ToastUtil.showToast(getBaseContext(), "请先登录");
+                    startActivity(new Intent(getBaseContext(), StatusActivity.class));
                 }
 
                 break;
@@ -489,7 +491,8 @@ public class DetailsActivity extends BaseActivity {
                     products.clear();
 
                 } else {
-                    ToastUtil.showToast(getBaseContext(), "请先登录");
+//                    ToastUtil.showToast(getBaseContext(), "请先登录");
+                    startActivity(new Intent(getBaseContext(), StatusActivity.class));
                 }
 
 

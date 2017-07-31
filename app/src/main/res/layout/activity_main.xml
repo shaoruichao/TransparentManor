@@ -32,8 +32,8 @@
         android:layout_below="@+id/image1"
         android:layout_marginTop="3dp"
         android:layout_centerHorizontal="true"
-        android:text="伴草而生 自然而然"
-        android:textSize="16sp"
+        android:text="我的一亩三分地"
+        android:textSize="18sp"
         android:textColor="#606060"/>
 
 

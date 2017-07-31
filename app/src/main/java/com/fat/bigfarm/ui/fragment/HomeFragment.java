@@ -104,8 +104,8 @@ public class HomeFragment extends BaseFragment {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
 
-        rl_top_home.getBackground().setAlpha(0);
-        rl_search.getBackground().setAlpha(153);
+//        rl_top_home.getBackground().setAlpha(0);
+//        rl_search.getBackground().setAlpha(153);
 
 
         getList();
@@ -117,21 +117,21 @@ public class HomeFragment extends BaseFragment {
         super.onResume();
 
         //RecyclerView滑动监听
-        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int totalDy = 0;
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                这种方法在插入/删除/移动 Item 的时候，totalDy 就变得不精确了
-//                totalDy += dy;
-//                Log.e(TAG, "onScrolled: "+totalDy );
-//                topview.getBackground().setAlpha(totalDy);
-//                if (totalDy >= 255) {
-//                    topview.getBackground().setAlpha(255);
-//                }
-                getScollYDistance();
-
-            }
-        });
+//        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            private int totalDy = 0;
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+////                这种方法在插入/删除/移动 Item 的时候，totalDy 就变得不精确了
+////                totalDy += dy;
+////                Log.e(TAG, "onScrolled: "+totalDy );
+////                topview.getBackground().setAlpha(totalDy);
+////                if (totalDy >= 255) {
+////                    topview.getBackground().setAlpha(255);
+////                }
+//                getScollYDistance();
+//
+//            }
+//        });
 
     }
 

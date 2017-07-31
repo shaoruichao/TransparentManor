@@ -203,6 +203,11 @@ public class SuerOrderActivity extends BaseActivity {
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(SuerOrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        for (int x=0 ; x< listcartid.size();x++){
+                            if (!listcartid.get(x).equals("")){
+                                PostShoppingcartEdit();
+                            }
+                        }
 
                     }
                     break;
@@ -676,9 +681,9 @@ public class SuerOrderActivity extends BaseActivity {
                 int code = js.getInt("code");
                 String mgs = js.getString("msg");
                 if (code == 200){
-                    ToastUtil.showToast(getBaseContext(),mgs);
+//                    ToastUtil.showToast(getBaseContext(),mgs);
                 }else {
-                    ToastUtil.showToast(getBaseContext(),mgs);
+//                    ToastUtil.showToast(getBaseContext(),mgs);
                 }
 
             } catch (Exception e) {

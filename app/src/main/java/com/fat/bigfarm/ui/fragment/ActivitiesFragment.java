@@ -135,8 +135,8 @@ public class ActivitiesFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_activities, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        rl_top_activities.getBackground().setAlpha(0);
-        rlSearch.getBackground().setAlpha(153);
+//        rl_top_activities.getBackground().setAlpha(0);
+//        rlSearch.getBackground().setAlpha(153);
         tvSearch.setInputType(InputType.TYPE_NULL);
 
         hud = KProgressHUD.create(getActivity())
@@ -182,30 +182,33 @@ public class ActivitiesFragment extends BaseFragment {
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
 
                 Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
-                substring = url.substring(0,8);
-                substring1 = url.substring(9);
-                webid = substring1.substring(0, substring1.indexOf(":"));
-                Log.e(TAG, "shouldOverrideUrlLoading1: "+webid );
-                webTitle = substring1.substring(substring1.indexOf(":") + 1);
-                Log.e(TAG, "shouldOverrideUrlLoading: "+webTitle );
-                try {
-                    title = URLDecoder.decode(webTitle, "UTF-8");
-                    Log.e(TAG, "shouldOverrideUrlLoading: "+title );
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                if (!url.equals("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html")){
+                    substring = url.substring(0,8);
+                    substring1 = url.substring(9);
+                    webid = substring1.substring(0, substring1.indexOf(":"));
+                    Log.e(TAG, "shouldOverrideUrlLoading1: "+webid );
+                    webTitle = substring1.substring(substring1.indexOf(":") + 1);
+                    Log.e(TAG, "shouldOverrideUrlLoading: "+webTitle );
+                    try {
+                        title = URLDecoder.decode(webTitle, "UTF-8");
+                        Log.e(TAG, "shouldOverrideUrlLoading: "+title );
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    if (this.substring.equals("activity")){
+
+                        Intent intent = new Intent();
+                        intent.putExtra("id", webid);
+                        intent.putExtra("title",title);
+                        intent.setClass(getActivity(),ActivitiesDetailActivity.class);
+                        startActivity(intent);
+
+                        return true;
+                    }
                 }
 
-
-                if (this.substring.equals("activity")){
-
-                    Intent intent = new Intent();
-                    intent.putExtra("id", webid);
-                    intent.putExtra("title",title);
-                    intent.setClass(getActivity(),ActivitiesDetailActivity.class);
-                    startActivity(intent);
-
-                    return true;
-                }
 
                 return false;
 
@@ -273,17 +276,17 @@ public class ActivitiesFragment extends BaseFragment {
                 //滑动中
 
                 Log.e(TAG, "onScrollChanged: "+oldt );
-                rl_top_activities.getBackground().setAlpha(oldt);
-                if ( oldt >= 255){
-                    rl_top_activities.getBackground().setAlpha(255);
-                }
+//                rl_top_activities.getBackground().setAlpha(oldt);
+//                if ( oldt >= 255){
+//                    rl_top_activities.getBackground().setAlpha(255);
+//                }
 
             }
 
             @Override
             public void onPageTop(int l, int t, int oldl, int oldt) {
                 //滑动到顶部
-                rl_top_activities.getBackground().setAlpha(0);
+//                rl_top_activities.getBackground().setAlpha(0);
             }
 
             @Override
