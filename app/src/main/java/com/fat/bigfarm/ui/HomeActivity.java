@@ -50,7 +50,7 @@ public class HomeActivity extends BaseFragmentActivity {
 
     private static final String TAG_PAGE_HOME = "首页";
 //    private static final String TAG_PAGE_PRODUCT = "新品";
-    private static final String TAG_PAGE_ACTIVITIES = "活动";
+    private static final String TAG_PAGE_ACTIVITIES = "菜园";
     private static final String TAG_PAGE_SHOPPING = " 购物车";
     private static final String TAG_PAGE_MYFARM = "我的农庄";
     private static final String TAG_PAGE_PERSON = "我的";
@@ -92,7 +92,7 @@ public class HomeActivity extends BaseFragmentActivity {
 
         mainTabBar.addTab(HomeFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_home, R.mipmap.comui_tab_home_selected, TAG_PAGE_HOME));
 //        mainTabBar.addTab(ProductFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_product, R.mipmap.comui_tab_product_selected, TAG_PAGE_PRODUCT));
-        mainTabBar.addTab(ActivitiesFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_activities, R.mipmap.comui_tab_activities_selected, TAG_PAGE_ACTIVITIES));
+        mainTabBar.addTab(ActivitiesFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_garden, R.mipmap.comui_tab_garden_selected, TAG_PAGE_ACTIVITIES));
         mainTabBar.addTab(ShoppingFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_shopping, R.mipmap.comui_tab_shopping_selected, TAG_PAGE_SHOPPING));
         mainTabBar.addTab(MyfarmFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_myfarm, R.mipmap.comui_tab_myfarm_selected, TAG_PAGE_MYFARM));
         mainTabBar.addTab(MyFragment.class, new MainNavigateTabBar.TabParam(R.mipmap.comui_tab_person, R.mipmap.comui_tab_person_selected, TAG_PAGE_PERSON));

@@ -25,6 +25,9 @@ import com.fat.bigfarm.R;
 import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseFragment;
 import com.fat.bigfarm.ui.activity.ActivitiesDetailActivity;
+import com.fat.bigfarm.ui.activity.DetailsActivity;
+import com.fat.bigfarm.ui.activity.MyOrderActivity;
+import com.fat.bigfarm.ui.activity.StatusActivity;
 import com.fat.bigfarm.utils.DensityUtils;
 import com.fat.bigfarm.view.ObservableWebView;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -128,6 +131,7 @@ public class ActivitiesFragment extends BaseFragment {
     private KProgressHUD hud;
 
     private CookieManager cookieManager;
+    private String status;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -143,78 +147,11 @@ public class ActivitiesFragment extends BaseFragment {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
 
-        synCookies(getActivity());
-        webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html");
-        //启用支持javascript
-        WebSettings settings = webView.getSettings();
-        settings.setTextZoom(100);//字体强制100%
-        settings.setJavaScriptEnabled(true);
-//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setDefaultTextEncodingName("utf-8");
-        //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
-        webView.setWebViewClient(new WebViewClient() {
+        status = TMApplication.instance.sp.getString("status", "");
+        if (!status.equals("1")){
+            startActivity(new Intent(getActivity(), StatusActivity.class));
+        }
 
-            private String title;
-            private String webTitle;
-            private String webid;
-            private String substring1;
-            private String substring;
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-//                CookieManager cookieManager = CookieManager.getInstance();
-//                String cookies = cookieManager.getCookie(url);
-//                Log.e(TAG, "cookie: " + cookies);
-//                if (cookies != "" || cookies != null) {
-//                    SharedPreferences.Editor edit = TMApplication.instance.sp.edit();
-//                    edit.putString("cookies", cookies);
-//                    edit.commit();
-//                }
-
-                scheduleDismiss();
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // TODO Auto-generated method stub
-                //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
-
-                Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
-                if (!url.equals("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html")){
-                    substring = url.substring(0,8);
-                    substring1 = url.substring(9);
-                    webid = substring1.substring(0, substring1.indexOf(":"));
-                    Log.e(TAG, "shouldOverrideUrlLoading1: "+webid );
-                    webTitle = substring1.substring(substring1.indexOf(":") + 1);
-                    Log.e(TAG, "shouldOverrideUrlLoading: "+webTitle );
-                    try {
-                        title = URLDecoder.decode(webTitle, "UTF-8");
-                        Log.e(TAG, "shouldOverrideUrlLoading: "+title );
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    if (this.substring.equals("activity")){
-
-                        Intent intent = new Intent();
-                        intent.putExtra("id", webid);
-                        intent.putExtra("title",title);
-                        intent.setClass(getActivity(),ActivitiesDetailActivity.class);
-                        startActivity(intent);
-
-                        return true;
-                    }
-                }
-
-
-                return false;
-
-            }
-
-        });
 
 //        getActivities();
         return view;
@@ -254,7 +191,7 @@ public class ActivitiesFragment extends BaseFragment {
 
         for (int i = 0 ; i < arr.length;i++){
             Log.e(TAG, "synCookies: "+arr[i] );
-            cookieManager.setCookie("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html/", arr[i]+"; expires=Sat, 36000; path=/; domain=www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html");//cookies是在HttpClient中获得的cookie
+            cookieManager.setCookie("www.9fat.com", arr[i]+"; expires=Sat, 36000; path=/; domain=www.9fat.com");//cookies是在HttpClient中获得的cookie
         }
 
         if (Build.VERSION.SDK_INT < 21) {
@@ -268,6 +205,95 @@ public class ActivitiesFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+
+        synCookies(getActivity());
+        webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html");
+        //启用支持javascript
+        WebSettings settings = webView.getSettings();
+        settings.setTextZoom(100);//字体强制100%
+        settings.setJavaScriptEnabled(true);
+//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setDefaultTextEncodingName("utf-8");
+        //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
+        webView.setWebViewClient(new WebViewClient() {
+
+            private String title;
+            private String webTitle;
+            private String webid;
+            private String substring1;
+            private String substring;
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+//                CookieManager cookieManager = CookieManager.getInstance();
+//                String cookies = cookieManager.getCookie(url);
+//                Log.e(TAG, "cookie: " + cookies);
+//                if (cookies != "" || cookies != null) {
+//                    SharedPreferences.Editor edit = TMApplication.instance.sp.edit();
+//                    edit.putString("cookies", cookies);
+//                    edit.commit();
+//                }
+                hud.dismiss();
+//                scheduleDismiss();
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // TODO Auto-generated method stub
+                //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
+
+                Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
+                if (!url.equals("http://www.9fat.com/H5test/farmapp0608/htmls/promotionpageapp.html")){
+//                    substring = url.substring(0,8);
+//                    substring1 = url.substring(9);
+                    substring = url.substring(0, url.indexOf(":"));
+                    Log.e(TAG, "shouldOverrideUrlLoading1: "+substring );
+                    substring1 = url.substring(url.indexOf(":") + 1);
+                    Log.e(TAG, "shouldOverrideUrlLoading: "+substring1 );
+                    if (substring.equals("goodsid")){
+
+                        Intent intent = new Intent();
+                        intent.putExtra("id",substring1);
+//                        intent.putExtra("typename",title);
+                        intent.setClass(getActivity(), DetailsActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
+                    if (substring.equals("activity")){
+
+                        webid = substring1.substring(0, substring1.indexOf(":"));
+
+                        webTitle = substring1.substring(substring1.indexOf(":") + 1);
+                        Log.e(TAG, "shouldOverrideUrlLoading: "+webTitle );
+                        try {
+                            title = URLDecoder.decode(webTitle, "UTF-8");
+                            Log.e(TAG, "shouldOverrideUrlLoading: "+title );
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+
+                        Intent intent = new Intent();
+                        intent.putExtra("id", webid);
+                        intent.putExtra("title",title);
+                        intent.setClass(getActivity(),ActivitiesDetailActivity.class);
+                        startActivity(intent);
+
+                        return true;
+                    }
+
+
+
+                }
+
+                return false;
+
+            }
+
+        });
+
 
         webView.setOnScrollChangeListener(new ObservableWebView.OnScrollChangeListener() {
 

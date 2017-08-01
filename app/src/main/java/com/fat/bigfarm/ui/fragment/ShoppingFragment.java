@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.app.TMApplication;
+import com.fat.bigfarm.ui.activity.StatusActivity;
 import com.fat.bigfarm.utils.ToastUtil;
 import com.fat.bigfarm.adapter.ShopcartExpandableListViewAdapter;
 import com.fat.bigfarm.app.AllUrl;
@@ -82,6 +83,10 @@ public class ShoppingFragment extends BaseFragment implements ShopcartExpandable
         view = inflater.inflate(R.layout.fragment_shopping, container, false);
 
         initView();
+        status = TMApplication.instance.sp.getString("status", "");
+        if (!status.equals("1")){
+            startActivity(new Intent(getActivity(), StatusActivity.class));
+        }
 
         return view;
     }

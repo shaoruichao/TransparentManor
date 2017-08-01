@@ -104,7 +104,8 @@ public class ActivitiesDetailActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                scheduleDismiss();
+//                scheduleDismiss();
+                hud.dismiss();
             }
 
             @Override

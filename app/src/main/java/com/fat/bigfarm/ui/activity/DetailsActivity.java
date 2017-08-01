@@ -152,7 +152,7 @@ public class DetailsActivity extends BaseActivity {
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         sid = intent.getStringExtra("sid");
-        typename = intent.getStringExtra("typename");
+//        typename = intent.getStringExtra("typename");
         tvHeadTitle.setText(typename);
 
         badgeView = new BadgeView(this);
@@ -281,6 +281,8 @@ public class DetailsActivity extends BaseActivity {
                     }else {
                         tv_pay.setText("立即购买");
                     }
+                    typename = data.getName();
+                    tvHeadTitle.setText(typename);
 //                    name = data.getShopname();
 //                    tvHeadTitle.setText(name);
 ////                    bannerTop.setImagesUrl(thumb);
