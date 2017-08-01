@@ -84,12 +84,14 @@ public class ActivitiesDetailActivity extends BaseActivity {
 
         synCookies(getBaseContext());
 
-        url = "www.9fat.com/H5test/farmapp0608/htmls/activityapp.html?id="+id;
+        url = "http://www.9fat.com/H5test/farmapp0608/htmls/activityapp.html?id="+id;
+        Log.e(TAG, "onCreate: "+url );
         webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/activityapp.html?id="+id);
         //启用支持javascript
         WebSettings settings = webView.getSettings();
         settings.setTextZoom(100);//字体强制100%
         settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);// 开启 DOM storage API 功能
         //不缓存
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setDefaultTextEncodingName("utf-8");
