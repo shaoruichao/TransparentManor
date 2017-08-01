@@ -147,10 +147,10 @@ public class ActivitiesFragment extends BaseFragment {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
 
-        status = TMApplication.instance.sp.getString("status", "");
-        if (!status.equals("1")){
-            startActivity(new Intent(getActivity(), StatusActivity.class));
-        }
+//        status = TMApplication.instance.sp.getString("status", "");
+//        if (!status.equals("1")){
+//            startActivity(new Intent(getActivity(), StatusActivity.class));
+//        }
 
 
 //        getActivities();

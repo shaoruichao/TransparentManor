@@ -83,10 +83,10 @@ public class ShoppingFragment extends BaseFragment implements ShopcartExpandable
         view = inflater.inflate(R.layout.fragment_shopping, container, false);
 
         initView();
-        status = TMApplication.instance.sp.getString("status", "");
-        if (!status.equals("1")){
-            startActivity(new Intent(getActivity(), StatusActivity.class));
-        }
+//        status = TMApplication.instance.sp.getString("status", "");
+//        if (!status.equals("1")){
+//            startActivity(new Intent(getActivity(), StatusActivity.class));
+//        }
 
         return view;
     }
