@@ -52,4 +52,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
 }

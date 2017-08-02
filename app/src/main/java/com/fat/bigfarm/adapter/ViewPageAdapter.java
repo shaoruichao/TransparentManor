@@ -40,7 +40,7 @@ public class ViewPageAdapter extends PagerAdapter{
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, mDatasid.get(i) + "", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(mContext, mDatasid.get(i) + "", Toast.LENGTH_LONG).show();
 
                 }
             });

@@ -276,11 +276,12 @@ public class DetailsActivity extends BaseActivity {
                     guess = data.getGuess();
                     thumb = data.getThumb();
                     typeid = data.getTypeid();
-                    if (typeid.equals("1")){
-                        tv_pay.setText("立即代养");
-                    }else {
-                        tv_pay.setText("立即购买");
-                    }
+//                    if (typeid.equals("1")){
+//                        tv_pay.setText("立即代养");
+//                    }else {
+//                        tv_pay.setText("立即购买");
+//                    }
+                    tv_pay.setText("立即购买");
                     typename = data.getName();
                     tvHeadTitle.setText(typename);
 //                    name = data.getShopname();

@@ -1,6 +1,8 @@
 package com.fat.bigfarm.base;
 
 import android.app.Activity;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
@@ -18,6 +20,24 @@ public class BaseActivity extends Activity {
         // 添加到Activity集合
         TMApplication.instance.addActivity(this);
 
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.fontScale != 1)//非默认值
+            getResources();
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res.getConfiguration().fontScale != 1) {//非默认值
+            Configuration newConfig = new Configuration();
+            newConfig.setToDefaults();//设置默认
+            res.updateConfiguration(newConfig, res.getDisplayMetrics());
+        }
+        return res;
     }
 
     public <T> void request(int what, Request<T> request, HttpListener<T> callback, boolean canCancel, boolean isLoading) {

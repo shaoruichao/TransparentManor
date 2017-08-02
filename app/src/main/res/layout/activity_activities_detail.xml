@@ -50,11 +50,11 @@
         <!--android:layout_height="match_parent"-->
         <!--xtao:direction="both">-->
 
-        <WebView
+        <com.fat.bigfarm.view.X5WebView
             android:id="@+id/webView"
             android:layout_below="@+id/rl_login"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></WebView>
+            android:layout_height="match_parent"></com.fat.bigfarm.view.X5WebView>
 
         <!--<ScrollView-->
             <!--android:layout_alignParentBottom="true"-->

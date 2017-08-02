@@ -8,12 +8,15 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
+//import android.webkit.CookieManager;
+//import android.webkit.CookieSyncManager;
+import com.tencent.smtt.sdk.CookieManager;
+import com.tencent.smtt.sdk.CookieSyncManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+//import android.webkit.WebSettings;
+import com.tencent.smtt.sdk.WebSettings;
+//import android.webkit.WebView;
+//import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -22,7 +25,10 @@ import android.widget.TextView;
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseActivity;
+import com.fat.bigfarm.view.X5WebView;
 import com.kaopiz.kprogresshud.KProgressHUD;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +56,7 @@ public class ActivitiesDetailActivity extends BaseActivity {
 //    @BindView(R.id.rv_homemore)
 //    RecyclerView rvHomemore;
     @BindView(R.id.webView)
-    WebView webView;
+    X5WebView webView;
 //    @BindView(R.id.sw_layout)
 //    SwipeRefreshLayout swLayout;
     private String id;
@@ -95,6 +101,8 @@ public class ActivitiesDetailActivity extends BaseActivity {
         //不缓存
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setDefaultTextEncodingName("utf-8");
+//        CookieSyncManager.createInstance(this);
+//        CookieSyncManager.getInstance().sync();
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         webView.setWebViewClient(new WebViewClient() {
 

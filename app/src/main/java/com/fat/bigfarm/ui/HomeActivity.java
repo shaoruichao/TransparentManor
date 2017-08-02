@@ -115,7 +115,13 @@ public class HomeActivity extends BaseFragmentActivity {
     ListDataSave dataSave;
 
     private String cookies;
-//    private android.support.v4.app.FragmentTransaction fragmentTransaction;
+    private ActivitiesFragment activitiesFragment;
+    private ShoppingFragment shoppingFragment;
+    private MyfarmFragment myfarmFragment;
+    private MyFragment myFragment;
+    private HomeFragment homeFragment;
+    private android.support.v4.app.FragmentTransaction fragmentTransaction;
+    //    private android.support.v4.app.FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,9 +134,21 @@ public class HomeActivity extends BaseFragmentActivity {
 
         dataSave = new ListDataSave(TMApplication.mContext, "list");
 
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_container,new HomeFragment());
-        fragmentTransaction.commit();
+        homeFragment = new HomeFragment();
+        activitiesFragment = new ActivitiesFragment();
+        shoppingFragment = new ShoppingFragment();
+        myfarmFragment = new MyfarmFragment();
+        myFragment = new MyFragment();
+
+        if (!homeFragment.isAdded()){
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.main_container, homeFragment).hide(activitiesFragment).hide(shoppingFragment).hide(myfarmFragment).hide(myFragment).show(homeFragment).commit();
+        }else {
+            fragmentTransaction.hide(activitiesFragment).hide(shoppingFragment).hide(myfarmFragment).hide(myFragment).show(homeFragment).commit();
+        }
+//        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.main_container,new HomeFragment());
+//        fragmentTransaction.commit();
         iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home_selected));
         tv1.setTextColor(Color.parseColor("#181818"));
 
@@ -299,32 +317,53 @@ public class HomeActivity extends BaseFragmentActivity {
 
         switch (view.getId()) {
             case R.id.rl_home:
-                fragmentTransaction.replace(R.id.main_container,new HomeFragment());
-                iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home_selected));
-                tv1.setTextColor(Color.parseColor("#181818"));
-                iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
-                tv2.setTextColor(Color.parseColor("#606060"));
-                iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
-                tv3.setTextColor(Color.parseColor("#606060"));
-                iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
-                tv4.setTextColor(Color.parseColor("#606060"));
-                iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
-                tv5.setTextColor(Color.parseColor("#606060"));
 
-                break;
-            case R.id.rl_garden:
-                if (status.equals("1")){
-                    fragmentTransaction.replace(R.id.main_container,new ActivitiesFragment());
-                    iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
-                    tv1.setTextColor(Color.parseColor("#606060"));
-                    iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden_selected));
-                    tv2.setTextColor(Color.parseColor("#181818"));
+                if (homeFragment!=null && activitiesFragment!=null && shoppingFragment!=null && myfarmFragment!=null && myFragment!=null){
+
+                    if (!homeFragment.isAdded()){
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container, homeFragment).hide(activitiesFragment).hide(shoppingFragment).hide(myfarmFragment).hide(myFragment).show(homeFragment).commit();
+                    }else {
+                        fragmentTransaction.hide(activitiesFragment).hide(shoppingFragment).hide(myfarmFragment).hide(myFragment).show(homeFragment).commit();
+                    }
+//                fragmentTransaction.replace(R.id.main_container,new HomeFragment());
+                    iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home_selected));
+                    tv1.setTextColor(Color.parseColor("#181818"));
+                    iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
+                    tv2.setTextColor(Color.parseColor("#606060"));
                     iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
                     tv3.setTextColor(Color.parseColor("#606060"));
                     iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
                     tv4.setTextColor(Color.parseColor("#606060"));
                     iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
                     tv5.setTextColor(Color.parseColor("#606060"));
+                }
+
+
+                break;
+            case R.id.rl_garden:
+                if (status.equals("1")){
+                    if (homeFragment!=null && activitiesFragment!=null && shoppingFragment!=null && myfarmFragment!=null && myFragment!=null){
+
+                        if (!activitiesFragment.isAdded()){
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.add(R.id.main_container, activitiesFragment).hide(homeFragment).hide(shoppingFragment).hide(myfarmFragment).hide(myFragment).show(activitiesFragment).commit();
+                        }else {
+                            fragmentTransaction.hide(homeFragment).hide(shoppingFragment).hide(myfarmFragment).hide(myFragment).show(activitiesFragment).commit();
+                        }
+                        //                    fragmentTransaction.replace(R.id.main_container,new ActivitiesFragment());
+                        iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
+                        tv1.setTextColor(Color.parseColor("#606060"));
+                        iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden_selected));
+                        tv2.setTextColor(Color.parseColor("#181818"));
+                        iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
+                        tv3.setTextColor(Color.parseColor("#606060"));
+                        iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
+                        tv4.setTextColor(Color.parseColor("#606060"));
+                        iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
+                        tv5.setTextColor(Color.parseColor("#606060"));
+                    }
+
                 }else {
                     startActivity(new Intent(getBaseContext(), StatusActivity.class));
                 }
@@ -332,50 +371,84 @@ public class HomeActivity extends BaseFragmentActivity {
                 break;
             case R.id.rl_shopping:
                 if (status.equals("1")){
-                    fragmentTransaction.replace(R.id.main_container,new ShoppingFragment());
-                    iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
-                    tv1.setTextColor(Color.parseColor("#606060"));
-                    iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
-                    tv2.setTextColor(Color.parseColor("#606060"));
-                    iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping_selected));
-                    tv3.setTextColor(Color.parseColor("#181818"));
-                    iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
-                    tv4.setTextColor(Color.parseColor("#606060"));
-                    iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
-                    tv5.setTextColor(Color.parseColor("#606060"));
+                    if (homeFragment!=null && activitiesFragment!=null && shoppingFragment!=null && myfarmFragment!=null && myFragment!=null){
+
+                        if (!shoppingFragment.isAdded()){
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.add(R.id.main_container, shoppingFragment).hide(homeFragment).hide(activitiesFragment).hide(myfarmFragment).hide(myFragment).show(shoppingFragment).commit();
+                        }else {
+                            fragmentTransaction.hide(homeFragment).hide(activitiesFragment).hide(myfarmFragment).hide(myFragment).show(shoppingFragment).commit();
+                        }
+//                        fragmentTransaction.replace(R.id.main_container,new ShoppingFragment());
+                        iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
+                        tv1.setTextColor(Color.parseColor("#606060"));
+                        iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
+                        tv2.setTextColor(Color.parseColor("#606060"));
+                        iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping_selected));
+                        tv3.setTextColor(Color.parseColor("#181818"));
+                        iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
+                        tv4.setTextColor(Color.parseColor("#606060"));
+                        iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
+                        tv5.setTextColor(Color.parseColor("#606060"));
+                    }
+
                 }else {
                     startActivity(new Intent(getBaseContext(), StatusActivity.class));
                 }
 
                 break;
             case R.id.rl_farm:
-                fragmentTransaction.replace(R.id.main_container,new MyfarmFragment());
-                iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
-                tv1.setTextColor(Color.parseColor("#606060"));
-                iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
-                tv2.setTextColor(Color.parseColor("#606060"));
-                iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
-                tv3.setTextColor(Color.parseColor("#606060"));
-                iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm_selected));
-                tv4.setTextColor(Color.parseColor("#181818"));
-                iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
-                tv5.setTextColor(Color.parseColor("#606060"));
+
+                if (status.equals("1")) {
+                    if (homeFragment != null && activitiesFragment != null && shoppingFragment != null && myfarmFragment != null && myFragment != null) {
+
+                        if (!myfarmFragment.isAdded()) {
+                            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.add(R.id.main_container, myfarmFragment).hide(homeFragment).hide(activitiesFragment).hide(shoppingFragment).hide(myFragment).show(myfarmFragment).commit();
+                        } else {
+                            fragmentTransaction.hide(homeFragment).hide(activitiesFragment).hide(shoppingFragment).hide(myFragment).show(myfarmFragment).commit();
+                        }
+//                    fragmentTransaction.replace(R.id.main_container,new MyfarmFragment());
+                        iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
+                        tv1.setTextColor(Color.parseColor("#606060"));
+                        iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
+                        tv2.setTextColor(Color.parseColor("#606060"));
+                        iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
+                        tv3.setTextColor(Color.parseColor("#606060"));
+                        iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm_selected));
+                        tv4.setTextColor(Color.parseColor("#181818"));
+                        iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person));
+                        tv5.setTextColor(Color.parseColor("#606060"));
+                    }
+                }else {
+                    startActivity(new Intent(getBaseContext(), StatusActivity.class));
+                }
                 break;
             case R.id.rl_my:
-                fragmentTransaction.replace(R.id.main_container,new MyFragment());
-                iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
-                tv1.setTextColor(Color.parseColor("#606060"));
-                iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
-                tv2.setTextColor(Color.parseColor("#606060"));
-                iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
-                tv3.setTextColor(Color.parseColor("#606060"));
-                iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
-                tv4.setTextColor(Color.parseColor("#606060"));
-                iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person_selected));
-                tv5.setTextColor(Color.parseColor("#181818"));
+                if (homeFragment!=null && activitiesFragment!=null && shoppingFragment!=null && myfarmFragment!=null && myFragment!=null) {
+
+                    if (!myFragment.isAdded()) {
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.add(R.id.main_container, myFragment).hide(homeFragment).hide(activitiesFragment).hide(shoppingFragment).hide(myfarmFragment).show(myFragment).commit();
+                    } else {
+                        fragmentTransaction.hide(homeFragment).hide(activitiesFragment).hide(shoppingFragment).hide(myfarmFragment).show(myFragment).commit();
+                    }
+//                    fragmentTransaction.replace(R.id.main_container,new MyFragment());
+                    iv1.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_home));
+                    tv1.setTextColor(Color.parseColor("#606060"));
+                    iv2.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_garden));
+                    tv2.setTextColor(Color.parseColor("#606060"));
+                    iv3.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_shopping));
+                    tv3.setTextColor(Color.parseColor("#606060"));
+                    iv4.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_myfarm));
+                    tv4.setTextColor(Color.parseColor("#606060"));
+                    iv5.setImageDrawable(getResources().getDrawable(R.mipmap.comui_tab_person_selected));
+                    tv5.setTextColor(Color.parseColor("#181818"));
+                }
+
 
                 break;
         }
-        fragmentTransaction.commit();
+//        fragmentTransaction.commit();
     }
 }
