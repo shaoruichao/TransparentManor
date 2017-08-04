@@ -19,14 +19,14 @@
             android:layout_height="76dp"
             android:layout_below="@+id/tv_tab_title"
             android:layout_marginTop="5dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_toRightOf="@+id/iv_thumb"
             android:maxEms="12"
             android:singleLine="true"
@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
             android:layout_toRightOf="@+id/iv_thumb"
             android:text=""
             android:textColor="#A0A0A0"
@@ -53,7 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
             android:layout_toRightOf="@+id/tv_raisetime"
             android:text=""
             android:textColor="#A0A0A0"
@@ -64,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/iv_thumb"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_thumb"
             android:text=""
@@ -75,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text=""
             android:textColor="#333333"
             android:textSize="13sp" />
