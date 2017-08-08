@@ -2,6 +2,8 @@ package com.fat.bigfarm.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -71,6 +73,9 @@ public class SetActivity extends BaseActivity {
     private String mark_switch;
     private String mark_switch1;
 
+    private int versionCode;
+    private String versionName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +101,7 @@ public class SetActivity extends BaseActivity {
             }
         }
 
-//        getNowVresion();
+        getNowVresion();
 //        getVersion();
 
         //计算缓存
@@ -108,6 +113,25 @@ public class SetActivity extends BaseActivity {
         }
 
     }
+
+    /*获取xml文件当前的vresion 版本号和版本name*/
+    private void getNowVresion() {
+
+        PackageManager packageManager =
+                this.getPackageManager();
+
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(this.getPackageName(), 0);
+            versionCode = packageInfo.versionCode;
+            versionName = packageInfo.versionName;
+
+            tvUpdate.setText("透明农庄  V"+versionName);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @OnClick({R.id.bt_back, R.id.iv_switch, R.id.bt_remove, R.id.iv_switch1, R.id.rl_about, R.id.rl_recommended, R.id.rl_agreement, R.id.rl_update})
     public void onViewClicked(View view) {
@@ -173,6 +197,7 @@ public class SetActivity extends BaseActivity {
                 startActivity(new Intent(this,AgreementActivity.class));
                 break;
             case R.id.rl_update:
+                ToastUtil.showToast(getBaseContext(),"当前已经是最新版本");
                 break;
         }
     }

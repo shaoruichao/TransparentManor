@@ -108,6 +108,7 @@
         android:layout_below="@+id/text2"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="20dp"
+        android:visibility="gone"
         android:text="其他方式登录"
         android:textSize="13sp"
         android:textColor="#ffffff"

@@ -1,19 +1,22 @@
 package com.fat.bigfarm.ui.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.TranslateAnimation;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -21,6 +24,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,7 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fat.bigfarm.R;
 import com.fat.bigfarm.adapter.DetailsAdapter;
 import com.fat.bigfarm.app.AllUrl;
@@ -40,10 +43,17 @@ import com.fat.bigfarm.entry.Details;
 import com.fat.bigfarm.nohttp.HttpListener;
 import com.fat.bigfarm.utils.JsonUtil;
 import com.fat.bigfarm.utils.ToastUtil;
-import com.fat.bigfarm.view.GridSpacingItemDecoration;
-import com.fat.bigfarm.view.banner.NonPageTransformer;
+import com.fat.bigfarm.view.ShareBottomPopupDialog;
 import com.jauker.widget.BadgeView;
 import com.kaopiz.kprogresshud.KProgressHUD;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.SocializeUtils;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
@@ -112,6 +122,14 @@ public class DetailsActivity extends BaseActivity {
     LinearLayout ll_shoppingcat;
     @BindView(R.id.view)
     View view;
+    @BindView(R.id.iv_share)
+    ImageView ivShare;
+    @BindView(R.id.bt_showDialog)
+    Button btShowDialog;
+    @BindView(R.id.im_nomessgae)
+    ImageView imNomessgae;
+    @BindView(R.id.rl_details)
+    RelativeLayout rlDetails;
 
     private String id;
     private String typename;
@@ -121,7 +139,7 @@ public class DetailsActivity extends BaseActivity {
     private Details.DataBean data;
 
     private String price;
-    private String des;
+//    private String des;
     private String name;
 
     private BadgeView badgeView;
@@ -140,6 +158,11 @@ public class DetailsActivity extends BaseActivity {
     private static final int COLUMN = 2;
 
     private KProgressHUD hud;
+
+    private String des;
+    private String name_url;
+    public ArrayList<SnsPlatform> platforms = new ArrayList<SnsPlatform>();
+    private ShareBottomPopupDialog shareBottomPopupDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,8 +184,10 @@ public class DetailsActivity extends BaseActivity {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         hud.show();
 
-        webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id="+id);
-        Log.e(TAG, "onCreate: "+ "http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id="+id);
+        initPlatforms();
+
+        webView.loadUrl("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+        Log.e(TAG, "onCreate: " + "http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
         //启用支持javascript
         WebSettings settings = webView.getSettings();
         settings.setTextZoom(100);//字体强制100%
@@ -191,22 +216,22 @@ public class DetailsActivity extends BaseActivity {
                 // TODO Auto-generated method stub
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
 
-                Log.e(TAG, "shouldOverrideUrlLoading123: "+url);
+                Log.e(TAG, "shouldOverrideUrlLoading123: " + url);
                 type = url.substring(0, url.indexOf(":"));
-                Log.e(TAG, "shouldOverrideUrlLoadingtype: "+type );
+                Log.e(TAG, "shouldOverrideUrlLoadingtype: " + type);
                 weburl = url.substring(url.indexOf(":") + 1);
 
-                if (type.equals("pictureurl")){
-                    ToastUtil.showToast(getBaseContext(),weburl);
+                if (type.equals("pictureurl")) {
+                    ToastUtil.showToast(getBaseContext(), weburl);
                     return true;
                 }
 
-                if (type.equals("goodsid")){
+                if (type.equals("goodsid")) {
 
                     Intent intent = new Intent();
                     intent.putExtra("id", weburl);
-                    intent.putExtra("typename",typename);
-                    intent.setClass(getBaseContext(),DetailsActivity.class);
+                    intent.putExtra("typename", typename);
+                    intent.setClass(getBaseContext(), DetailsActivity.class);
                     startActivity(intent);
 
                     return true;
@@ -218,7 +243,7 @@ public class DetailsActivity extends BaseActivity {
 
         });
 
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
                 return super.onJsAlert(view, url, message, result);
@@ -276,6 +301,7 @@ public class DetailsActivity extends BaseActivity {
                     guess = data.getGuess();
                     thumb = data.getThumb();
                     typeid = data.getTypeid();
+
 //                    if (typeid.equals("1")){
 //                        tv_pay.setText("立即代养");
 //                    }else {
@@ -284,6 +310,9 @@ public class DetailsActivity extends BaseActivity {
                     tv_pay.setText("立即购买");
                     typename = data.getName();
                     tvHeadTitle.setText(typename);
+                    //分享
+                    name_url = data.getName_url();
+                    des = data.getDes();
 //                    name = data.getShopname();
 //                    tvHeadTitle.setText(name);
 ////                    bannerTop.setImagesUrl(thumb);
@@ -352,7 +381,7 @@ public class DetailsActivity extends BaseActivity {
 ////                    };
 ////                    rv.setLayoutManager(mgr);
 
-                }else {
+                } else {
                     fl_nomessage.setVisibility(View.VISIBLE);
                     webView.setVisibility(View.GONE);
                     view.setVisibility(View.GONE);
@@ -430,7 +459,8 @@ public class DetailsActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler = null; //此处在Activity退出时及时 回收
+//        handler = null; //此处在Activity退出时及时 回收
+        UMShareAPI.get(this).release();
     }
 
     private List<ProductInfo> productLists = new ArrayList<>();
@@ -474,15 +504,15 @@ public class DetailsActivity extends BaseActivity {
                 if (status.equals("1")) {
                     String aid = data.getAid();
 
-                    if (aid.equals("0")){
+                    if (aid.equals("0")) {
                         price = data.getPrice();
-                    }else {
+                    } else {
                         price = data.getAction_price();
                     }
 //                    String price = data.getPrice();
                     products.add(new ProductInfo(data.getId(), data.getName(),
-                            data.getThumb().get(0), data.getName(), data.getAid(),data.getAction_price(),data.getPrice()
-                            , 1, "", data.getSid(),data.getShopname(),data.getUnit(),data.getFreight()));
+                            data.getThumb().get(0), data.getName(), data.getAid(), data.getAction_price(), data.getPrice()
+                            , 1, "", data.getSid(), data.getShopname(), data.getUnit(), data.getFreight()));
 
 
                     Intent intent1 = new Intent();
@@ -509,11 +539,11 @@ public class DetailsActivity extends BaseActivity {
         if (request != null) {
             request.add("dosubmit", 1);
             request.add("uid", userid);//用户id
-            Log.e(TAG, "PostShoppingCart: "+userid );
+            Log.e(TAG, "PostShoppingCart: " + userid);
             request.add("gid", id);//物品id
-            Log.e(TAG, "PostShoppingCartgid: "+id );
+            Log.e(TAG, "PostShoppingCartgid: " + id);
             request.add("sid", sid);//商家id
-            Log.e(TAG, "PostShoppingCartsid: "+sid );
+            Log.e(TAG, "PostShoppingCartsid: " + sid);
             request.add("count", 1);//数量
 
             // 添加到请求队列
@@ -558,4 +588,288 @@ public class DetailsActivity extends BaseActivity {
 
         }
     };
+
+    private void initPlatforms(){
+        platforms.clear();
+        platforms.add(SHARE_MEDIA.WEIXIN.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.WEIXIN_CIRCLE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.WEIXIN_FAVORITE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.SINA.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.QQ.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.QZONE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.ALIPAY.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.DINGTALK.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.RENREN.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.DOUBAN.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.SMS.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.EMAIL.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.YNOTE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.EVERNOTE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.LAIWANG.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.LAIWANG_DYNAMIC.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.LINKEDIN.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.YIXIN.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.YIXIN_CIRCLE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.TENCENT.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.FACEBOOK.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.FACEBOOK_MESSAGER.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.VKONTAKTE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.TWITTER.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.WHATSAPP.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.GOOGLEPLUS.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.LINE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.INSTAGRAM.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.KAKAO.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.PINTEREST.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.POCKET.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.TUMBLR.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.FLICKR.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.FOURSQUARE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.DROPBOX.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.MORE.toSnsPlatform());
+
+    }
+
+    //分享
+    public void showDialog(View view) {
+        final AlertDialog dlg = new AlertDialog.Builder(this, R.style.MyDialogStyle).create();
+        //点击空白区域消失
+        dlg.setCanceledOnTouchOutside(true);
+        dlg.show();
+        Window window = dlg.getWindow();
+        // 可以在此设置显示动画
+        window.setWindowAnimations(R.style.mystyle);
+        window.setGravity(Gravity.BOTTOM);
+        //内容区域外围的灰色去掉了
+//        window.setDimAmount(0);
+
+        WindowManager.LayoutParams wl = window.getAttributes();
+
+        // 以下这两句是为了保证按钮可以水平满屏
+        wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        // 设置显示位置
+        dlg.onWindowAttributesChanged(wl);
+
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.share_bottom_dialog);
+//        View dialogView = LayoutInflater.from(this).inflate(R.layout.share_bottom_dialog, null);
+//        shareBottomPopupDialog = new ShareBottomPopupDialog(this, dialogView);
+//        shareBottomPopupDialog.showPopup(rlDetails);
+
+        //创建TranslateAnimation位移动画
+        TranslateAnimation trananimation=new TranslateAnimation(0, 0,300,0);
+        //设置动画时间
+        trananimation.setDuration(250);
+        //设置是否记录移动后的位置，true时动画将停留在当前位置，false将回到开始位置
+        trananimation.setFillAfter(true);
+        //设置插值器，可以理解为用于改变运动形式的东西
+        //（现在设置的运动形式类似于自由落体，会有弹跳效果）
+//        trananimation.setInterpolator(new BounceInterpolator());
+
+        //创建TranslateAnimation位移动画
+        TranslateAnimation trananimation1=new TranslateAnimation(0, 0,300,0);
+        //设置动画时间
+        trananimation1.setDuration(250);
+        trananimation1.setStartOffset(250);
+        //设置是否记录移动后的位置，true时动画将停留在当前位置，false将回到开始位置
+        trananimation1.setFillAfter(true);
+        //设置插值器，可以理解为用于改变运动形式的东西
+        //（现在设置的运动形式类似于自由落体，会有弹跳效果）
+//        trananimation1.setInterpolator(new BounceInterpolator());
+
+        //创建TranslateAnimation位移动画
+        TranslateAnimation trananimation2=new TranslateAnimation(0, 0,300,0);
+        //设置动画时间
+        trananimation2.setDuration(250);
+        trananimation2.setStartOffset(500);
+        //设置是否记录移动后的位置，true时动画将停留在当前位置，false将回到开始位置
+        trananimation2.setFillAfter(true);
+        //设置插值器，可以理解为用于改变运动形式的东西
+        //（现在设置的运动形式类似于自由落体，会有弹跳效果）
+//        trananimation2.setInterpolator(new BounceInterpolator());
+
+        //创建TranslateAnimation位移动画
+        TranslateAnimation trananimation3=new TranslateAnimation(0, 0,300,0);
+        //设置动画时间
+        trananimation3.setDuration(250);
+        trananimation3.setStartOffset(750);
+        //设置是否记录移动后的位置，true时动画将停留在当前位置，false将回到开始位置
+        trananimation3.setFillAfter(true);
+        //设置插值器，可以理解为用于改变运动形式的东西
+        //（现在设置的运动形式类似于自由落体，会有弹跳效果）
+//        trananimation3.setInterpolator(new BounceInterpolator());
+
+        //创建TranslateAnimation位移动画
+        TranslateAnimation trananimation4=new TranslateAnimation(0, 0,300,0);
+        //设置动画时间
+        trananimation4.setDuration(250);
+        trananimation4.setStartOffset(1000);
+        //设置是否记录移动后的位置，true时动画将停留在当前位置，false将回到开始位置
+        trananimation4.setFillAfter(true);
+        //设置插值器，可以理解为用于改变运动形式的东西
+        //（现在设置的运动形式类似于自由落体，会有弹跳效果）
+//        trananimation4.setInterpolator(new BounceInterpolator());
+
+        //创建TranslateAnimation位移动画
+        TranslateAnimation trananimation5=new TranslateAnimation(0, 0,300,0);
+        //设置动画时间
+        trananimation5.setDuration(250);
+        trananimation5.setStartOffset(1250);
+        //设置是否记录移动后的位置，true时动画将停留在当前位置，false将回到开始位置
+        trananimation5.setFillAfter(true);
+        //设置插值器，可以理解为用于改变运动形式的东西
+        //（现在设置的运动形式类似于自由落体，会有弹跳效果）
+//        trananimation5.setInterpolator(new BounceInterpolator());
+
+        //分享到
+        TextView textView = (TextView)window.findViewById(R.id.textView);
+        textView.startAnimation(trananimation);
+
+        //微信
+        RelativeLayout share_weixin_rl = (RelativeLayout) window.findViewById(R.id.share_weixin_rl);
+        share_weixin_rl.startAnimation(trananimation1);
+        ImageButton share_weixin_btn = (ImageButton) window.findViewById(R.id.share_weixin_btn);
+        share_weixin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+                web.setTitle(typename);//标题
+                web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
+                web.setDescription(des);//描述
+
+                new ShareAction(DetailsActivity.this)
+                        .withMedia(web)
+                        .setPlatform(SHARE_MEDIA.WEIXIN)
+                        .setCallback(shareListener)
+                        .share();
+                dlg.cancel();
+            }
+        });
+
+        //微信朋友圈
+        RelativeLayout share_weixinfriend_rl = (RelativeLayout) window.findViewById(R.id.share_weixinfriend_rl);
+        share_weixinfriend_rl.startAnimation(trananimation2);
+        ImageButton share_weixinfriend_btn = (ImageButton) window.findViewById(R.id.share_weixinfriend_btn);
+        share_weixinfriend_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+                web.setTitle(typename);//标题
+                web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
+                web.setDescription(des);//描述
+
+                new ShareAction(DetailsActivity.this)
+                        .withMedia(web)
+                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)
+                        .setCallback(shareListener)
+                        .share();
+                dlg.cancel();
+            }
+        });
+
+        //微博
+//        RelativeLayout share_weibo_rl = (RelativeLayout) window.findViewById(R.id.share_weibo_rl);
+//        share_weibo_rl.startAnimation(trananimation3);
+//        ImageButton share_to_weibo = (ImageButton) window.findViewById(R.id.share_to_weibo);
+//        share_to_weibo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                UMWeb web = new UMWeb(name_url);
+//                web.setTitle(typename);//标题
+//                web.setThumb(new UMImage(DetailsActivity.this, name_url));  //缩略图
+//                web.setDescription(des);//描述
+//
+//                new ShareAction(DetailsActivity.this)
+//                        .withMedia(web)
+//                        .setPlatform(SHARE_MEDIA.SINA)
+//                        .setCallback(shareListener)
+//                        .share();
+//                dlg.cancel();
+//            }
+//        });
+
+        //qq空间
+        RelativeLayout share_to_qq_zone_rl = (RelativeLayout) window.findViewById(R.id.share_to_qq_zone_rl);
+        share_to_qq_zone_rl.startAnimation(trananimation4);
+        ImageButton share_to_qq_zone_btn = (ImageButton) window.findViewById(R.id.share_to_qq_zone_btn);
+        share_to_qq_zone_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+                web.setTitle(typename);//标题
+                web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
+                web.setDescription(des);//描述
+
+                new ShareAction(DetailsActivity.this)
+                        .withMedia(web)
+                        .setPlatform(SHARE_MEDIA.QZONE)
+                        .setCallback(shareListener)
+                        .share();
+                dlg.cancel();
+            }
+        });
+        //取消
+        Button share_pop_cancle_btn = (Button) window.findViewById(R.id.share_pop_cancle_btn);
+        ImageView share_pop_cancle_iv = (ImageView) window.findViewById(R.id.share_pop_cancle_iv);
+        share_pop_cancle_btn.startAnimation(trananimation5);
+        share_pop_cancle_iv.startAnimation(trananimation5);
+        share_pop_cancle_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dlg.cancel();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
+    }
+
+    private UMShareListener shareListener = new UMShareListener() {
+        /**
+         * @descrption 分享开始的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+//            SocializeUtils.safeShowDialog(shareBottomPopupDialog);
+        }
+
+        /**
+         * @descrption 分享成功的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Toast.makeText(DetailsActivity.this,"成功了",Toast.LENGTH_LONG).show();
+//            SocializeUtils.safeCloseDialog(dialog);
+        }
+
+        /**
+         * @descrption 分享失败的回调
+         * @param platform 平台类型
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+//            SocializeUtils.safeCloseDialog(dialog);
+            Toast.makeText(DetailsActivity.this,"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @descrption 分享取消的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+//            SocializeUtils.safeCloseDialog(dialog);
+            Toast.makeText(DetailsActivity.this,"取消了",Toast.LENGTH_LONG).show();
+
+        }
+    };
+
 }
