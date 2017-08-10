@@ -257,6 +257,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_phone"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_alignParentRight="true"
@@ -316,6 +317,7 @@
         android:id="@+id/rl_password"
         android:layout_width="match_parent"
         android:layout_height="44dp"
+        android:layout_marginTop="8dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/rl_phone"
@@ -370,6 +372,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_wx"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_alignParentRight="true"
@@ -417,6 +420,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_wb"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_alignParentRight="true"
@@ -463,6 +467,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_qq"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_alignParentRight="true"

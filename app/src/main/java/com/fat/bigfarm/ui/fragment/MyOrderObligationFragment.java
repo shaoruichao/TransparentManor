@@ -182,6 +182,11 @@ public class MyOrderObligationFragment extends BaseOrderFragment {
                                 startActivity(intent);
                             }
 
+                            @Override
+                            public void sureonItemClick(Button bt_sure, int postion) {
+
+                            }
+
                             //item点击
                             @Override
                             public void rvonItemClick(OrderObligationItemAdapter orderObligationItemAdapter, int postion) {

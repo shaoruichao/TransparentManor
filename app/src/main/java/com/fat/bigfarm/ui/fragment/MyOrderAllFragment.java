@@ -181,7 +181,8 @@ public class MyOrderAllFragment extends BaseOrderFragment {
                             @Override
                             public void onItemClick(Button bt_cancelorder, int postion) {
                                 String orderid = data.get(postion).getOrderid();
-                                OrderEdit(orderid);
+                                String status = "5";
+                                OrderEdit(orderid,status);
                             }
 
                             //付款
@@ -197,6 +198,14 @@ public class MyOrderAllFragment extends BaseOrderFragment {
                                 intent.setClass(getActivity(), OrderDetailActivity.class);
                                 startActivity(intent);
                             }
+
+                            @Override
+                            public void sureonItemClick(Button bt_sure, int postion) {
+                                String orderid = data.get(postion).getOrderid();
+                                String status = "4";
+                                OrderEdit(orderid,status);
+                            }
+
                             //item点击
                             @Override
                             public void rvonItemClick(OrderObligationItemAdapter orderObligationItemAdapter, int postion) {
@@ -298,10 +307,10 @@ public class MyOrderAllFragment extends BaseOrderFragment {
         }, 2000);
     }
 
-    private void OrderEdit(String orderid){
+    private void OrderEdit(String orderid,String status){
         PostRequest tag = OkGo.post(AllUrl.ORDEREDIT).tag(this);
         tag.params("dosubmit",1);
-        tag.params("status",5);
+        tag.params("status",status);
         tag.params("id",orderid);
 
         tag.execute(new StringCallback() {
@@ -310,8 +319,9 @@ public class MyOrderAllFragment extends BaseOrderFragment {
                 Log.e(TAG, "onSuccess1: " + s);
                 OrderEdit orderEdit = JsonUtil.parseJsonToBean(s.toString(), OrderEdit.class);
                 int code = orderEdit.getCode();
+                String msg = orderEdit.getMsg();
                 if (code == 200){
-                    ToastUtil.showToast(getActivity(),"取消订单成功");
+                    ToastUtil.showToast(getActivity(),msg);
                     hud = KProgressHUD.create(getActivity())
                             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
                     hud.show();

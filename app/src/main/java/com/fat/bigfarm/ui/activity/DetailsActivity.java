@@ -733,7 +733,7 @@ public class DetailsActivity extends BaseActivity {
         share_weixin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspage_share.html?id=" + id);
                 web.setTitle(typename);//标题
                 web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
                 web.setDescription(des);//描述
@@ -754,7 +754,7 @@ public class DetailsActivity extends BaseActivity {
         share_weixinfriend_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspage_share.html?id=" + id);
                 web.setTitle(typename);//标题
                 web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
                 web.setDescription(des);//描述
@@ -769,25 +769,25 @@ public class DetailsActivity extends BaseActivity {
         });
 
         //微博
-//        RelativeLayout share_weibo_rl = (RelativeLayout) window.findViewById(R.id.share_weibo_rl);
-//        share_weibo_rl.startAnimation(trananimation3);
-//        ImageButton share_to_weibo = (ImageButton) window.findViewById(R.id.share_to_weibo);
-//        share_to_weibo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                UMWeb web = new UMWeb(name_url);
-//                web.setTitle(typename);//标题
-//                web.setThumb(new UMImage(DetailsActivity.this, name_url));  //缩略图
-//                web.setDescription(des);//描述
-//
-//                new ShareAction(DetailsActivity.this)
-//                        .withMedia(web)
-//                        .setPlatform(SHARE_MEDIA.SINA)
-//                        .setCallback(shareListener)
-//                        .share();
-//                dlg.cancel();
-//            }
-//        });
+        RelativeLayout share_weibo_rl = (RelativeLayout) window.findViewById(R.id.share_weibo_rl);
+        share_weibo_rl.startAnimation(trananimation3);
+        ImageButton share_to_weibo = (ImageButton) window.findViewById(R.id.share_to_weibo);
+        share_to_weibo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspage_share.html?id=" + id);
+                web.setTitle(typename);//标题
+                web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
+                web.setDescription(des);//描述
+
+                new ShareAction(DetailsActivity.this)
+                        .withMedia(web)
+                        .setPlatform(SHARE_MEDIA.SINA)
+                        .setCallback(shareListener)
+                        .share();
+                dlg.cancel();
+            }
+        });
 
         //qq空间
         RelativeLayout share_to_qq_zone_rl = (RelativeLayout) window.findViewById(R.id.share_to_qq_zone_rl);
@@ -796,7 +796,7 @@ public class DetailsActivity extends BaseActivity {
         share_to_qq_zone_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspageapp.html?id=" + id);
+                UMWeb web = new UMWeb("http://www.9fat.com/H5test/farmapp0608/htmls/shoppingdetailspage_share.html?id=" + id);
                 web.setTitle(typename);//标题
                 web.setThumb(new UMImage(DetailsActivity.this, thumb.get(0)));  //缩略图
                 web.setDescription(des);//描述
@@ -826,7 +826,7 @@ public class DetailsActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
+        UMShareAPI.get(DetailsActivity.this).onActivityResult(requestCode,resultCode,data);
     }
 
     private UMShareListener shareListener = new UMShareListener() {

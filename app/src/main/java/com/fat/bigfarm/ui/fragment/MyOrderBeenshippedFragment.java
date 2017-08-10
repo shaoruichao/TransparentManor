@@ -2,6 +2,7 @@ package com.fat.bigfarm.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,10 +20,15 @@ import com.fat.bigfarm.app.AllUrl;
 import com.fat.bigfarm.app.TMApplication;
 import com.fat.bigfarm.base.BaseOrderFragment;
 import com.fat.bigfarm.entry.MyOrderAll;
+import com.fat.bigfarm.entry.OrderEdit;
 import com.fat.bigfarm.nohttp.HttpListener;
 import com.fat.bigfarm.ui.activity.OrderDetailActivity;
 import com.fat.bigfarm.utils.JsonUtil;
 import com.fat.bigfarm.utils.ToastUtil;
+import com.kaopiz.kprogresshud.KProgressHUD;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.request.PostRequest;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
@@ -34,6 +40,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
 
 /**
  * 我的订单-已发货
@@ -51,6 +58,8 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
     private View view;
     private String userid;
 
+    private KProgressHUD hud;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +67,10 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
         view = inflater.inflate(R.layout.fragment_my_order_beenshipped, container, false);
 
         ButterKnife.bind(this, view);
+
+        hud = KProgressHUD.create(getActivity())
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
+        hud.show();
 
         initView();
         return view;
@@ -80,9 +93,9 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
             public void onRefresh() {
                 //刷新的时候
 
-//                hud = KProgressHUD.create(getActivity())
-//                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
-//                hud.show();
+                hud = KProgressHUD.create(getActivity())
+                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
+                hud.show();
 
                 PostOrderAll();
 
@@ -113,6 +126,7 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
 
         @Override
         public void onSucceed(int what, Response<JSONObject> response) {
+            scheduleDismiss();
             try {
 
                 JSONObject js = response.get();
@@ -162,6 +176,12 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
                                 startActivity(intent);
                             }
 
+                            @Override
+                            public void sureonItemClick(Button bt_sure, int postion) {
+                                String orderid = data.get(postion).getOrderid();
+                                OrderEdit(orderid);
+                            }
+
                             //item点击
                             @Override
                             public void rvonItemClick(OrderObligationItemAdapter orderObligationItemAdapter, int postion) {
@@ -193,10 +213,46 @@ public class MyOrderBeenshippedFragment extends BaseOrderFragment {
         @Override
         public void onFailed(int what, Response<JSONObject> response) {
 
+            scheduleDismiss();
             ToastUtil.showToast(getActivity(),"访问网络失败，请检查您的网络！");
 
         }
     };
+
+    private void scheduleDismiss() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hud.dismiss();
+            }
+        }, 2000);
+    }
+
+    private void OrderEdit(String orderid){
+        PostRequest tag = OkGo.post(AllUrl.ORDEREDIT).tag(this);
+        tag.params("dosubmit",1);
+        tag.params("status",4);
+        tag.params("id",orderid);
+
+        tag.execute(new StringCallback() {
+            @Override
+            public void onSuccess(String s, Call call, okhttp3.Response response) {
+                Log.e(TAG, "onSuccess1: " + s);
+                OrderEdit orderEdit = JsonUtil.parseJsonToBean(s.toString(), OrderEdit.class);
+                int code = orderEdit.getCode();
+                String msg = orderEdit.getMsg();
+                if (code == 200){
+                    ToastUtil.showToast(getActivity(),msg);
+                    hud = KProgressHUD.create(getActivity())
+                            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
+                    hud.show();
+
+                    PostOrderAll();
+                }
+            }
+        });
+    }
 
 
 }

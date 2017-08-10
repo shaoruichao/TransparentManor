@@ -169,12 +169,15 @@ public class OrderDetailActivity extends BaseActivity {
     TextView tvTotalPrice;
     @BindView(R.id.view)
     View view;
+    @BindView(R.id.bt_sure)
+    Button btSure;
     //    private String orderid;
     private String orderstatus;
 
     private String way = "";
     private String userid;
     private IWXAPI api;
+    private String status;
     private static final int SDK_PAY_FLAG = 1;
 
 
@@ -286,7 +289,7 @@ public class OrderDetailActivity extends BaseActivity {
         orderstatus = intent.getStringExtra("orderstatus");
         if (orderstatus.equals("1")) {
             rlRefund.setVisibility(View.GONE);
-            tvCancle.setVisibility(View.GONE);
+            tvCancle.setText("待付款");
 
             rlPay.setVisibility(View.GONE);
             rlShoptotal.setVisibility(View.GONE);
@@ -294,6 +297,7 @@ public class OrderDetailActivity extends BaseActivity {
             rlRealpay.setVisibility(View.GONE);
 
         } else if (orderstatus.equals("2")) {
+            tvCancle.setText("待发货");
             rlWeixinpay.setVisibility(View.GONE);
             rlAlipay.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
@@ -304,15 +308,20 @@ public class OrderDetailActivity extends BaseActivity {
             rlWeixinpay.setVisibility(View.GONE);
             rlAlipay.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
-            rlOperation.setVisibility(View.GONE);
+//            rlOperation.setVisibility(View.GONE);
+            btCancelorder.setVisibility(View.GONE);
+            btPay.setVisibility(View.GONE);
+            btSure.setVisibility(View.VISIBLE);
             rlRefund.setVisibility(View.GONE);
-        }else if (orderstatus.equals("4")) {
+        } else if (orderstatus.equals("4")) {
+            tvCancle.setText("交易完成");
             rlWeixinpay.setVisibility(View.GONE);
             rlAlipay.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
             rlOperation.setVisibility(View.GONE);
             tvCancle.setVisibility(View.GONE);
         } else if (orderstatus.equals("5")) {
+            tvCancle.setText("已取消订单");
             rlWeixinpay.setVisibility(View.GONE);
             rlAlipay.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
@@ -418,7 +427,7 @@ public class OrderDetailActivity extends BaseActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    @OnClick({R.id.bt_back, R.id.rl_weixinpay, R.id.rl_alipay, R.id.bt_cancelorder, R.id.bt_pay, R.id.bt_refund})
+    @OnClick({R.id.bt_back, R.id.rl_weixinpay, R.id.rl_alipay, R.id.bt_cancelorder, R.id.bt_pay, R.id.bt_refund,R.id.bt_sure})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_back:
@@ -436,7 +445,8 @@ public class OrderDetailActivity extends BaseActivity {
                 break;
             case R.id.bt_cancelorder:
 
-                OrderEdit(orderid);
+                status = "5";
+                OrderEdit(orderid,status);
                 break;
             case R.id.bt_pay:
 
@@ -452,13 +462,17 @@ public class OrderDetailActivity extends BaseActivity {
                 break;
             case R.id.bt_refund:
                 break;
+            case R.id.bt_sure:
+                status = "4";
+                OrderEdit(orderid,status);
+                break;
         }
     }
 
-    private void OrderEdit(String orderid) {
+    private void OrderEdit(String orderid,String status) {
         PostRequest tag = OkGo.post(AllUrl.ORDEREDIT).tag(this);
         tag.params("dosubmit", 1);
-        tag.params("status", 5);
+        tag.params("status", status);
         tag.params("id", orderid);
 
         tag.execute(new StringCallback() {
@@ -467,8 +481,9 @@ public class OrderDetailActivity extends BaseActivity {
                 Log.e(TAG, "onSuccess1: " + s);
                 OrderEdit orderEdit = JsonUtil.parseJsonToBean(s.toString(), OrderEdit.class);
                 int code = orderEdit.getCode();
+                String msg = orderEdit.getMsg();
                 if (code == 200) {
-                    ToastUtil.showToast(getBaseContext(), "取消订单成功");
+                    ToastUtil.showToast(getBaseContext(), msg);
                     finish();
                 }
             }

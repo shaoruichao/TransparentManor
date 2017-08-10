@@ -207,7 +207,6 @@
     <RelativeLayout
         android:id="@+id/rl_recommended"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
