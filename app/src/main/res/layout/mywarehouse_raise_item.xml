@@ -29,7 +29,7 @@
             android:layout_toRightOf="@+id/iv_thumb"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
-            android:maxEms="12"
+            android:maxEms="10"
             android:singleLine="true"
             android:ellipsize="end"
             android:text=""
